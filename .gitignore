@@ -1,0 +1,11 @@
+/build/
+/convocatorias/build/
+/convocatorias/dist/
+/convocatorias/nbproject/private/
+/dist/
+/secyt-ejb/build/
+/secyt-ejb/dist/
+/secyt-ejb/nbproject/private/
+/secyt/build/
+/secyt/dist/
+/secyt/nbproject/private/

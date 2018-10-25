@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteWinzipCapitulosLibros_subReport" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a757f404-25ef-49b0-81b2-5f017af70624">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="371f5d58-49ba-4d38-8293-e4b88ac967c0">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="persona" class="entidades.persona.Persona">
+			<fieldDescription><![CDATA[persona]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="dataset2" uuid="985c76a0-2f5a-40da-9d2c-f78987996a18">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="titulo" class="java.lang.String">
+			<fieldDescription><![CDATA[titulo]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="idProyecto" class="java.lang.Long"/>
+	<queryString language="ejbql">
+		<![CDATA[SELECT cl FROM CapituloLibro cl, IN (cl.proyectos) pr WHERE pr.id = $P{idProyecto} and cl.anioPublicacion > 2015]]>
+	</queryString>
+	<field name="ISBN" class="java.lang.String"/>
+	<field name="anioPublicacion" class="java.lang.String"/>
+	<field name="capitulos" class="java.util.List"/>
+	<field name="class" class="java.lang.Class"/>
+	<field name="editor" class="java.lang.String"/>
+	<field name="fechaAceptado" class="java.util.Date"/>
+	<field name="fechaEnviado" class="java.util.Date"/>
+	<field name="fechaPublicado" class="java.util.Date"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="investigadores" class="java.util.List"/>
+	<field name="libro" class="entidades.proyecto.resultado.Libro"/>
+	<field name="lugarPublicacion" class="java.lang.String"/>
+	<field name="nombreLibro" class="java.lang.String"/>
+	<field name="proyectos" class="java.util.List"/>
+	<field name="proyectosVinculacion" class="java.util.List"/>
+	<field name="tipoEdicion" class="entidades.proyecto.resultado.TipoEdicion"/>
+	<field name="titulo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="284" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="0" width="85" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Autor /es:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="85" y="78" width="470" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{libro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="78" width="85" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Titulo del libro:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="98" width="85" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Editor:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="85" y="98" width="470" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{editor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="128" width="131" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Etapa de publicación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="148" width="131" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Enviado a publicación]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="7bbdb28d-08d1-4c62-9853-08b06b2ffff4" positionType="Float" x="131" y="148" width="70" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaEnviado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="254" y="148" width="68" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Aceptado]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="7bbdb28d-08d1-4c62-9853-08b06b2ffff4" positionType="Float" x="322" y="148" width="70" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaAceptado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="407" y="148" width="68" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Publicado]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="7bbdb28d-08d1-4c62-9853-08b06b2ffff4" positionType="Float" x="475" y="148" width="70" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaPublicado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="180" width="74" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Edicion]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="74" y="180" width="120" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tipoEdicion}.getName()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="214" y="180" width="74" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Codigo ISBN:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="288" y="180" width="104" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ISBN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="407" y="180" width="68" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Año:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="475" y="180" width="70" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{anioPublicacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="210" width="194" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Lugar de publicación:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="194" y="210" width="351" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{lugarPublicacion}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="8558faec-960a-42c3-9a56-7f704e0be8bd" positionType="Float" x="0" y="236" width="572" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="58" width="85" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Capitulo:]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="79dbb072-fd17-4083-9507-fff445189bac" positionType="Float" x="0" y="20" width="572" height="19"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset1" uuid="b9b18011-fa6b-4567-a3be-8c739167c9c7">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{investigadores})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="19" width="572">
+						<textField>
+							<reportElement uuid="3b14157b-eb04-4313-916f-5d977bf5e1dc" positionType="Float" x="0" y="0" width="572" height="18"/>
+							<box leftPadding="15"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[""+$F{persona}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<textField>
+				<reportElement uuid="31040204-1345-455b-8efc-b0dea2c38d94" positionType="Float" x="85" y="58" width="470" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

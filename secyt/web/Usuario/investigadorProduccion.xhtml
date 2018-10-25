@@ -1,0 +1,1034 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../Template/UserTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+
+    <ui:define name="content">
+
+        <ui:include src="/recursos/mensajesReporteDlg.xhtml"/>
+        <f:subview id="revistas">
+            <ui:include src="/Usuario/articuloRevistaCreateDlg.xhtml"/>
+        </f:subview>
+
+        <f:subview id="libros">
+            <ui:include src="/Usuario/librosDlg.xhtml"/>
+        </f:subview>
+
+        <f:subview id="propiedadIndustrial">
+            <ui:include src="/Usuario/propiedadIndustrialDlg.xhtml"/>
+        </f:subview>
+
+        <f:subview id="propiedadIntelectual">
+            <ui:include src="/Usuario/propiedadIntelectualDlg.xhtml"/>
+        </f:subview>
+        <f:subview id="congresos">
+            <ui:include src="/Usuario/congresoCreateDlg.xhtml"/>
+        </f:subview>
+        <f:subview id="capitulos">
+            <ui:include src="/Usuario/capituloLibroCreateDlg.xhtml"/>
+        </f:subview>
+        <f:subview id="contrato">
+            <ui:include src="/Usuario/contratoCreateDlg.xhtml"/>
+        </f:subview>
+        <f:subview id="formacion">
+            <ui:include src="/Usuario/formacionCreateDlg.xhtml"/>
+        </f:subview>
+
+        <div class="encabezado">
+            <h:outputText value="Producción"/>
+        </div>
+
+        <div class="divGeneral">
+
+
+            <div style="margin-bottom: 20px;">
+                <h:outputText value="Listado de proyectos" style="font-size: 1.5em; font: bold;"/><br/>
+                <h:outputText value="(Seleccione uno de los listados a continuación para ver los detalles)" styleClass="aclaraciones"/>
+            </div>
+
+
+
+
+            <ui:repeat id="uu" value="#{proyectoLstBean.lstProyecto}"
+                       var="pro"
+                       >
+                <li>
+                    <p:commandLink 
+                        id="btnSelect"
+                        value="Seleccionar. " 
+                        action="#{investigadorProduccionBean.limpiar()}"
+                        update=":frmUser:pgProyectoSelect, :frmUser:apProduccion, :frmUser:cbImprimirReporte, :frmUser:revistas:dArticuloRevistaCreateDlg,:frmUser:congresos:dCongresoCreateDlg,:frmUser:capitulos:dCapituloCreateDlg,:frmUser:contrato:dContratoCreateDlg"
+
+                        style="font-size: 1.3em;">
+                        <f:setPropertyActionListener value="#{pro}" target="#{investigadorProduccionBean.proyecto}"/>
+                        <f:setPropertyActionListener value="#{pro}" target="#{publicacionLstBean.proyecto}"/>
+                        <f:setPropertyActionListener value="#{pro}" target="#{pickListView.proyecto}"/>
+                    </p:commandLink>
+                    <h:outputText value="#{pro} "/>
+
+                </li><br/>
+            </ui:repeat>
+
+
+
+
+
+
+
+        </div>
+
+        <div class="divGeneral" style="padding: 15px 5px 15px 5px; border: 1px solid #000; width: 98%;">
+
+            <h:panelGroup id="pgProyectoSelect"
+                          >
+                <h:inputHidden value="#{investigadorProduccionBean.proyecto.id}"/>
+                <h:outputText 
+                    value="Proyecto seleccionado:"
+                    style="font-size: 1.5em; font: bold;"/><br/><br/>
+                <h:outputText 
+                    value="#{publicacionLstBean.proyecto.titulo}"/>
+            </h:panelGroup>
+
+        </div>
+
+        <div align="center"  style="margin-bottom: 20px;">
+
+            <p:commandButton 
+                id="cbImprimirReporte"
+                value="Vista Previa"
+                icon="ui-icon-print"
+                onclick="this.form.target = '_blank'"
+                onblur="this.form.target = '_self'"
+                label="Imprimir"
+                ajax="false"
+                actionListener="#{investigadorProduccionBean.generarReporte()}"
+                oncomplete="PF('dlgMensajeReporte').show();"
+                style="padding: 5px 5px 5px 5px; margin: 10px 10px 10px 10px; float: left;visibility: #{investigadorProduccionBean.sOcultarAcordinPanel};"
+                title="Sr. Director la fecha de cierre del sistema de gestión, es hasta las 23,59 Hs. del día 05/10/2018. 
+Se recomienda, no dejar campos en blanco, para que al momento de la vista previa del formulario, se pueda ver la información completa. 
+Ud. deberá descargar el archivo en formato pdf. y enviarlo por correo electrónicoa: proyectosecyt@unca.edu.ar, proyectosecyt2@unca.edu.ar. 
+Además deberá presentar un (1) anillado (tapa transparente y contratapa color verde oscuro) compuesto por el formulario del sistema, acompañado 
+de la documentación respaldatoria de toda la información declarada. El mismo, deberá ser presentado en la Secretaria de Investigación de  cada Unidad Académica."/>
+            
+        </div>
+
+
+
+        <p:accordionPanel id="apProduccion"
+                          dynamic="true" 
+                          cache="true"
+
+                          style="float: left; visibility: #{investigadorProduccionBean.sOcultarAcordinPanel}; display: inline-block; width: 100%; "
+                          >  
+
+            <p:ajax event="tabChange" 
+                    listener="#{investigadorProduccionBean.onTabChange}" 
+                    process="@this, :frmUser:pgProyectoSelect"
+                    />  
+            <!-- update="dtArticulosRevistas, dtCapitulosDeLibro, dtCongreso, 
+             dtContratos, dtFormacionRRHH, dtLibros, dtPropiedadIndustrial, dtPropiedadIntelectual" 
+            -->
+
+
+            <!--ARTICULOS DE REVISTAS-->     
+
+            <p:tab title="Artículos de revistas" id="tArticulosRevistas">  
+
+                <div  style="text-align: center;">
+                    <p:commandButton 
+                        id="cbCreate"
+                        title="Nuevo Artículo"
+                        icon="ui-icon-plus" 
+                        value="Nuevo Articulo"
+
+                        actionListener="#{investigadorProduccionBean.setBtnSelect}"
+
+                        update=":frmUser:revistas:dArticuloRevistaCreateDlg"
+                        oncomplete="PF('dlgArticuloRevistaCreateDlg').show();"
+                        >
+
+                    </p:commandButton>
+                </div>
+
+                <p:dataTable id="dtArticulosRevistas"  
+                             value="#{publicacionLstBean.lstPublicacion}"
+                             var="ar"
+                             rows="1"
+                             paginator="true"
+
+                             >
+
+
+                    <p:column  headerText="Operaciones" > 
+
+
+                        <p:commandButton id="cbEdit"
+
+                                         title="Editar"
+                                         icon="ui-icon-pencil"  
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                         action="#{pickListView.cargarTargetDePublicacion(ar)}"
+                                         update=":frmUser:revistas:dArticuloRevistaCreateDlg, :frmUser:revistas:formPickList"
+
+                                         oncomplete="PF('dlgArticuloRevistaCreateDlg').show();"
+
+                                         >
+                            <f:setPropertyActionListener value="#{ar}" target="#{investigadorProduccionBean.articuloRevista}"/> 
+                            <f:setPropertyActionListener value="#{ar.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton> 
+
+
+                        <p:commandButton id="cbDelete"
+                                         title="Eliminar"
+                                         icon="ui-icon-circle-close"
+                                         action="#{pickListView.cargarTargetDePublicacion(ar)}"
+                                         oncomplete="PF('dlgArticuloRevistaCreateDlg').show();"
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                         update=":frmUser:revistas:dArticuloRevistaCreateDlg"
+                                         >
+
+                            <f:setPropertyActionListener value="#{ar}" target="#{investigadorProduccionBean.articuloRevista}"/> 
+                            <f:setPropertyActionListener value="#{ar.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton>
+
+
+                    </p:column>
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Codigo"/>
+                        </f:facet>
+                        <h:outputText value="#{ar.id}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Nombre artículo"/>
+                        </f:facet>
+                        <h:outputText value="#{ar.titulo}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Nombre revista"/>
+                        </f:facet>
+                        <h:outputText value="#{ar.nombreRevista}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Autores"/>
+                        </f:facet>
+                        <ul>
+                            <ui:repeat value="#{ar.investigadores}"
+                                       var="inv">
+                                <li>
+                                    <h:outputText value="#{inv.persona}"/>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Año"/>
+                        </f:facet>
+                        <h:outputText value="#{ar.anioEdicion}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+
+            <!--CAPITULO DE LIBROS-->   
+
+            <p:tab title="Capitulos de libros" id="tCapitulosDeLibros" >  
+                <div  style="text-align: center;">
+                    <p:commandButton value="Nuevo Capitulo Libro"
+                                     id="cbCreate3"
+                                     title="Nuevo Capitulo Libro"
+                                     actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                     update=":frmUser:capitulos:dCapituloCreateDlg"
+                                     oncomplete="PF('dlgCapituloCreateDlg').show();"
+
+                                     ></p:commandButton>
+                </div>
+
+                <p:dataTable id="dtCapitulosDeLibro"
+                             value="#{publicacionLstBean.lstPublicacion}"
+                             var="cl"
+                             rows="1" 
+                             paginator="true"
+                             >
+
+
+
+                    <p:column  headerText="Operaciones" > 
+
+
+                        <p:commandButton id="cbEdit"
+
+                                         title="Editar"
+                                         icon="ui-icon-pencil"  
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                         action="#{pickListView.cargarTargetDePublicacion(cl)}"
+                                         update=":frmUser:capitulos:dCapituloCreateDlg, :frmUser:capitulos:formPickList"
+
+                                         oncomplete="PF('dlgCapituloCreateDlg').show();"
+
+                                         >
+                            <f:setPropertyActionListener value="#{cl}" target="#{investigadorProduccionBean.capituloLibro}"/> 
+                            <f:setPropertyActionListener value="#{cl.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton> 
+                        <p:commandButton id="cbDelete"
+                                         title="Eliminar"
+                                         icon="ui-icon-circle-close"
+                                         action="#{pickListView.cargarTargetDePublicacion(cl)}"
+                                         oncomplete="PF('dlgCapituloCreateDlg').show();"
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                         update=":frmUser:capitulos:dCapituloCreateDlg"
+                                         >
+
+                            <f:setPropertyActionListener value="#{cl}" target="#{investigadorProduccionBean.capituloLibro}"/> 
+                            <f:setPropertyActionListener value="#{cl.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton>
+
+                    </p:column>
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Codigo"/>
+                        </f:facet>
+                        <h:outputText value="#{cl.id}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombre del Capitulo"/>
+                        </f:facet>
+                        <h:outputText value="#{cl.titulo}"/>
+                    </p:column>
+
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Autores"/>
+                        </f:facet>
+                        <ul>
+                            <ui:repeat value="#{cl.investigadores}"
+                                       var="inv">
+                                <li>
+                                    <h:outputText value="#{inv.persona.getApellido()} #{inv.persona.getNombre()}"/>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Editor"/>
+                        </f:facet>
+                        <h:outputText value="#{cl.editor}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+
+
+
+            <!--CONGRESOS-->  
+            <p:tab title="Congresos" id="tCongresos">  
+                <div  style="text-align: center;">
+                    <p:commandButton value="Nuevo Congreso"
+                                     id="cbCreate2"
+                                     title="Nuevo Congreso"
+                                     actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                     update=":frmUser:congresos:dCongresoCreateDlg"
+                                     oncomplete="PF('dlgCongresoCreateDlg').show();"
+
+                                     ></p:commandButton>
+                </div>
+
+
+                <p:dataTable id="dtCongreso"
+                             value="#{publicacionLstBean.lstPublicacion}"
+                             var="con"
+                             rows="1"
+                             paginator="true"
+                             scrollable="true"
+
+
+                             >
+                    <p:column headerText="Operaciones" > 
+
+                        <p:commandButton id="cbEdit"
+
+                                         title="Editar"
+                                         icon="ui-icon-pencil"  
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                         action="#{pickListView.cargarTargetDePublicacion(con)}"
+                                         update=":frmUser:congresos:dCongresoCreateDlg, :frmUser:congresos:formPickList"
+
+                                         oncomplete="PF('dlgCongresoCreateDlg').show();"
+
+                                         >
+                            <f:setPropertyActionListener value="#{con}" target="#{investigadorProduccionBean.congreso}"/> 
+                            <f:setPropertyActionListener value="#{con.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton> 
+
+                        <p:commandButton id="cbDelete"
+                                         title="Eliminar"
+                                         icon="ui-icon-circle-close"
+                                         action="#{pickListView.cargarTargetDePublicacion(con)}"
+                                         oncomplete="PF('dlgCongresoCreateDlg').show();"
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                         update=":frmUser:congresos:dCongresoCreateDlg"
+                                         >
+
+                            <f:setPropertyActionListener value="#{con}" target="#{investigadorProduccionBean.congreso}"/> 
+                            <f:setPropertyActionListener value="#{con.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton>
+
+
+
+
+                    </p:column>
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Codigo"/>
+                        </f:facet>
+                        <h:outputText value="#{con.id}"/>
+                    </p:column>
+
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Congreso"/>
+                        </f:facet>
+                        <h:outputText value="#{con.titulo}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombre del evento"/>
+                        </f:facet>
+
+                        <h:outputText value="#{con.nombreEvento}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Participantes"/>
+                        </f:facet>
+                        <ul>
+                            <ui:repeat value="#{con.investigadores}"
+                                       var="inv">
+                                <li>
+                                    <h:outputText value="#{inv.persona.getApellido()} #{inv.persona.getNombre()}"/>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Lugar"/>
+                        </f:facet>
+                        <h:outputText value="#{con.lugar}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+
+
+            <!--CONTRATOS-->              
+            <p:tab title="Contratos" id="tContratos">  
+                <div  style="text-align: center;">
+                    <p:commandButton 
+                        id="cbCreate4"
+                        title="Nuevo Contrato"
+                        icon="ui-icon-plus" 
+                        value="Nuevo Contrato"
+
+                        actionListener="#{investigadorProduccionBean.setBtnSelect}"
+
+                        update=":frmUser:contrato:dContratoCreateDlg"
+                        oncomplete="PF('dlgContratoCreateDlg').show();"
+                        >
+
+                    </p:commandButton>
+                </div>
+                <p:dataTable id="dtContratos"
+                             value="#{contratoLstBean.lstContrato}"
+                             var="cont"
+                             rows="1"
+                             paginator="true"
+                             >
+
+                    <p:column   headerText="Operaciones" > 
+
+
+                        <p:commandButton id="cbEdit"
+
+                                         title="Editar"
+                                         icon="ui-icon-pencil"  
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+
+                                         update="dtContratos,:frmUser:contrato:dContratoCreateDlg"
+
+                                         oncomplete="PF('dlgContratoCreateDlg').show();"
+
+                                         >
+                            <f:setPropertyActionListener value="#{cont}" target="#{investigadorProduccionBean.contrato}"/> 
+                            <f:setPropertyActionListener value="#{cont.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton> 
+
+
+                        <p:commandButton id="cbDelete"
+                                         title="Eliminar"
+                                         icon="ui-icon-circle-close"
+
+                                         oncomplete="PF('dlgContratoCreateDlg').show();"
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                         update="dtContratos,:frmUser:contrato:dContratoCreateDlg"
+                                         >
+
+                            <f:setPropertyActionListener value="#{cont}" target="#{investigadorProduccionBean.contrato}"/> 
+                            <f:setPropertyActionListener value="#{cont.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton>
+
+
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Codigo"/>
+                        </f:facet>
+                        <h:outputText value="#{cont.id}"/>
+                    </p:column>
+
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Objeto"/>
+                        </f:facet>
+                        <h:outputText value="#{cont.objeto}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Tipo"/>
+                        </f:facet>
+
+                        <h:outputText value="#{cont.tipoContrato}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Destinatarios"/>
+                        </f:facet>
+                        <h:outputText value="#{cont.destinatarios}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Fecha"/>
+                        </f:facet>
+                        <h:outputText value="#{cont.fechaContrato}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Monto"/>
+                        </f:facet>
+                        <h:outputText value="#{cont.montoObtenido}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+
+            <!--CFORMACION RRHH-->             
+
+            <p:tab title="Formación RRHH" id="tFormacionRRHH"> 
+                <div  style="text-align: center;">
+                    <p:commandButton 
+                        id="cbCreate5"
+                        title="Nueva Formacion RRHH"
+                        icon="ui-icon-plus" 
+                        value="Nueva Formacion RRHH"
+
+                        actionListener="#{investigadorProduccionBean.setBtnSelect}"
+
+                        update=":frmUser:formacion:dFormacionCreateDlg"
+                        oncomplete="PF('dlgFormacionCreateDlg').show();"
+                        >
+
+                    </p:commandButton>
+                </div>
+                <p:dataTable id="dtFormacionRRHH"
+                             value="#{formacionRRHHLstBean.lstFormacionRRHH}"
+                             var="fr"
+                             rows="1" 
+                             paginator="true"
+                             >
+                    <p:column   headerText="Operaciones" > 
+
+
+                        <p:commandButton id="cbEdit"
+
+                                         title="Editar"
+                                         icon="ui-icon-pencil"  
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                         update=":frmUser:formacion:dFormacionCreateDlg"
+                                         oncomplete="PF('dlgFormacionCreateDlg').show();"
+
+                                         >
+                            <f:setPropertyActionListener value="#{fr}" target="#{investigadorProduccionBean.formacionRRHH}"/> 
+                            <f:setPropertyActionListener value="#{fr.proyecto}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton> 
+
+
+                        <p:commandButton id="cbDelete"
+                                         title="Eliminar"
+                                         icon="ui-icon-circle-close"
+
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                         update=":frmUser:formacion:dFormacionCreateDlg"
+                                         oncomplete="PF('dlgFormacionCreateDlg').show();"
+                                         >
+
+                            <f:setPropertyActionListener value="#{fr}" target="#{investigadorProduccionBean.formacionRRHH}"/> 
+                            <f:setPropertyActionListener value="#{fr.proyecto}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton>
+
+
+                    </p:column>
+
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Codigo" />
+                        </f:facet>
+                        <h:outputText value="#{fr.id}"/>
+                    </p:column>
+
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Fecha"/>
+                        </f:facet>
+                        <h:outputText value="#{fr.fecha}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="N° Becarios Alumnos"
+                                          style="word-wrap:break-word;"/>
+                        </f:facet>
+
+                        <h:outputText value="#{fr.becariosAlumnos}"/>
+                    </p:column>
+
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="N° Becarios Graduados"
+                                          style="word-wrap:break-word;"/>
+                        </f:facet>
+                        <h:outputText value="#{fr.becariosGraduados}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="N° Tesis dirigidas"
+                                          style="word-wrap:break-word;"/>
+                        </f:facet>
+                        <h:outputText value="#{fr.tesisDirigidas}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Tesis aprobadas Maestría   "
+                                          style="word-wrap:break-word;"/>
+                        </f:facet>
+                        <h:outputText value="#{fr.tesisAprobadasMaestria}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Tesis aprobadas Doctorado"
+                                          style="word-wrap:break-word;"/>
+                        </f:facet>
+                        <h:outputText value="#{fr.tesisAprobadasDoctorado}"/>
+                    </p:column>
+
+                    <p:column> 
+                        <f:facet name="header">
+                            <h:outputText value="Tesinas de grado aprobadas"
+                                          style="word-wrap:break-word;"/>
+                        </f:facet>
+                        <h:outputText value="#{fr.tesinasGradoAprobadas}"/>
+                    </p:column>
+                    <p:column> 
+                        <f:facet name="header">
+                            <h:outputText value="N° de Integrantes"
+                                          style="word-wrap:break-word;"/>
+                        </f:facet>
+                        <h:outputText value="#{fr.cantidadIntegrantes}"/>
+                    </p:column>
+
+                </p:dataTable>
+            </p:tab>
+
+            <!--LIBROS-->             
+            <p:tab title="Libros" id="tLibros">  
+                <div  style="text-align: center;">
+                    <p:commandButton 
+                        id="cbCreateLibro"
+                        title="Nuevo Libro"
+                        icon="ui-icon-plus" 
+                        value="Nuevo Libro"
+
+                        actionListener="#{investigadorProduccionBean.setBtnSelect}"
+
+                        update=":frmUser:libros:dLibrosDlg"
+                        oncomplete="PF('dlgLibro').show();"
+                        >
+
+                    </p:commandButton>
+
+                </div>
+                <p:dataTable id="dtLibros"
+                             value="#{publicacionLstBean.lstPublicacion}"
+                             var="l"
+                             rows="1"
+                             paginator="true"
+                             >
+
+                    <p:column   headerText="Operaciones" > 
+
+
+                        <p:commandButton id="cbEdit"
+
+                                         title="Editar"
+                                         icon="ui-icon-pencil"  
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                         action="#{pickListView.cargarTargetDePublicacion(l)}"
+                                         update=":frmUser:libros:dLibrosDlg, :frmUser:libros:formPickList"
+
+                                         oncomplete="PF('dlgLibro').show();"
+
+                                         >
+                            <f:setPropertyActionListener value="#{l}" target="#{investigadorProduccionBean.libro}"/> 
+                            <f:setPropertyActionListener value="#{l.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton> 
+
+
+                        <p:commandButton id="cbDelete"
+                                         title="Eliminar"
+                                         icon="ui-icon-circle-close"
+                                         action="#{pickListView.cargarTargetDePublicacion(l)}"
+                                         oncomplete="PF('dlgLibro').show();"
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                         update=":frmUser:libros:dLibrosDlg"
+                                         >
+
+                            <f:setPropertyActionListener value="#{l}" target="#{investigadorProduccionBean.libro}"/> 
+                            <f:setPropertyActionListener value="#{l.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton>
+
+
+
+                    </p:column>
+
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Codigo"/>
+                        </f:facet>
+                        <h:outputText value="#{l.id}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Titulo"/>
+                        </f:facet>
+                        <h:outputText value="#{l.titulo}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Autores"/>
+                        </f:facet>
+                        <ul>
+                            <ui:repeat value="#{l.investigadores}"
+                                       var="inv">
+                                <li>
+                                    <h:outputText value="#{inv.persona}"/>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Editor"/>
+                        </f:facet>
+                        <h:outputText value="#{l.editor}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+            <!--PROPIEDAD INDUSTRIAL-->      
+
+            <p:tab title="Propiedad Industrial" id="tPropiedadIndustrial">  
+                <div  style="text-align: center;">
+                    <p:commandButton 
+                        id="cbCreatePropiedadIndustrial"
+                        title="Nueva Propiedad Industrial"
+                        icon="ui-icon-plus" 
+                        value="Nueva Propiedad Industrial"
+
+                        actionListener="#{investigadorProduccionBean.setBtnSelect}"
+
+                        update=":frmUser:propiedadIndustrial:dPropiedadIndustrialDlg"
+                        oncomplete="PF('dlgPropiedadIndustrial').show();"
+                        >
+
+                    </p:commandButton>
+                </div>
+
+                <p:dataTable id="dtPropiedadIndustrial"
+                             value="#{propiedadLstBean.lstPropiedad}"
+                             var="pr"
+                             rows="1"
+                             paginator="true"
+                             >
+
+                    <p:column   headerText="Operaciones" > 
+
+
+                        <p:commandButton id="cbEdit"
+
+                                         title="Editar"
+                                         icon="ui-icon-pencil"  
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                         action="#{pickListView.cargarTargetDePropiedad(pr)}"
+                                         update="dtPropiedadIndustrial, :frmUser:propiedadIndustrial:dPropiedadIndustrialDlg, :frmUser:propiedadIndustrial:formPickList"
+
+                                         oncomplete="PF('dlgPropiedadIndustrial').show();"
+
+                                         >
+                            <f:setPropertyActionListener value="#{pr}" target="#{investigadorProduccionBean.propiedadIndustrial}"/> 
+                            <f:setPropertyActionListener value="#{pr.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton> 
+
+
+                        <p:commandButton id="cbDelete"
+                                         title="Eliminar"
+                                         icon="ui-icon-circle-close"
+                                         action="#{pickListView.cargarTargetDePropiedad(pr)}"
+                                         oncomplete="PF('dlgPropiedadIndustrial').show();"
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                         update=":frmUser:propiedadIndustrial:dPropiedadIndustrialDlg"
+                                         >
+
+                            <f:setPropertyActionListener value="#{pr}" target="#{investigadorProduccionBean.propiedadIndustrial}"/> 
+                            <f:setPropertyActionListener value="#{pr.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton>
+
+
+
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Codigo"/>
+                        </f:facet>
+                        <h:outputText value="#{pr.id}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Titulo"/>
+                        </f:facet>
+                        <h:outputText value="#{pr.titulo}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Tipo de registro"/>
+                        </f:facet>
+                        <h:outputText value="#{pr.tipoRegistroIndustrial}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Titulares"/>
+                        </f:facet>
+                        <h:outputText value="#{pr.titulares}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Integrantes"/>
+                        </f:facet>
+                        <ul>
+                            <ui:repeat value="#{pr.investigadores}"
+                                       var="inv">
+                                <li>
+                                    <h:outputText value="#{inv.persona.getApellido()} #{inv.persona.getNombre()}"/>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Pais"/>
+                        </f:facet>
+                        <h:outputText value="#{pr.pais}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Fecha"/>
+                        </f:facet>
+                        <h:outputText value="#{pr.fecha}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </p:column>
+                </p:dataTable>
+
+            </p:tab>
+            <!--PROPIEDAD INTELECTUAL-->
+            <p:tab title="Propiedad Intelectual" id="tPropiedadIntelectual">  
+                <div  style="text-align: center;">
+                    <p:commandButton 
+                        id="cbCreatePropiedadIntelectual"
+                        title="Nueva Propiedad Intelectual"
+                        icon="ui-icon-plus" 
+                        value="Nueva Propiedad Intelectual"
+
+                        actionListener="#{investigadorProduccionBean.setBtnSelect}"
+
+                        update=":frmUser:propiedadIntelectual:dPropiedadIntelectualDlg"
+                        oncomplete="PF('dlgPropiedadIntelectual').show();"
+                        >
+
+                    </p:commandButton>
+                </div>
+                <p:dataTable id="dtPropiedadIntelectual"
+                             value="#{propiedadLstBean.lstPropiedad}"
+                             var="pri"
+                             rows="1"
+                             paginator="true"
+                             >
+                    <p:column   headerText="Operaciones" > 
+
+
+                        <p:commandButton id="cbEdit"
+
+                                         title="Editar"
+                                         icon="ui-icon-pencil"  
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                         action="#{pickListView.cargarTargetDePropiedad(pri)}"
+                                         update=":frmUser:propiedadIntelectual:dPropiedadIntelectualDlg"
+
+                                         oncomplete="PF('dlgPropiedadIntelectual').show();"
+
+                                         >
+                            <f:setPropertyActionListener value="#{pri}" target="#{investigadorProduccionBean.propiedadIntelectual}"/> 
+                            <f:setPropertyActionListener value="#{pri.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton> 
+
+
+                        <p:commandButton id="cbDelete"
+                                         title="Eliminar"
+                                         icon="ui-icon-circle-close"
+                                         action="#{pickListView.cargarTargetDePropiedad(pri)}"
+                                         oncomplete="PF('dlgPropiedadIntelectual').show();"
+                                         actionListener="#{investigadorProduccionBean.setBtnSelect}"
+                                         update=":frmUser:propiedadIntelectual:dPropiedadIntelectualDlg"
+                                         >
+
+                            <f:setPropertyActionListener value="#{pri}" target="#{investigadorProduccionBean.propiedadIntelectual}"/> 
+                            <f:setPropertyActionListener value="#{pri.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
+                        </p:commandButton>
+
+
+
+                    </p:column>
+                    <p:column  >
+                        <f:facet name="header">
+                            <h:outputText value="Codigo"/>
+                        </f:facet>
+                        <h:outputText value="#{pri.id}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Titulo"/>
+                        </f:facet>
+                        <h:outputText value="#{pri.titulo}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Tipo de registro"/>
+                        </f:facet>
+                        <h:outputText value="#{pri.tipoRegistroIntelectual}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Titulares"/>
+                        </f:facet>
+                        <h:outputText value="#{pri.titulares}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Integrantes"/>
+                        </f:facet>
+                        <ul>
+                            <ui:repeat value="#{pri.investigadores}"
+                                       var="inv">
+                                <li style="text-align: left">
+                                    <h:outputText value="#{inv.persona.getApellido()} #{inv.persona.getNombre()}"/>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Pais"/>
+                        </f:facet>
+                        <h:outputText value="#{pri.pais}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Fecha"/>
+                        </f:facet>
+                        <h:outputText value="#{pri.fecha}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>
+                        </h:outputText>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+
+
+
+        </p:accordionPanel>
+
+
+
+
+    </ui:define>
+
+</ui:composition>

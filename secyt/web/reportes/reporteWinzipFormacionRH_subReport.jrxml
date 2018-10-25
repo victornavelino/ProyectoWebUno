@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteWinzipLibros_subReport" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a757f404-25ef-49b0-81b2-5f017af70624">
+	<property name="ireport.zoom" value="1.610510000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idProyecto" class="java.lang.Long"/>
+	<queryString language="ejbql">
+		<![CDATA[SELECT f FROM FormacionRRHH f WHERE f.proyecto.id = $P{idProyecto} and f.fecha >= '2016-01-01']]>
+	</queryString>
+	<field name="becariosAlumnos" class="java.lang.Integer"/>
+	<field name="becariosGraduados" class="java.lang.Integer"/>
+	<field name="class" class="java.lang.Class"/>
+	<field name="fecha" class="java.util.Date"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="proyecto" class="entidades.proyecto.Proyecto"/>
+	<field name="proyectoVinculacion" class="entidades.proyecto.vinculacion.ProyectoVinculacion"/>
+	<field name="tesinasGradoAprobadas" class="java.lang.Integer"/>
+	<field name="tesisAprobadasDoctorado" class="java.lang.Integer"/>
+	<field name="tesisAprobadasMaestria" class="java.lang.Integer"/>
+	<field name="tesisDirigidas" class="java.lang.Integer"/>
+	<field name="cantidadIntegrantes" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="188" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="170" y="9" width="385" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{becariosAlumnos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="9" width="170" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Números de Becarios Alumnos:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="8558faec-960a-42c3-9a56-7f704e0be8bd" x="0" y="181" width="572" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="170" y="29" width="385" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{becariosGraduados}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="29" width="170" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Números de Becarios Graduados:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="49" width="170" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Números de Tesis Dirigidas:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="170" y="49" width="385" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tesisDirigidas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="69" width="170" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Números de Tesis Aprobadas:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="170" y="89" width="385" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tesisAprobadasMaestria}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="23" y="89" width="147" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Maestria:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="23" y="109" width="147" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Doctorado:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="170" y="109" width="385" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tesisAprobadasDoctorado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="136" width="191" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Números de Tesinas de Grado Aprobadas:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="191" y="136" width="134" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tesinasGradoAprobadas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="156" width="170" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Números de Integrantes:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="170" y="156" width="123" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cantidadIntegrantes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="312" y="156" width="44" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="356" y="156" width="123" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

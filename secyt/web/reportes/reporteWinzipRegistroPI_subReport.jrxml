@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteWinzipLibros_subReport" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a757f404-25ef-49b0-81b2-5f017af70624">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="93a2e5f4-019d-473e-80cf-62f6d4916eff">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="persona" class="entidades.persona.Persona">
+			<fieldDescription><![CDATA[persona]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="idProyecto" class="java.lang.Long"/>
+	<queryString language="ejbql">
+		<![CDATA[SELECT i FROM Intelectual i, IN (i.proyectos) pr WHERE pr.id = $P{idProyecto} and i.fecha >= '2016-01-01']]>
+	</queryString>
+	<field name="class" class="java.lang.Class"/>
+	<field name="fecha" class="java.util.Date"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="investigadores" class="java.util.List"/>
+	<field name="nroRegistro" class="java.lang.String"/>
+	<field name="pais" class="java.lang.String"/>
+	<field name="proyectos" class="java.util.List"/>
+	<field name="proyectosVinculacion" class="java.util.List"/>
+	<field name="tipoRegistroIntelectual" class="entidades.proyecto.resultado.TipoRegistroIntelectual"/>
+	<field name="titulares" class="java.lang.String"/>
+	<field name="titulo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="227" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="131" y="9" width="424" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tipoRegistroIntelectual}.getName()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="9" width="131" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Tipo de Registro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="29" width="131" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Titulo:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="131" y="29" width="424" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="8558faec-960a-42c3-9a56-7f704e0be8bd" positionType="Float" x="0" y="208" width="572" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="131" y="49" width="424" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{titulares}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="49" width="131" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Titulares:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="94" y="69" width="120" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nroRegistro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="69" width="94" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Registro numero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="214" y="69" width="65" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="7bbdb28d-08d1-4c62-9853-08b06b2ffff4" positionType="Float" x="279" y="69" width="98" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="377" y="69" width="58" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Pais:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="435" y="69" width="120" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pais}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="94" width="117" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Autor/es del registro:]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="ff72a42f-7f7f-4059-9e28-9f215eb8b9af" positionType="Float" x="0" y="114" width="555" height="20"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Horizontal">
+					<datasetRun subDataset="dataset1" uuid="61a26ee3-969f-47ed-83b1-fc7e872fa542">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{investigadores})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="555">
+						<textField>
+							<reportElement uuid="29498a48-2bea-490d-84de-774d9ff30860" positionType="Float" mode="Transparent" x="0" y="0" width="555" height="18"/>
+							<box leftPadding="15"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[""+$F{persona}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

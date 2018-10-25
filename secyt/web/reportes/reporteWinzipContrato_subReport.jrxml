@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteWinzipLibros_subReport" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a757f404-25ef-49b0-81b2-5f017af70624">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idProyecto" class="java.lang.Long"/>
+	<queryString language="ejbql">
+		<![CDATA[SELECT c FROM Contrato c, IN (c.proyectos) pr WHERE pr.id = $P{idProyecto} and c.fechaContrato >= '2016-01-01']]>
+	</queryString>
+	<field name="class" class="java.lang.Class"/>
+	<field name="destinatarios" class="java.lang.String"/>
+	<field name="fechaContrato" class="java.util.Date"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="montoObtenido" class="java.math.BigDecimal"/>
+	<field name="objeto" class="java.lang.String"/>
+	<field name="proyectos" class="java.util.List"/>
+	<field name="proyectosVinculacion" class="java.util.List"/>
+	<field name="tipoContrato" class="entidades.proyecto.resultado.TipoContrato"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="120" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="95" y="9" width="460" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tipoContrato}.getName()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="9" width="95" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Tipo de Contrato]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="29" width="95" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Destinatario]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="95" y="29" width="460" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{destinatarios}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="95" y="49" width="460" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{objeto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="49" width="95" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Objeto/Tema]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="69" width="304" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Monto obtenido como contrapartida del contrato, en pesos:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="304" y="69" width="251" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{montoObtenido}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="89" width="169" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Fecha del contrato/Convenio:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="169" y="89" width="386" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaContrato}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="8558faec-960a-42c3-9a56-7f704e0be8bd" positionType="Float" x="1" y="115" width="572" height="1"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
