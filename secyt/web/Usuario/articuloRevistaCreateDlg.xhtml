@@ -97,17 +97,26 @@
 
                 <h:outputText value="Enviado: "/>
                 <p:calendar  value="#{investigadorProduccionBean.articuloRevista.fechaEnviado}"
+                             navigator="true"
+                             locale="es"
+                             readonlyInput="true"
                              mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
                              maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"
                              />
 
                 <h:outputText value="Aceptado: "/>
                 <p:calendar  value="#{investigadorProduccionBean.articuloRevista.fechaAceptado}"
+                             navigator="true"
+                             locale="es"
+                             readonlyInput="true"
                              mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
                              maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>
 
                 <h:outputText value="Publicado: "/>
                 <p:calendar  value="#{investigadorProduccionBean.articuloRevista.fechaPublicado}"
+                             navigator="true"
+                             locale="es"
+                             readonlyInput="true"
                              mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
                              maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>
 

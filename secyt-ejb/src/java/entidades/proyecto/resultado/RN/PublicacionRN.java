@@ -24,27 +24,27 @@ public class PublicacionRN implements PublicacionRNLocal {
 
     @EJB
     private PublicacionFacadeLocal publicacionFacadeLocal;
-    
+
     @Override
-    public List<Publicacion> findByInvestigador(Long idProyecto,Long idInvestigador, Class tipo) throws Exception {
-        return publicacionFacadeLocal.findByInvestigador(idProyecto,idInvestigador, tipo);
+    public List<Publicacion> findByInvestigador(Long idProyecto, Long idInvestigador, Class tipo) throws Exception {
+        return publicacionFacadeLocal.findByInvestigador(idProyecto, idInvestigador, tipo);
     }
 
     @Override
     public void create(Publicacion publicacion, String clase) throws Exception {
-        if(!"CapituloLibro".equals(clase)){
-        this.validar(publicacion, 0, clase);       
+        if (!"CapituloLibro".equals(clase)) {
+            this.validar(publicacion, 0, clase);
         }
-         this.publicacionFacadeLocal.create(publicacion);
-        
+        this.publicacionFacadeLocal.create(publicacion);
+
     }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     @Override
     public void edit(Publicacion publicacion, String clase) throws Exception {
-       if(!"CapituloLibro".equals(clase)){
-        this.validar(publicacion, 0, clase);       
+        if (!"CapituloLibro".equals(clase)) {
+            this.validar(publicacion, 0, clase);
         }
         this.publicacionFacadeLocal.edit(publicacion);
     }
@@ -52,7 +52,7 @@ public class PublicacionRN implements PublicacionRNLocal {
     @Override
     public void activate(Publicacion al, Boolean bEstado) throws Exception {
         this.publicacionFacadeLocal.activate(al, bEstado);
-}
+    }
 
     @Override
     public void remove(Publicacion publicacion) throws Exception {
@@ -61,7 +61,7 @@ public class PublicacionRN implements PublicacionRNLocal {
 
     private void validar(Publicacion p, int op, String clase) throws Exception {
         System.out.println("ENTRO A VALIDAR la clase es ---->" + clase);
-        
+
         if (clase.equals("ArticuloRevista")) {
             ArticuloRevista ar = (ArticuloRevista) p;
 
@@ -74,19 +74,24 @@ public class PublicacionRN implements PublicacionRNLocal {
             if (!cadenas.es_numero(ar.getVolumen())) {
                 throw new Exception("El volumen del articulo debe contener solo caracteres numéricos");
             }
+            if (ar.getFechaEnviado() == null) {
+                throw new Exception("La fecha debe ser cargada");
+            }
+            if (ar.getFechaAceptado() == null) {
+                throw new Exception("La fecha debe ser cargada");
+            }
+            if (ar.getFechaPublicado() == null) {
+                throw new Exception("La fecha debe ser cargada");
+            }
 
             //if (validateIsbn13(ar.getISBN()) != true) {
-                
-                
 //                if(ar.getISBN().length()!= 8 || !ar.getISBN().matches("[0-8]*\\w")){
 //                   
 //                        throw new Exception("El número de ISNN (8 Digitos o 7 Digitos y una letra) ingresado no es correcto");
 //                        //throw new Exception("El número de ISBN (13 Digitos) O ISNN (8 Digitos) ingresado no es correcto");
 //                   
 //                }//fin if
-                
             //}//fin if
-
         }
         if (clase.equals("Libro")) {
             Libro libro = (Libro) p;
@@ -103,8 +108,8 @@ public class PublicacionRN implements PublicacionRNLocal {
             if (libro.getLugarPublicacion().trim().length() == 0) {
                 throw new Exception("Debe ingresar un lugar de publicación");
             }
-            if(libro.getISBN() != null){
-                if(!libro.getISBN().isEmpty()){
+            if (libro.getISBN() != null) {
+                if (!libro.getISBN().isEmpty()) {
                     if (validateIsbn13(libro.getISBN()) != true) {
                         throw new Exception("El número de ISBN (13 Digitos) ingresado no es correcto");
                     }
@@ -152,8 +157,8 @@ public class PublicacionRN implements PublicacionRNLocal {
             if (cap.getNombreLibro().trim().length() == 0) {
                 throw new Exception("Debe ingresar el Nombre del Libro");
             }
-            if (cap.getLibro()== null){
-            throw new Exception("Debe ingresar un Libro");
+            if (cap.getLibro() == null) {
+                throw new Exception("Debe ingresar un Libro");
             }
             if (cap.getTitulo().trim().length() == 0) {
                 throw new Exception("Debe ingresar el Titulo");
@@ -165,14 +170,14 @@ public class PublicacionRN implements PublicacionRNLocal {
             if (!cadenas.es_numero(cap.getAnioPublicacion())) {
                 throw new Exception("El Año del Capitulo debe contener solo caracteres numéricos");
             }
-            if(cap.getFechaAceptado()== null){
-            throw new Exception("Ingrese Fecha Aceptado");
+            if (cap.getFechaAceptado() == null) {
+                throw new Exception("Ingrese Fecha Aceptado");
             }
-             if(cap.getFechaEnviado()== null){
-            throw new Exception("Ingrese Fecha Enviado");
+            if (cap.getFechaEnviado() == null) {
+                throw new Exception("Ingrese Fecha Enviado");
             }
-              if(cap.getFechaPublicado()== null){
-            throw new Exception("Ingrese Fecha Publicado");
+            if (cap.getFechaPublicado() == null) {
+                throw new Exception("Ingrese Fecha Publicado");
             }
             if (cap.getInvestigadores() == null) {
                 throw new Exception("Debe seleccionar al menos un Participante");
@@ -184,7 +189,7 @@ public class PublicacionRN implements PublicacionRNLocal {
         }
 
     }//fin validar
-    
+
     public boolean validateIsbn13(String isbn) {
         if (isbn == null) {
             return false;
