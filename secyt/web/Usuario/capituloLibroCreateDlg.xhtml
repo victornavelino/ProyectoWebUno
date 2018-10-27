@@ -29,19 +29,23 @@
                 <h:outputText value="Proyecto: "    />
                 <h:outputText value="#{publicacionLstBean.proyecto.titulo}"/> 
 
-                  <h:outputText value="Libro:"/>
-                           <p:selectOneMenu id="somLibro"
-                                               converter="ConversorGenerico"
-                                               filter="true" filterMatchMode="contains" panelStyle="width:280px" style="width:560px"
- 
-                                            value="#{investigadorProduccionBean.capituloLibro.libro}"                                           
-                                              >
-                                  <f:selectItem itemLabel="Seleccionar..."/>
-                                  <f:selectItems  
-                                      value="#{librosLstBean.lstSILibros}"/>
-  
-                           </p:selectOneMenu>
+                <h:outputText value="Libro:"/>
+                <p:selectOneMenu id="somLibro"
+                                 converter="ConversorGenerico"
+                                 filter="true" filterMatchMode="contains" panelStyle="width:280px" style="width:560px"
 
+                                 value="#{investigadorProduccionBean.capituloLibro.libro}"                                           
+                                 >
+                    <f:selectItem itemLabel="Seleccionar..."/>
+                    <f:selectItems  
+                        value="#{librosLstBean.lstSILibros}"/>
+
+                </p:selectOneMenu>
+
+                <h:outputText value="Nombre del Libro: "/>
+                <p:inputTextarea  value="#{investigadorProduccionBean.capituloLibro.nombreLibro}" 
+                                  autoResize="true" cols="50" rows="2"
+                                  />
                 <h:outputText value="Título  del Capítulo: "/>
                 <p:inputTextarea  value="#{investigadorProduccionBean.capituloLibro.titulo}" 
                                   autoResize="true" cols="50" rows="2"
@@ -50,7 +54,7 @@
                 <h:outputText value="Editor: "/>
                 <p:inputTextarea  value="#{investigadorProduccionBean.capituloLibro.editor}" 
                                   autoResize="true" cols="50" rows="2"
-                                  
+
                                   />
 
             </h:panelGrid>
@@ -91,24 +95,36 @@
                 <h:outputText value="Enviado"/>
                 <p:calendar id="Enviado"
                             value="#{investigadorProduccionBean.capituloLibro.fechaEnviado}"
-                            
+                            navigator="true"
+                            locale="es"
+                            readonlyInput="true"
+                            mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
+                            maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"
                             /> 
                 <h:outputText value="Aceptado"/>
                 <p:calendar id="Aceptado"
                             value="#{investigadorProduccionBean.capituloLibro.fechaAceptado}"
-                            
+                            navigator="true"
+                            locale="es"
+                            readonlyInput="true"
+                            mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
+                            maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"
                             /> 
                 <h:outputText value="Publicado"/>
                 <p:calendar id="Publicado"
                             value="#{investigadorProduccionBean.capituloLibro.fechaPublicado}"
-                           
+                            navigator="true"
+                            locale="es"
+                            readonlyInput="true"
+                            mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
+                            maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"
                             /> 
 
                 <h:outputText value="Edicion: "/>
                 <h:selectOneMenu id="somEdicion"
                                  converter="ConversorGenerico"
                                  value="#{investigadorProduccionBean.capituloLibro.tipoEdicion}"
-                                 
+
                                  >
                     <f:selectItem itemLabel="Seleccionar..."/>
                     <f:selectItems value="#{investigadorProduccionBean.tipoEdicion}"/>
@@ -116,7 +132,7 @@
                 </h:selectOneMenu>
                 <h:outputText value="Código ISBN/ISSN (Ej: 8559871432295): "/>
                 <p:inputText  value="#{investigadorProduccionBean.capituloLibro.ISBN}"                
-                                 />
+                              />
 
 
                 <p:outputLabel for="anioPublicacion" value="año: "/>

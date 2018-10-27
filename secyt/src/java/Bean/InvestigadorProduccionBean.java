@@ -1007,7 +1007,6 @@ public class InvestigadorProduccionBean {
                 context.execute("PF('dlgCongresoCreateDlg').hide();");
             }
             if (this.getPublicacionLstBean().getNombreClasePublicacion().equals("CapituloLibro")) {
-                capituloLibro.setNombreLibro("N/N");
                 capituloLibro.setFechaCreacion(new Date());
                 capituloLibro.setUsuarioCreacion(this.getInvestigadorLoginBean().getInvestigador().toString());
 
@@ -1187,7 +1186,7 @@ public class InvestigadorProduccionBean {
                 formacionRNLocal.edit(formacionRRHH);
             }
             if (this.getPublicacionLstBean().getNombreClasePublicacion().equals("CapituloLibro")) {
-                capituloLibro.setNombreLibro("N/N");
+
                 capituloLibro.setProyectosVinculacion(null);
                 capituloLibro.setInvestigadores(pickListView.getInvestigadorDualListModel().getTarget());
                 publicacionRNLocal.edit(capituloLibro, this.getPublicacionLstBean().getNombreClasePublicacion());

@@ -41,19 +41,24 @@
                     <f:selectItems value="#{investigadorProduccionBean.tipoContrato}"/>
 
                 </h:selectOneMenu>
-                
+
                 <h:outputText value="Destinatarios: "/>
                 <p:inputTextarea  value="#{investigadorProduccionBean.contrato.destinatarios}" autoResize="true" cols="50" rows="2"/>
                 <h:outputText value="Objeto/Tema: "/>
                 <p:inputTextarea  value="#{investigadorProduccionBean.contrato.objeto}" autoResize="true" cols="50" rows="2"/>
                 <h:outputText value="Monto Obtenido $: "/>
                 <p:inputText  value="#{investigadorProduccionBean.contrato.montoObtenido}"/>
-                 <h:outputText value="Fecha: "/>
-                 <p:calendar  value="#{investigadorProduccionBean.contrato.fechaContrato}"/>
-                
+                <h:outputText value="Fecha: "/>
+                <p:calendar  value="#{investigadorProduccionBean.contrato.fechaContrato}"
+                             navigator="true"
+                             locale="es"
+                             readonlyInput="true"
+                             mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
+                             maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>
+
             </h:panelGrid>
         </p:panel>
-   
+
         <div>
             <p:messages autoUpdate="true"/>
         </div>

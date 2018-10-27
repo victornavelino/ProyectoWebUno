@@ -115,6 +115,15 @@ public class PublicacionRN implements PublicacionRNLocal {
                     }
                 }
             }
+            if (libro.getFechaEnviado() == null) {
+                throw new Exception("La fecha debe ser cargada");
+            }
+            if (libro.getFechaAceptado() == null) {
+                throw new Exception("La fecha debe ser cargada");
+            }
+            if (libro.getFechaPublicado() == null) {
+                throw new Exception("La fecha debe ser cargada");
+            }
 
         }
 
@@ -147,6 +156,9 @@ public class PublicacionRN implements PublicacionRNLocal {
             }
             if (con.getPublicadoEnActas() == null) {
                 throw new Exception("Debe Seleccionar un Valor en Actas Mmemorias");
+            }
+            if (con.getFecha() == null) {
+                throw new Exception("Debe Cargar Fecha");
             }
 
         }
