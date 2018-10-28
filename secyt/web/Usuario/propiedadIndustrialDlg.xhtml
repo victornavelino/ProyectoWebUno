@@ -94,7 +94,12 @@ and open the template in the editor.
                     <p:inputText  value="#{investigadorProduccionBean.propiedadIndustrial.nroRegistro}"/>
 
                     <h:outputText value="Fecha: "/>
-                    <p:calendar  value="#{investigadorProduccionBean.propiedadIndustrial.fecha}"/>
+                    <p:calendar  value="#{investigadorProduccionBean.propiedadIndustrial.fecha}"
+                                 navigator="true"
+                                 locale="es"
+                                 readonlyInput="true"
+                                 mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
+                                 maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>
                     
                     <h:outputText value="Pais: "/>
                     <p:inputText  value="#{investigadorProduccionBean.propiedadIndustrial.pais}"/>

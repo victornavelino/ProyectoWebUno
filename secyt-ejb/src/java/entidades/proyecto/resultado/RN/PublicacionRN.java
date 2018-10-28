@@ -32,9 +32,9 @@ public class PublicacionRN implements PublicacionRNLocal {
 
     @Override
     public void create(Publicacion publicacion, String clase) throws Exception {
-        if (!"CapituloLibro".equals(clase)) {
+    //    if (!"CapituloLibro".equals(clase)) {
             this.validar(publicacion, 0, clase);
-        }
+    //    }
         this.publicacionFacadeLocal.create(publicacion);
 
     }
@@ -43,9 +43,9 @@ public class PublicacionRN implements PublicacionRNLocal {
     // "Insert Code > Add Business Method")
     @Override
     public void edit(Publicacion publicacion, String clase) throws Exception {
-        if (!"CapituloLibro".equals(clase)) {
+      //  if (!"CapituloLibro".equals(clase)) {
             this.validar(publicacion, 0, clase);
-        }
+       // }
         this.publicacionFacadeLocal.edit(publicacion);
     }
 
@@ -168,9 +168,6 @@ public class PublicacionRN implements PublicacionRNLocal {
 
             if (cap.getNombreLibro().trim().length() == 0) {
                 throw new Exception("Debe ingresar el Nombre del Libro");
-            }
-            if (cap.getLibro() == null) {
-                throw new Exception("Debe ingresar un Libro");
             }
             if (cap.getTitulo().trim().length() == 0) {
                 throw new Exception("Debe ingresar el Titulo");

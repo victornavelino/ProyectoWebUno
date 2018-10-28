@@ -38,7 +38,7 @@ and open the template in the editor.
 
                     <h:outputText value="Título: "/>
                     <p:inputTextarea  value="#{investigadorProduccionBean.propiedadIntelectual.titulo}" autoResize="true" cols="50" rows="2"/>
-                    
+
                     <h:outputText value="Tipo de Registro: "/>
                     <h:selectOneMenu id="somTipoRegistro"
                                      converter="ConversorGenerico"
@@ -89,16 +89,21 @@ and open the template in the editor.
             <p:panel id="pInfoPropiedadIntelectual" header="Etapa de Publicación">
 
                 <h:panelGrid columns="4" cellpadding="2" >
-                
+
                     <h:outputText value="Registro Nro°: "/>
                     <p:inputText  value="#{investigadorProduccionBean.propiedadIntelectual.nroRegistro}"/>
 
                     <h:outputText value="Fecha: "/>
-                    <p:calendar  value="#{investigadorProduccionBean.propiedadIntelectual.fecha}"/>
-                    
+                    <p:calendar  value="#{investigadorProduccionBean.propiedadIntelectual.fecha}"
+                                 navigator="true"
+                                 locale="es"
+                                 readonlyInput="true"
+                                 mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
+                                 maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>
+
                     <h:outputText value="Pais: "/>
                     <p:inputText  value="#{investigadorProduccionBean.propiedadIntelectual.pais}"/>
-                   
+
                 </h:panelGrid>
 
 
@@ -126,10 +131,10 @@ and open the template in the editor.
                                  value="#{investigadorProduccionBean.cbAction.value}" 
                                  actionListener="#{investigadorProduccionBean.actionBtn}"
                                  update=":frmUser:apProduccion:dtPropiedadIntelectual,  pDlgPropiedadIntelectual, message1 @this"
-                                 
-                                 
+
+
                                  >
-                     
+
                     <p:confirm header="Confirmación" message="¿Seguro?" icon="ui-icon-alert" />
 
                 </p:commandButton>

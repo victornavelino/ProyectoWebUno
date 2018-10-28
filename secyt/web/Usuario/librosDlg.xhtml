@@ -34,7 +34,7 @@ and open the template in the editor.
                     <h:outputText value="Proyecto: "    />
                     <h:outputText value="#{publicacionLstBean.proyecto.titulo}"/> 
 
-              
+
 
                     <h:outputText value="Título: "/>
                     <p:inputTextarea  value="#{investigadorProduccionBean.libro.titulo}" autoResize="true" cols="50" rows="2"/>
@@ -81,7 +81,7 @@ and open the template in the editor.
             <p:panel id="pInfoLibro" header="Etapa de Publicación">
 
                 <h:panelGrid columns="4" cellpadding="2" style="text-align: right" >
-                   
+
 
                     <h:outputText value="Edición: "/>
                     <h:selectOneMenu id="somEdicion"
@@ -100,18 +100,33 @@ and open the template in the editor.
                     <p:inputText  value="#{investigadorProduccionBean.libro.anioPublicacion}"/>
                     <h:outputText value="Lugar de Publicacion: "/>
                     <p:inputText  value="#{investigadorProduccionBean.libro.lugarPublicacion}"/>
-                    
+
                     <h:outputText value="Enviado: "/>
-                    <p:calendar  value="#{investigadorProduccionBean.libro.fechaEnviado}"/>
+                    <p:calendar  value="#{investigadorProduccionBean.libro.fechaEnviado}"
+                                 navigator="true"
+                                 locale="es"
+                                 readonlyInput="true"
+                                 mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
+                                 maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>
 
                     <h:outputText value="Aceptado: "/>
-                    <p:calendar  value="#{investigadorProduccionBean.libro.fechaAceptado}"/>
+                    <p:calendar  value="#{investigadorProduccionBean.libro.fechaAceptado}"
+                                 navigator="true"
+                                 locale="es"
+                                 readonlyInput="true"
+                                 mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
+                                 maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>
 
                     <h:outputText value="Publicado: "/>
-                    <p:calendar  value="#{investigadorProduccionBean.libro.fechaPublicado}"/>
+                    <p:calendar  value="#{investigadorProduccionBean.libro.fechaPublicado}"
+                                 navigator="true"
+                                 locale="es"
+                                 readonlyInput="true"
+                                 mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
+                                 maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>
 
 
-                   
+
                 </h:panelGrid>
 
 
@@ -138,11 +153,11 @@ and open the template in the editor.
                                  icon="ui-icon-disk"
                                  value=" " 
                                  actionListener="#{investigadorProduccionBean.actionBtn}"
-                                
-                                  update=":frmUser:apProduccion:dtLibros,  pDlgLibros, message1 @this"
+
+                                 update=":frmUser:apProduccion:dtLibros,  pDlgLibros, message1 @this"
                                  binding="#{investigadorProduccionBean.cbAction}"
-                                 
-                                 
+
+
                                  >
                     <p:confirm header="Confirmación" message="¿Seguro?" icon="ui-icon-alert" />
 
