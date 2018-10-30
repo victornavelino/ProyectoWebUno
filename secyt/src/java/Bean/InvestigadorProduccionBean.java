@@ -1478,6 +1478,8 @@ public class InvestigadorProduccionBean {
             hm.put("SUBREPORT_DIR", image.replaceFirst("unca.jpg", ""));
             hm.put("proyecto", proyAux);
             hm.put("investigadores", investigadores);
+            hm.put("fechaEvaluadaInicio", convocatoriaWinsip.getFechaEvaluadaInicio());
+            hm.put("fechaEvaluadaFin", convocatoriaWinsip.getFechaEvaluadaFin());
             //hm.put("fecha", new Date());*/
 
             this.getGenerarReportesBean().generar(hm, nombreReporte);
