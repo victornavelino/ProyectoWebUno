@@ -8,11 +8,12 @@ import DAO.PropiedadFacadeLocal;
 import entidades.proyecto.resultado.Industrial;
 import entidades.proyecto.resultado.Intelectual;
 import entidades.proyecto.resultado.Propiedad;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import recursos.cadenas;
-
 
 /**
  *
@@ -23,25 +24,24 @@ public class PropiedadRN implements PropiedadRNLocal {
 
     @EJB
     private PropiedadFacadeLocal propiedadFacadeLocal;
-    
+
     @Override
-    public List<Propiedad> findByTypeYProyecto(Long idProyecto,Long idInvestigador, Class tipo) throws Exception {
-        return propiedadFacadeLocal.findByTypeYProyecto(idProyecto,idInvestigador, tipo);
+    public List<Propiedad> findByTypeYProyecto(Long idProyecto, Long idInvestigador, Class tipo) throws Exception {
+        return propiedadFacadeLocal.findByTypeYProyecto(idProyecto, idInvestigador, tipo);
     }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-
     @Override
     public void create(Propiedad propiedad, String clase) throws Exception {
         this.validar(propiedad, 0, clase);
-       this.propiedadFacadeLocal.create(propiedad);
-}
+        this.propiedadFacadeLocal.create(propiedad);
+    }
 
     @Override
     public void edit(Propiedad propiedad, String clase) throws Exception {
         this.validar(propiedad, 0, clase);
-       this.propiedadFacadeLocal.edit(propiedad);
+        this.propiedadFacadeLocal.edit(propiedad);
     }
 
     @Override
@@ -49,8 +49,11 @@ public class PropiedadRN implements PropiedadRNLocal {
         this.propiedadFacadeLocal.remove(propiedad);
     }
 
-     private void validar(Propiedad p, int op, String clase) throws Exception {
-        System.out.println("ENTRO A VALIDAR la clase es ---->" +clase);
+    private void validar(Propiedad p, int op, String clase) throws Exception {
+        System.out.println("ENTRO A VALIDAR la clase es ---->" + clase);
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        Date iniDate = formatoFecha.parse("01/01/2015");
+        Date finDate = formatoFecha.parse("31/12/2015");
         if (p.getTitulo().trim().length() == 0) {
             throw new Exception("Debe ingresar un título");
         }
@@ -64,19 +67,22 @@ public class PropiedadRN implements PropiedadRNLocal {
             if (ar.getTitulares().trim().length() == 0) {
                 throw new Exception("Debe ingresar el/los titular/es del registro");
             }
-             if (ar.getNroRegistro().trim().length() == 0) {
+            if (ar.getNroRegistro().trim().length() == 0) {
                 throw new Exception("Debe ingresar el número de registro");
             }
             if (!cadenas.es_numero(ar.getNroRegistro())) {
                 throw new Exception("El número de registro debe contener solo caracteres numéricos");
             }
-             if (ar.getFecha()== null) {
+            if (ar.getFecha() == null) {
                 throw new Exception("Debe ingresar la fecha");
             }
-             if (ar.getPais().trim().length() == 0) {
+            if (ar.getPais().trim().length() == 0) {
                 throw new Exception("Debe ingresar el país");
             }
 
+            if (ar.getFecha().after(finDate) && ar.getFecha().before(iniDate)) {
+                throw new Exception("La fecha debe ser en el año 2015");
+            }
         }
         if (clase.equals("Intelectual")) {
             Intelectual ar = (Intelectual) p;
@@ -87,17 +93,21 @@ public class PropiedadRN implements PropiedadRNLocal {
             if (ar.getTitulares().trim().length() == 0) {
                 throw new Exception("Debe ingresar el/los titular/es del registro");
             }
-             if (ar.getNroRegistro().trim().length() == 0) {
+            if (ar.getNroRegistro().trim().length() == 0) {
                 throw new Exception("Debe ingresar el número de registro");
             }
             if (!cadenas.es_numero(ar.getNroRegistro())) {
                 throw new Exception("El número de registro debe contener solo caracteres numéricos");
             }
-             if (ar.getFecha()== null) {
+            if (ar.getFecha() == null) {
                 throw new Exception("Debe ingresar la fecha");
             }
-             if (ar.getPais().trim().length() == 0) {
+            if (ar.getPais().trim().length() == 0) {
                 throw new Exception("Debe ingresar el país");
+            }
+
+            if (ar.getFecha().after(finDate) && ar.getFecha().before(iniDate)) {
+                throw new Exception("La fecha debe ser en el año 2015");
             }
 
         }

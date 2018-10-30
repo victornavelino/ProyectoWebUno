@@ -22,7 +22,7 @@ public class FormacionRN implements FormacionRNLocal {
     @EJB
     private FormacionRRHHFacadeLocal formacionRRHHFacadeLocal;
 
-    @Override
+    @Override 
     public List<FormacionRRHH> findByTypeYProyecto(Long idProyecto, Long idInvestigador) throws Exception {
         return (this.formacionRRHHFacadeLocal.findByTypeYProyecto(idProyecto, idInvestigador));
     }

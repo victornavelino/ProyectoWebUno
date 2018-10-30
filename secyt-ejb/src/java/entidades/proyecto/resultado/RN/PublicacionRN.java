@@ -32,9 +32,9 @@ public class PublicacionRN implements PublicacionRNLocal {
 
     @Override
     public void create(Publicacion publicacion, String clase) throws Exception {
-    //    if (!"CapituloLibro".equals(clase)) {
-            this.validar(publicacion, 0, clase);
-    //    }
+        //    if (!"CapituloLibro".equals(clase)) {
+        this.validar(publicacion, 0, clase);
+        //    }
         this.publicacionFacadeLocal.create(publicacion);
 
     }
@@ -43,9 +43,9 @@ public class PublicacionRN implements PublicacionRNLocal {
     // "Insert Code > Add Business Method")
     @Override
     public void edit(Publicacion publicacion, String clase) throws Exception {
-      //  if (!"CapituloLibro".equals(clase)) {
-            this.validar(publicacion, 0, clase);
-       // }
+        //  if (!"CapituloLibro".equals(clase)) {
+        this.validar(publicacion, 0, clase);
+        // }
         this.publicacionFacadeLocal.edit(publicacion);
     }
 
@@ -82,6 +82,9 @@ public class PublicacionRN implements PublicacionRNLocal {
             }
             if (ar.getFechaPublicado() == null) {
                 throw new Exception("La fecha debe ser cargada");
+            }
+            if (!ar.getAnioEdicion().equals("2015")) {
+                throw new Exception("El año debe ser 2015");
             }
 
             //if (validateIsbn13(ar.getISBN()) != true) {
@@ -124,6 +127,9 @@ public class PublicacionRN implements PublicacionRNLocal {
             if (libro.getFechaPublicado() == null) {
                 throw new Exception("La fecha debe ser cargada");
             }
+            if (!libro.getAnioPublicacion().equals("2015")) {
+                throw new Exception("El año debe ser 2015");
+            }
 
         }
 
@@ -160,6 +166,9 @@ public class PublicacionRN implements PublicacionRNLocal {
             if (con.getFecha() == null) {
                 throw new Exception("Debe Cargar Fecha");
             }
+            if (!con.getAnio().equals("2015")) {
+                throw new Exception("El año debe ser 2015");
+            }
 
         }
         if (clase.equals("CapituloLibro")) {
@@ -193,6 +202,9 @@ public class PublicacionRN implements PublicacionRNLocal {
             }
             if (!cadenas.validateIsbn13(cap.getISBN())) {
                 throw new Exception("Verificar Formato de Codigo ISBN");
+            }
+            if (!cap.getAnioPublicacion().equals("2015")) {
+                throw new Exception("El año debe ser 2015");
             }
 
         }

@@ -7,6 +7,8 @@ package entidades.proyecto.RN;
 
 import DAO.ContratoFacadeLocal;
 import entidades.proyecto.resultado.Contrato;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -47,7 +49,7 @@ public class ContratoRN implements ContratoRNLocal {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     private void validar(Contrato con, int op) throws Exception {
-
+        SimpleDateFormat formatoFecha=new SimpleDateFormat("dd/MM/yyyy");
         if (con.getObjeto().trim().length() == 0) {
             throw new Exception("Debe ingresar Objeto del contrato");
         }
@@ -57,8 +59,13 @@ public class ContratoRN implements ContratoRNLocal {
         if (con.getFechaContrato() == null) {
             throw new Exception("Debe Ingresar fecha de Contrato");
         }
-        if(con.getTipoContrato()== null){
-        throw new Exception("Debe Seleccionar Tipo de Contrato");
+        if (con.getTipoContrato() == null) {
+            throw new Exception("Debe Seleccionar Tipo de Contrato");
+        }
+        Date iniDate = formatoFecha.parse("01/01/2015");
+        Date finDate = formatoFecha.parse("31/12/2015");
+        if (con.getFechaContrato().after(finDate) && con.getFechaContrato().before(iniDate)) {
+            throw new Exception("La fecha debe ser en el año 2015");
         }
 
     }//fin validar
