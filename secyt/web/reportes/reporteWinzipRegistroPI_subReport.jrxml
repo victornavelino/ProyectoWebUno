@@ -13,7 +13,7 @@
 	</subDataset>
 	<parameter name="idProyecto" class="java.lang.Long"/>
 	<queryString language="ejbql">
-		<![CDATA[SELECT i FROM Intelectual i, IN (i.proyectos) pr WHERE pr.id = $P{idProyecto} and i.fecha >= '2016-01-01']]>
+		<![CDATA[SELECT i FROM Intelectual i, IN (i.proyectos) pr WHERE pr.id = $P{idProyecto} and i.fecha >= '2015-01-01' and i.fecha <= '2015-12-31']]>
 	</queryString>
 	<field name="class" class="java.lang.Class"/>
 	<field name="fecha" class="java.util.Date"/>

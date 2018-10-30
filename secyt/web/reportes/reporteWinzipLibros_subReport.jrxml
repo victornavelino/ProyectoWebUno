@@ -14,7 +14,7 @@
 	<subDataset name="dataset2" uuid="c432565e-6f65-4070-8e14-7f0c6ba97b27"/>
 	<parameter name="idProyecto" class="java.lang.Long"/>
 	<queryString language="ejbql">
-		<![CDATA[SELECT l FROM Libro l, IN (l.proyectos) pr WHERE pr.id = $P{idProyecto} and l.anioPublicacion > 2015 and l.id IN (Select p.id from Publicacion p where type(p)= Libro and p.id=l.id)]]>
+		<![CDATA[SELECT l FROM Libro l, IN (l.proyectos) pr WHERE pr.id = $P{idProyecto} and l.anioPublicacion = 2015 and l.id IN (Select p.id from Publicacion p where type(p)= Libro and p.id=l.id)]]>
 	</queryString>
 	<field name="ISBN" class="java.lang.String"/>
 	<field name="anioPublicacion" class="java.lang.String"/>
