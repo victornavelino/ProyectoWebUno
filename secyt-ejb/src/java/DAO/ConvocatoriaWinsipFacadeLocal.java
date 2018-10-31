@@ -33,6 +33,8 @@ public interface ConvocatoriaWinsipFacadeLocal {
     
     List<ConvocatoriaWinsip> findAllOrderByApertura() throws Exception;
     
-    ConvocatoriaWinsip findHabilitadaProyecto(Proyecto proyecto) throws Exception;
+    public ConvocatoriaWinsip findHabilitada() throws Exception;
+
+    public ConvocatoriaWinsip findHabilitadaProyecto(Proyecto proyecto);
     
 }

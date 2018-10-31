@@ -1480,7 +1480,7 @@ public class InvestigadorProduccionBean {
             hm.put(JRJpaQueryExecuterFactory.PARAMETER_JPA_ENTITY_MANAGER, em);
             //quito html
             Proyecto proyAux = getProyectoFacadeLocal().find(this.getProyecto().getId());
-            ConvocatoriaWinsip convocatoriaWinsip = getConvocatoriaWinsipFacadeLocal().findHabilitadaProyecto(proyAux);
+            ConvocatoriaWinsip convocatoriaWinsip = getConvocatoriaWinsipFacadeLocal().findHabilitada();
             System.out.println("PROYECTO: " + proyAux);
             List<Participacion> investigadores = getParticipacionFacadeLocal().buscarParticipacionesActivas(proyAux, convocatoriaWinsip);
             Collections.sort(investigadores);

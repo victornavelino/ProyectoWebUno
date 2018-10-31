@@ -24,13 +24,18 @@ import javax.persistence.Temporal;
  * @author hugo
  */
 @Entity
-@Table(name = "convocatoriawinsip")
-@NamedQueries({
+        @Table(name = "convocatoriawinsip")
+        @NamedQueries({
     @NamedQuery(name = "ConvocatoriaWinsip.findAllOrderByApertura",
             //query = "SELECT DISTINCT pr FROM Publicacion p, IN (p.proyectos) pr, IN (pr.participaciones) par WHERE par.investigador.id = :idInvestigador"),
-            query = "SELECT c FROM ConvocatoriaWinsip c ORDER BY c.apertura DESC"),
+            query = "SELECT c FROM ConvocatoriaWinsip c ORDER BY c.apertura DESC")
+    ,
             @NamedQuery(name = "ConvocatoriaWinsip.findHabilitadaProyecto",
-            query = "SELECT c FROM ConvocatoriaWinsip c,IN (c.proyectos) proy where proy=:proyecto AND c.habilitada = TRUE ORDER BY c.apertura DESC")
+            query = "SELECT c FROM ConvocatoriaWinsip c,IN (c.proyectos) proy where proy=:proyecto AND c.habilitada = TRUE ORDER BY c.apertura DESC"),
+        @NamedQuery(name = "ConvocatoriaWinsip.findHabilitada",
+                query = "SELECT c FROM ConvocatoriaWinsip c where c.habilitada = TRUE ORDER BY c.apertura DESC")
+
+
 })
 public class ConvocatoriaWinsip implements Serializable {
 

@@ -39,15 +39,24 @@ public class ConvocatoriaWinsipFacade extends AbstractFacade<ConvocatoriaWinsip>
     }
 
     @Override
-    public ConvocatoriaWinsip findHabilitadaProyecto(Proyecto proyecto) throws Exception {
-        Query q = em.createNamedQuery("ConvocatoriaWinsip.findHabilitadaProyecto");
-        q.setParameter("proyecto", proyecto);
+    public ConvocatoriaWinsip findHabilitada() throws Exception {
+        Query q = em.createNamedQuery("ConvocatoriaWinsip.findHabilitada");
         if(q.getResultList().size()>1){
             return (ConvocatoriaWinsip)q.getResultList().get(0);
         }else{
            return (ConvocatoriaWinsip)q.getSingleResult();
         }
         
+    }
+
+    @Override
+    public ConvocatoriaWinsip findHabilitadaProyecto(Proyecto proyecto) {
+        Query q = em.createNamedQuery("ConvocatoriaWinsip.findHabilitadaProyecto");
+        if(q.getResultList().size()>1){
+            return (ConvocatoriaWinsip)q.getResultList().get(0);
+        }else{
+           return (ConvocatoriaWinsip)q.getSingleResult();
+        }
     }
 
 }

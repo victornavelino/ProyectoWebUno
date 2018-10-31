@@ -5,6 +5,7 @@
 package entidades.convocatoriawinsip.RN;
 
 import entidades.convocatoriawinsip.ConvocatoriaWinsip;
+import entidades.proyecto.Proyecto;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -17,5 +18,9 @@ public interface ConvocatoriaWinsipRNLocal {
 
     List<ConvocatoriaWinsip> findAllOrderByApertura() throws Exception;
 
+    ConvocatoriaWinsip findHabilitadaProyecto(Proyecto proyecto) throws Exception;
+    
+    ConvocatoriaWinsip findHabilitada() throws Exception;
+    
 
 }

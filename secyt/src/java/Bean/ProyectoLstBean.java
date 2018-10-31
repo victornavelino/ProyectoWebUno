@@ -24,6 +24,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.sound.midi.SysexMessage;
 
 /**
  *
@@ -140,8 +141,9 @@ public class ProyectoLstBean implements Serializable {
 
         try {
             //consultar la ultima convocatoria winzip y traer el listado de proyectos
-            List<ConvocatoriaWinsip> cwAux = this.getConvocatoriaWinsipRNLocal().findAllOrderByApertura();
-            
+            //List<ConvocatoriaWinsip> cwAux = this.getConvocatoriaWinsipRNLocal().findAllOrderByApertura();
+            ConvocatoriaWinsip cwAux = this.getConvocatoriaWinsipRNLocal().findHabilitada();
+            System.out.println("WINSIP HABLIITADA: "+ cwAux);
             if(cwAux != null){
                 
                 //verifico que este entre la fecha actual
@@ -157,7 +159,7 @@ public class ProyectoLstBean implements Serializable {
 
                 
                 Calendar fechaAper = Calendar.getInstance();
-                fechaAper.setTime(cwAux.get(0).getApertura());
+                fechaAper.setTime(cwAux.getApertura());
                 
                 Date fechaA = DATE_FORMAT.parse(fechaAper.get(Calendar.DATE) + "-" + 
                         fechaAper.get(Calendar.MONTH) + "-" + 
@@ -165,7 +167,7 @@ public class ProyectoLstBean implements Serializable {
 
                 
                 Calendar fechaCierre = Calendar.getInstance();
-                fechaCierre.setTime(cwAux.get(0).getCierre());
+                fechaCierre.setTime(cwAux.getCierre());
                 
                 Date fechaC = DATE_FORMAT.parse(fechaCierre.get(Calendar.DATE) + "-" + 
                         fechaCierre.get(Calendar.MONTH) + "-" + 
@@ -182,7 +184,7 @@ public class ProyectoLstBean implements Serializable {
                 
                 List<Long> lstId = new ArrayList<Long>();
                 
-                List<Proyecto> lstProyAux = cwAux.get(0).getProyectos();
+                List<Proyecto> lstProyAux = cwAux.getProyectos();
                 
                 
                 for(Proyecto p : lstProyAux){
@@ -191,7 +193,8 @@ public class ProyectoLstBean implements Serializable {
                 }
                 //System.out.println("lista :"+lstId);
                 //System.out.println("investigador :"+this.getInvestigadorLoginBean().getInvestigador());
-                this.setConvocatoriaWinsip(cwAux.get(0));
+                this.setConvocatoriaWinsip(cwAux);
+                System.out.println("CONVOCATORIA WINSIP SELECCIONADA: "+ this.getConvocatoriaWinsip().getNombre());
                 this.setLstProyecto(proyectoRNLocal.findByInvestigadorRolYProyecto(
                     this.getInvestigadorLoginBean().getInvestigador().getId(), "Director", 
                         lstId));
