@@ -6,6 +6,7 @@
 package entidades.proyecto.RN;
 
 import DAO.ContratoFacadeLocal;
+import entidades.convocatoriawinsip.ConvocatoriaWinsip;
 import entidades.proyecto.resultado.Contrato;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,14 +31,14 @@ public class ContratoRN implements ContratoRNLocal {
     }
 
     @Override
-    public void create(Contrato contrato) throws Exception {
-        this.validar(contrato, 0);
+    public void create(Contrato contrato,  ConvocatoriaWinsip convocatoriaWinsip) throws Exception {
+        this.validar(contrato, 0,convocatoriaWinsip);
         this.contratoFacadeLocal.create(contrato);
     }
 
     @Override
-    public void edit(Contrato contrato) throws Exception {
-        this.validar(contrato, 1);
+    public void edit(Contrato contrato,  ConvocatoriaWinsip convocatoriaWinsip) throws Exception {
+        this.validar(contrato, 1,convocatoriaWinsip);
         this.contratoFacadeLocal.edit(contrato);
     }
 
@@ -48,7 +49,7 @@ public class ContratoRN implements ContratoRNLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    private void validar(Contrato con, int op) throws Exception {
+    private void validar(Contrato con, int op,ConvocatoriaWinsip convocatoriaWinsip) throws Exception {
         SimpleDateFormat formatoFecha=new SimpleDateFormat("dd/MM/yyyy");
         if (con.getObjeto().trim().length() == 0) {
             throw new Exception("Debe ingresar Objeto del contrato");
@@ -62,9 +63,7 @@ public class ContratoRN implements ContratoRNLocal {
         if (con.getTipoContrato() == null) {
             throw new Exception("Debe Seleccionar Tipo de Contrato");
         }
-        Date iniDate = formatoFecha.parse("01/01/2015");
-        Date finDate = formatoFecha.parse("31/12/2015");
-        if (con.getFechaContrato().after(finDate) && con.getFechaContrato().before(iniDate)) {
+        if (con.getFechaContrato().after(convocatoriaWinsip.getFechaEvaluadaFin()) && con.getFechaContrato().before(convocatoriaWinsip.getFechaEvaluadaInicio())) {
             throw new Exception("La fecha debe ser en el año 2015");
         }
 

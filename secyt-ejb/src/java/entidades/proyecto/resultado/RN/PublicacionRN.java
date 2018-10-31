@@ -10,9 +10,12 @@ import entidades.proyecto.resultado.CapituloLibro;
 import entidades.proyecto.resultado.Congreso;
 import entidades.proyecto.resultado.Libro;
 import entidades.proyecto.resultado.Publicacion;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.faces.bean.ManagedProperty;
 import recursos.cadenas;
 
 /**
@@ -31,9 +34,9 @@ public class PublicacionRN implements PublicacionRNLocal {
     }
 
     @Override
-    public void create(Publicacion publicacion, String clase) throws Exception {
+    public void create(Publicacion publicacion, String clase,Date fechaIniEvalaucionWinsip) throws Exception {
         //    if (!"CapituloLibro".equals(clase)) {
-        this.validar(publicacion, 0, clase);
+        this.validar(publicacion, 0, clase, fechaIniEvalaucionWinsip);
         //    }
         this.publicacionFacadeLocal.create(publicacion);
 
@@ -42,9 +45,9 @@ public class PublicacionRN implements PublicacionRNLocal {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     @Override
-    public void edit(Publicacion publicacion, String clase) throws Exception {
+    public void edit(Publicacion publicacion, String clase,Date fechaIniEvalaucionWinsip) throws Exception {
         //  if (!"CapituloLibro".equals(clase)) {
-        this.validar(publicacion, 0, clase);
+        this.validar(publicacion, 0, clase, fechaIniEvalaucionWinsip);
         // }
         this.publicacionFacadeLocal.edit(publicacion);
     }
@@ -59,9 +62,12 @@ public class PublicacionRN implements PublicacionRNLocal {
         this.publicacionFacadeLocal.remove(publicacion);
     }
 
-    private void validar(Publicacion p, int op, String clase) throws Exception {
+    private void validar(Publicacion p, int op, String clase, Date fechaIniEvalaucionWinsip) throws Exception {
         System.out.println("ENTRO A VALIDAR la clase es ---->" + clase);
-
+            Calendar calIni = Calendar.getInstance();
+            calIni.setTime(fechaIniEvalaucionWinsip);
+            String anioInicio = String.valueOf(calIni.get(Calendar.YEAR));
+            System.out.println("EL AÑO DE INICIO ES: "+anioInicio);
         if (clase.equals("ArticuloRevista")) {
             ArticuloRevista ar = (ArticuloRevista) p;
 
@@ -83,8 +89,8 @@ public class PublicacionRN implements PublicacionRNLocal {
             if (ar.getFechaPublicado() == null) {
                 throw new Exception("La fecha debe ser cargada");
             }
-            if (!ar.getAnioEdicion().equals("2015")) {
-                throw new Exception("El año debe ser 2015");
+            if (!ar.getAnioEdicion().equals(anioInicio)) {
+                throw new Exception("El año debe ser: "+anioInicio);
             }
 
             //if (validateIsbn13(ar.getISBN()) != true) {
@@ -127,8 +133,8 @@ public class PublicacionRN implements PublicacionRNLocal {
             if (libro.getFechaPublicado() == null) {
                 throw new Exception("La fecha debe ser cargada");
             }
-            if (!libro.getAnioPublicacion().equals("2015")) {
-                throw new Exception("El año debe ser 2015");
+            if (!libro.getAnioPublicacion().equals(anioInicio)) {
+                throw new Exception("El año debe ser: "+anioInicio);
             }
 
         }
@@ -166,8 +172,8 @@ public class PublicacionRN implements PublicacionRNLocal {
             if (con.getFecha() == null) {
                 throw new Exception("Debe Cargar Fecha");
             }
-            if (!con.getAnio().equals("2015")) {
-                throw new Exception("El año debe ser 2015");
+            if (!con.getAnio().equals(anioInicio)) {
+                throw new Exception("El año debe ser: "+anioInicio);
             }
 
         }
@@ -203,8 +209,8 @@ public class PublicacionRN implements PublicacionRNLocal {
             if (!cadenas.validateIsbn13(cap.getISBN())) {
                 throw new Exception("Verificar Formato de Codigo ISBN");
             }
-            if (!cap.getAnioPublicacion().equals("2015")) {
-                throw new Exception("El año debe ser 2015");
+            if (!cap.getAnioPublicacion().equals(anioInicio)) {
+                throw new Exception("El año debe ser: "+anioInicio);
             }
 
         }
