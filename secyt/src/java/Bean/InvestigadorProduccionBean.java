@@ -29,6 +29,7 @@ import entidades.proyecto.resultado.TipoReferato;
 import entidades.proyecto.resultado.TipoRegistroIndustrial;
 import entidades.proyecto.resultado.TipoRegistroIntelectual;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -173,7 +174,6 @@ public class InvestigadorProduccionBean {
         this.convocatoriaWinsipFacadeLocal = convocatoriaWinsipFacadeLocal;
     }
 
- 
     public ParticipacionFacadeLocal getParticipacionFacadeLocal() {
         return participacionFacadeLocal;
     }
@@ -1471,8 +1471,8 @@ public class InvestigadorProduccionBean {
             //quito html
             Proyecto proyAux = getProyectoFacadeLocal().find(this.getProyecto().getId());
             ConvocatoriaWinsip convocatoriaWinsip = getConvocatoriaWinsipFacadeLocal().findHabilitadaProyecto(proyAux);
-                    System.out.println("PROYECTO: " + proyAux);
-            List<Participacion> investigadores = getParticipacionFacadeLocal().buscarParticipacionesActivas(proyAux,convocatoriaWinsip);
+            System.out.println("PROYECTO: " + proyAux);
+            List<Participacion> investigadores = getParticipacionFacadeLocal().buscarParticipacionesActivas(proyAux, convocatoriaWinsip);
             Collections.sort(investigadores);
             System.out.println("particupacions: " + investigadores);
             hm.put("SUBREPORT_DIR", image.replaceFirst("unca.jpg", ""));
@@ -1480,6 +1480,15 @@ public class InvestigadorProduccionBean {
             hm.put("investigadores", investigadores);
             hm.put("fechaEvaluadaInicio", convocatoriaWinsip.getFechaEvaluadaInicio());
             hm.put("fechaEvaluadaFin", convocatoriaWinsip.getFechaEvaluadaFin());
+//pasamos los años tambien
+            Calendar calIni = Calendar.getInstance();
+            Calendar calFin = Calendar.getInstance();
+            calIni.setTime(convocatoriaWinsip.getFechaEvaluadaInicio());
+            calFin.setTime(convocatoriaWinsip.getFechaEvaluadaFin());
+            String anioInicio = String.valueOf(calIni.get(Calendar.YEAR));
+            String anioFin = String.valueOf(calFin.get(Calendar.YEAR));
+            hm.put("anioInicio", anioInicio);
+            hm.put("anioFin", anioFin);
             //hm.put("fecha", new Date());*/
 
             this.getGenerarReportesBean().generar(hm, nombreReporte);

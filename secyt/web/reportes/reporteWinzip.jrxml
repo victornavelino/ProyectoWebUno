@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteWinzip" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="37f6179e-3872-41d0-9b3b-7233b73a06fb">
 	<property name="ireport.zoom" value="1.4641000000000026"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1152"/>
+	<property name="ireport.y" value="0"/>
 	<subDataset name="dataset1" uuid="f8332578-8d47-44e7-8130-4b054e39c055">
 		<queryString>
 			<![CDATA[]]>
@@ -19,6 +19,8 @@
 	<parameter name="investigadores" class="java.util.List"/>
 	<parameter name="fechaEvaluadaInicio" class="java.util.Date"/>
 	<parameter name="fechaEvaluadaFin" class="java.util.Date"/>
+	<parameter name="anioInicio" class="java.lang.String"/>
+	<parameter name="anioFin" class="java.lang.String"/>
 	<queryString language="ejbql">
 		<![CDATA[Select p from Proyecto p WHERE p = $P{proyecto}]]>
 	</queryString>
@@ -87,14 +89,29 @@
 				<text><![CDATA[SECRETARÍA DE CIENCIA Y TECNOLOGÍA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="6ce84ac6-55b0-4997-952e-891881421ae6" x="78" y="50" width="477" height="20"/>
+				<reportElement uuid="6ce84ac6-55b0-4997-952e-891881421ae6" x="78" y="50" width="196" height="20"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[INFORME DE AVANCE - FINAL AÑO 2016-2017]]></text>
+				<text><![CDATA[INFORME DE AVANCE - FINAL AÑO ]]></text>
 			</staticText>
 			<image>
 				<reportElement uuid="d6b6131e-378f-4cc2-8502-d6d41b8696b3" x="6" y="3" width="72" height="67"/>
 				<imageExpression><![CDATA[$P{IMAGEN}]]></imageExpression>
 			</image>
+			<textField>
+				<reportElement uuid="77ca76ca-a844-4588-8ce7-94f8b7305561" x="274" y="50" width="28" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{anioInicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6ce84ac6-55b0-4997-952e-891881421ae6" x="302" y="50" width="15" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ - ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="90211333-329f-4514-b3b6-1d31972b7419" x="317" y="50" width="64" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{anioFin}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnHeader>
 	<detail>
@@ -490,11 +507,17 @@
 			</staticText>
 			<subreport>
 				<reportElement uuid="5982b401-a8d9-41a7-b607-e509539a5225" positionType="Float" x="-1" y="131" width="557" height="36"/>
+				<subreportParameter name="fechaEvaluadaInicio">
+					<subreportParameterExpression><![CDATA[$P{fechaEvaluadaInicio}]]></subreportParameterExpression>
+				</subreportParameter>
 				<subreportParameter name="JPA_ENTITY_MANAGER">
 					<subreportParameterExpression><![CDATA[$P{JPA_ENTITY_MANAGER}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="idProyecto">
 					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fechaEvaluadaFin">
+					<subreportParameterExpression><![CDATA[$P{fechaEvaluadaFin}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} +"reporteWinzipLibros_subReport.jasper"]]></subreportExpression>
