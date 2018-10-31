@@ -4,8 +4,10 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="idProyecto" class="java.lang.Long"/>
+	<parameter name="fechaEvaluadaFin" class="java.util.Date"/>
+	<parameter name="fechaEvaluadaInicio" class="java.util.Date"/>
 	<queryString language="ejbql">
-		<![CDATA[SELECT c FROM Contrato c, IN (c.proyectos) pr WHERE pr.id = $P{idProyecto} and c.fechaContrato >= '2015-01-01' and c.fechaContrato <= '2015-12-31']]>
+		<![CDATA[SELECT c FROM Contrato c, IN (c.proyectos) pr WHERE pr.id = $P{idProyecto} and c.fechaContrato >= $P{fechaEvaluadaInicio} and c.fechaContrato <= $P{fechaEvaluadaFin}]]>
 	</queryString>
 	<field name="class" class="java.lang.Class"/>
 	<field name="destinatarios" class="java.lang.String"/>

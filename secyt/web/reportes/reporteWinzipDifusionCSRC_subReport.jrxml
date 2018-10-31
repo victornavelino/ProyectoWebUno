@@ -9,8 +9,10 @@
 		</field>
 	</subDataset>
 	<parameter name="idProyecto" class="java.lang.Long"/>
+	<parameter name="anioInicio" class="java.lang.String"/>
+	<parameter name="anioFin" class="java.lang.String"/>
 	<queryString language="ejbql">
-		<![CDATA[SELECT c FROM Congreso  c, IN (c.proyectos) pr WHERE pr.id = $P{idProyecto} and c.anio = 2015]]>
+		<![CDATA[SELECT c FROM Congreso  c, IN (c.proyectos) pr WHERE pr.id = $P{idProyecto} and c.anio = $P{anioInicio}]]>
 	</queryString>
 	<field name="anio" class="java.lang.String"/>
 	<field name="caracter" class="entidades.proyecto.resultado.TipoEdicion"/>
