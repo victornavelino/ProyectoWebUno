@@ -89,9 +89,9 @@ public class PublicacionRN implements PublicacionRNLocal {
             if (ar.getFechaPublicado() == null) {
                 throw new Exception("La fecha debe ser cargada");
             }
-            if (!ar.getAnioEdicion().equals(anioInicio)) {
-                throw new Exception("El año debe ser: "+anioInicio);
-            }
+//            if (!ar.getAnioEdicion().equals(anioInicio)) {
+//                throw new Exception("El año debe ser: "+anioInicio);
+//            }
 
             //if (validateIsbn13(ar.getISBN()) != true) {
 //                if(ar.getISBN().length()!= 8 || !ar.getISBN().matches("[0-8]*\\w")){
@@ -133,9 +133,9 @@ public class PublicacionRN implements PublicacionRNLocal {
             if (libro.getFechaPublicado() == null) {
                 throw new Exception("La fecha debe ser cargada");
             }
-            if (!libro.getAnioPublicacion().equals(anioInicio)) {
-                throw new Exception("El año debe ser: "+anioInicio);
-            }
+//            if (!libro.getAnioPublicacion().equals(anioInicio)) {
+//                throw new Exception("El año debe ser: "+anioInicio);
+//            }
 
         }
 
@@ -172,9 +172,9 @@ public class PublicacionRN implements PublicacionRNLocal {
             if (con.getFecha() == null) {
                 throw new Exception("Debe Cargar Fecha");
             }
-            if (!con.getAnio().equals(anioInicio)) {
-                throw new Exception("El año debe ser: "+anioInicio);
-            }
+//            if (!con.getAnio().equals(anioInicio)) {
+//                throw new Exception("El año debe ser: "+anioInicio);
+//            }
 
         }
         if (clase.equals("CapituloLibro")) {
@@ -209,9 +209,9 @@ public class PublicacionRN implements PublicacionRNLocal {
             if (!cadenas.validateIsbn13(cap.getISBN())) {
                 throw new Exception("Verificar Formato de Codigo ISBN");
             }
-            if (!cap.getAnioPublicacion().equals(anioInicio)) {
-                throw new Exception("El año debe ser: "+anioInicio);
-            }
+//            if (!cap.getAnioPublicacion().equals(anioInicio)) {
+//                throw new Exception("El año debe ser: "+anioInicio);
+//            }
 
         }
 

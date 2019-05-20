@@ -990,7 +990,7 @@ public class InvestigadorProduccionBean {
                 articuloRevista.setProyectosVinculacion(null);
 
                 articuloRevista.setInvestigadores(pickListView.getInvestigadorDualListModel().getTarget());
-                publicacionRNLocal.create(articuloRevista, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaInicio());
+                publicacionRNLocal.create(articuloRevista, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaFin());
                 this.getPublicacionLstBean().getLstPublicacion().add(this.articuloRevista);
                 context.execute("PF('dlgArticuloRevistaCreateDlg').hide();");
 
@@ -1001,7 +1001,7 @@ public class InvestigadorProduccionBean {
 
                 libro.setProyectosVinculacion(null);
                 libro.setInvestigadores(pickListView.getInvestigadorDualListModel().getTarget());
-                publicacionRNLocal.create(libro, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaInicio());
+                publicacionRNLocal.create(libro, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaFin());
                 this.getPublicacionLstBean().getLstPublicacion().add(this.libro);
                 context.execute("PF('dlgLibro').hide();");
             }
@@ -1012,7 +1012,7 @@ public class InvestigadorProduccionBean {
 
                 congreso.setProyectosVinculacion(null);
                 congreso.setInvestigadores(pickListView.getInvestigadorDualListModel().getTarget());
-                publicacionRNLocal.create(congreso, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaInicio());
+                publicacionRNLocal.create(congreso, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaFin());
                 this.getPublicacionLstBean().getLstPublicacion().add(this.congreso);
                 context.execute("PF('dlgCongresoCreateDlg').hide();");
             }
@@ -1023,7 +1023,7 @@ public class InvestigadorProduccionBean {
                 capituloLibro.setProyectosVinculacion(null);
                 capituloLibro.setInvestigadores(pickListView.getInvestigadorDualListModel().getTarget());
                 // System.out.println("el libro seleccionado es" + capituloLibro.getLibro().getTitulo());
-                publicacionRNLocal.create(capituloLibro, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaInicio());
+                publicacionRNLocal.create(capituloLibro, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaFin());
                 this.getPublicacionLstBean().getLstPublicacion().add(this.capituloLibro);
                 context.execute("PF('dlgCapituloCreateDlg').hide();");
             }
@@ -1172,18 +1172,18 @@ public class InvestigadorProduccionBean {
                 articuloRevista.setProyectosVinculacion(null);
 
                 articuloRevista.setInvestigadores(pickListView.getInvestigadorDualListModel().getTarget());
-                publicacionRNLocal.edit(articuloRevista, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaInicio());
+                publicacionRNLocal.edit(articuloRevista, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaFin());
 
             }
             if (this.getPublicacionLstBean().getNombreClasePublicacion().equals("Libro")) {
                 libro.setProyectosVinculacion(null);
                 libro.setInvestigadores(pickListView.getInvestigadorDualListModel().getTarget());
-                publicacionRNLocal.edit(libro, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaInicio());
+                publicacionRNLocal.edit(libro, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaFin());
             }
             if (this.getPublicacionLstBean().getNombreClasePublicacion().equals("Congreso")) {
                 congreso.setProyectosVinculacion(null);
                 congreso.setInvestigadores(pickListView.getInvestigadorDualListModel().getTarget());
-                publicacionRNLocal.edit(congreso, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaInicio());
+                publicacionRNLocal.edit(congreso, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaFin());
             }
             if (this.getPublicacionLstBean().getNombreClasePublicacion().equals("Contrato")) {
                 contrato.setProyectosVinculacion(null);
@@ -1199,7 +1199,7 @@ public class InvestigadorProduccionBean {
 
                 capituloLibro.setProyectosVinculacion(null);
                 capituloLibro.setInvestigadores(pickListView.getInvestigadorDualListModel().getTarget());
-                publicacionRNLocal.edit(capituloLibro, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaInicio());
+                publicacionRNLocal.edit(capituloLibro, this.getPublicacionLstBean().getNombreClasePublicacion(),this.proyectoLstBean.getConvocatoriaWinsip().getFechaEvaluadaFin());
             }
 
             if (this.getPublicacionLstBean().getNombreClasePublicacion().equals("Industrial")) {

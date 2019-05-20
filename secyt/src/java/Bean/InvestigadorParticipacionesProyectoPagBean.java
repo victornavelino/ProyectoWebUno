@@ -122,7 +122,7 @@ public class InvestigadorParticipacionesProyectoPagBean {
 
     public Investigador getDirector(Proyecto proyecto) {
         try {
-            return proyectoRNLocal.getDirectorInvestigador(proyecto);
+            return proyectoRNLocal.getDirectorInvestigadorSinFiltro(proyecto);
         } catch (Exception ex) {
             return null;
         }

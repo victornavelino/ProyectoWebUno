@@ -36,6 +36,7 @@ public interface ProyectoRNLocal {
     public java.lang.String getDirector(entidades.proyecto.Proyecto proyecto) throws java.lang.Exception;
 
     public Investigador getDirectorInvestigador(entidades.proyecto.Proyecto proyecto) throws java.lang.Exception;
+    public Investigador getDirectorInvestigadorSinFiltro(entidades.proyecto.Proyecto proyecto) throws java.lang.Exception;
 
     public List<Rendicion> getRendicionesOrdenadasPorFecha(PagoEconomico pe) throws Exception;
 

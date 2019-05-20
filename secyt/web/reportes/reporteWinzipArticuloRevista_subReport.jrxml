@@ -15,7 +15,7 @@
 	<parameter name="anioInicio" class="java.lang.String"/>
 	<parameter name="anioFin" class="java.lang.String"/>
 	<queryString language="ejbql">
-		<![CDATA[SELECT ar FROM ArticuloRevista ar, IN (ar.proyectos) pr WHERE pr.id = $P{idProyecto} and ar.anioEdicion = $P{anioInicio}]]>
+		<![CDATA[SELECT ar FROM ArticuloRevista ar, IN (ar.proyectos) pr WHERE pr.id = $P{idProyecto} and (ar.anioEdicion = $P{anioInicio} or ar.anioEdicion = $P{anioFin})]]>
 	</queryString>
 	<field name="ISBN" class="java.lang.String"/>
 	<field name="ambitoPublicacion" class="entidades.proyecto.resultado.TipoEdicion"/>

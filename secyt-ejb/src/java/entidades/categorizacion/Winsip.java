@@ -33,7 +33,7 @@ import javax.persistence.Temporal;
 @Table(name = "winsip")
 @NamedQueries({
     @NamedQuery(name = "Winsip.findByProyecto",
-    query = "SELECT w FROM Winsip w WHERE w.proyecto.id = :idProyecto AND w.habilitado=TRUE")})
+    query = "SELECT w FROM Winsip w WHERE w.proyecto.id = :idProyecto")})
 public class Winsip implements Serializable {
 
     private static final long serialVersionUID = 1L;

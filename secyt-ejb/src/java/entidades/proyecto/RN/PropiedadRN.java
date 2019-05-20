@@ -80,9 +80,9 @@ public class PropiedadRN implements PropiedadRNLocal {
                 throw new Exception("Debe ingresar el país");
             }
 
-            if (ar.getFecha().after(finDate) && ar.getFecha().before(iniDate)) {
-                throw new Exception("La fecha debe ser en el año 2015");
-            }
+//            if (ar.getFecha().after(finDate) && ar.getFecha().before(iniDate)) {
+//                throw new Exception("La fecha debe ser en el año 2015");
+//            }
         }
         if (clase.equals("Intelectual")) {
             Intelectual ar = (Intelectual) p;
@@ -106,9 +106,9 @@ public class PropiedadRN implements PropiedadRNLocal {
                 throw new Exception("Debe ingresar el país");
             }
 
-            if (ar.getFecha().after(finDate) && ar.getFecha().before(iniDate)) {
-                throw new Exception("La fecha debe ser en el año 2015");
-            }
+//            if (ar.getFecha().after(finDate) && ar.getFecha().before(iniDate)) {
+//                throw new Exception("La fecha debe ser en el año 2015");
+//            }
 
         }
     }//fin validar

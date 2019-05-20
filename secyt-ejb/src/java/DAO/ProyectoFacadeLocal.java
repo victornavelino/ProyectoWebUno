@@ -59,6 +59,7 @@ public interface ProyectoFacadeLocal {
     public java.util.List<entidades.proyecto.Proyecto> findByAnioNombre(java.lang.Integer anio, java.lang.String nombre) throws java.lang.Exception;
 
     public Investigador getDirectorInvestigador(Proyecto proyecto);
+    public Investigador getDirectorInvestigadorSinFiltro(Proyecto proyecto);
 
     public List<Proyecto> findByAnioNombreCodigoResumen(Integer anio,String codigo,String nombre,String resumen)throws Exception;
 

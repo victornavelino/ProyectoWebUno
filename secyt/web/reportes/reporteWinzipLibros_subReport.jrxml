@@ -16,7 +16,7 @@
 	<parameter name="fechaEvaluadaInicio" class="java.util.Date"/>
 	<parameter name="fechaEvaluadaFin" class="java.util.Date"/>
 	<queryString language="ejbql">
-		<![CDATA[SELECT l FROM Libro l, IN (l.proyectos) pr WHERE pr.id = $P{idProyecto} and l.anioPublicacion = FUNC('YEAR', $P{fechaEvaluadaInicio}) and l.id IN (Select p.id from Publicacion p where type(p)= Libro and p.id=l.id)]]>
+		<![CDATA[SELECT l FROM Libro l, IN (l.proyectos) pr WHERE pr.id = $P{idProyecto} and (l.anioPublicacion = FUNC('YEAR', $P{fechaEvaluadaInicio}) OR l.anioPublicacion = FUNC('YEAR', $P{fechaEvaluadaFin})) and l.id IN (Select p.id from Publicacion p where type(p)= Libro and p.id=l.id)]]>
 	</queryString>
 	<field name="ISBN" class="java.lang.String"/>
 	<field name="anioPublicacion" class="java.lang.String"/>

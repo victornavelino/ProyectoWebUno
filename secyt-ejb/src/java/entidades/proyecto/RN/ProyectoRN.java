@@ -99,6 +99,11 @@ public class ProyectoRN implements ProyectoRNLocal {
     }
 
     @Override
+    public Investigador getDirectorInvestigadorSinFiltro(Proyecto proyecto) throws Exception {
+        return proyectoFacadeLocal.getDirectorInvestigadorSinFiltro(proyecto);
+    }
+
+    @Override
     public List<Proyecto> findByAnioNombreCodigoResumen(Integer anio, String codigo, String nombre, String resumen) throws Exception {
         return proyectoFacadeLocal.findByAnioNombreCodigoResumen(anio, codigo, nombre, resumen);
     }
@@ -120,9 +125,7 @@ public class ProyectoRN implements ProyectoRNLocal {
 
     @Override
     public Proyecto findByID(Long id) throws Exception {
-       return proyectoFacadeLocal.findByID(id);
+        return proyectoFacadeLocal.findByID(id);
     }
-
-
 
 }

@@ -171,6 +171,24 @@ public class ProyectoFacade extends AbstractFacade<Proyecto> implements Proyecto
     }
 
     @Override
+    public Investigador getDirectorInvestigadorSinFiltro(Proyecto proyecto) {
+        try {
+            Query quDirector = em.createQuery("SELECT pa FROM Participacion pa "
+                    + "WHERE pa.rol.descripcion=:car AND pa.proyecto=:proye ORDER BY pa.id DESC");
+            quDirector.setParameter("car", "Director");
+            quDirector.setParameter("proye", proyecto);
+            Participacion pa = (Participacion) quDirector.getResultList().get(0);
+            if (pa != null) {
+                return pa.getInvestigador();
+            } else {
+                return null;
+            }
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    @Override
     public List<Proyecto> findByAnioNombreCodigoResumen(Integer anio,
             String codigo, String nombre, String resumen) throws Exception {
         String[] palabras = nombre.split("\\s+");
@@ -275,8 +293,8 @@ public class ProyectoFacade extends AbstractFacade<Proyecto> implements Proyecto
     public List<Investigador> getTodosIntegrantesVigentes(Proyecto proyecto) {
         proyecto = this.findByID(proyecto.getId());
         SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-        Date inicioWinsip=new Date();
-        Date finWinsip=new Date();
+        Date inicioWinsip = new Date();
+        Date finWinsip = new Date();
 
         Query quParticipaciones = em.createQuery("SELECT pa FROM Participacion pa WHERE pa.proyecto.id=:proyectoId and pa.fechaHasta BETWEEN  pa.proyecto.fechaInicio AND :fechaFinProyecto and pa.fechaHasta BETWEEN :inicioWinsip AND :finWinsip OR pa.fechaDesde BETWEEN :inicioWinsip AND :finWinsip");
         quParticipaciones.setParameter("proyectoId", proyecto.getId());
@@ -286,8 +304,8 @@ public class ProyectoFacade extends AbstractFacade<Proyecto> implements Proyecto
         } catch (ParseException ex) {
             Logger.getLogger(ProyectoFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("inicio fecha winsip: "+inicioWinsip);
-        System.out.println("fin fecha winsip: "+finWinsip);
+        System.out.println("inicio fecha winsip: " + inicioWinsip);
+        System.out.println("fin fecha winsip: " + finWinsip);
         quParticipaciones.setParameter("inicioWinsip", inicioWinsip);
         quParticipaciones.setParameter("finWinsip", finWinsip);
 

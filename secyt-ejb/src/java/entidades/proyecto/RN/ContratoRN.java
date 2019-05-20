@@ -63,9 +63,9 @@ public class ContratoRN implements ContratoRNLocal {
         if (con.getTipoContrato() == null) {
             throw new Exception("Debe Seleccionar Tipo de Contrato");
         }
-        if (con.getFechaContrato().after(convocatoriaWinsip.getFechaEvaluadaFin()) && con.getFechaContrato().before(convocatoriaWinsip.getFechaEvaluadaInicio())) {
-            throw new Exception("La fecha debe ser en el año 2015");
-        }
+//        if (con.getFechaContrato().after(convocatoriaWinsip.getFechaEvaluadaFin()) && con.getFechaContrato().before(convocatoriaWinsip.getFechaEvaluadaInicio())) {
+//            throw new Exception("La fecha debe ser en el año 2015");
+//        }
 
     }//fin validar
 }
