@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entidades.proyecto;
 
 import java.io.Serializable;
@@ -21,11 +20,12 @@ import javax.persistence.Table;
  * @author Carlos
  */
 @Entity
-@Table(name="areatematica")
+@Table(name = "areatematica")
 @NamedQueries({
-    @NamedQuery(name = "AreaTematica.findAreasTematicas", 
-        query = "SELECT at FROM AreaTematica at ORDER BY at.descripcion")})
+    @NamedQuery(name = "AreaTematica.findAreasTematicas",
+            query = "SELECT at FROM AreaTematica at ORDER BY at.descripcion")})
 public class AreaTematica implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +33,8 @@ public class AreaTematica implements Serializable {
     private String descripcion;
     @OneToMany(mappedBy = "areaTematica")
     private List<DisciplinaCientifica> disciplinasCientificas;
+    @OneToMany(mappedBy = "areaTematica")
+    private List<LineaPrioritaria> lineaPrioritarias;
 
     public Long getId() {
         return id;
@@ -56,6 +58,14 @@ public class AreaTematica implements Serializable {
 
     public void setDisciplinasCientificas(List<DisciplinaCientifica> disciplinasCientificas) {
         this.disciplinasCientificas = disciplinasCientificas;
+    }
+
+    public List<LineaPrioritaria> getLineaPrioritarias() {
+        return lineaPrioritarias;
+    }
+
+    public void setLineaPrioritarias(List<LineaPrioritaria> lineaPrioritarias) {
+        this.lineaPrioritarias = lineaPrioritarias;
     }
 
     @Override

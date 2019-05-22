@@ -16,6 +16,7 @@ import entidades.proyecto.EntidadEvaluadora;
 import entidades.proyecto.Especialidad;
 import entidades.proyecto.Evaluacion;
 import entidades.proyecto.LineaInvestigacion;
+import entidades.proyecto.LineaPrioritaria;
 import entidades.proyecto.ObjetivoSocioeconomico;
 import entidades.proyecto.Participacion;
 import entidades.proyecto.Programa;
@@ -60,18 +61,22 @@ import javax.persistence.TemporalType;
 @Table(name = "proyectoweb")
 @NamedQueries({
     @NamedQuery(name = "ProyectoWeb.findProyectoWebByTitulo",
-            query = "SELECT p FROM ProyectoWeb p WHERE TRIM(LOWER(p.titulo)) =:titulo"),
+            query = "SELECT p FROM ProyectoWeb p WHERE TRIM(LOWER(p.titulo)) =:titulo")
+    ,
 
     @NamedQuery(name = "ProyectoWeb.findProyectoWebByTituloID",
-            query = "SELECT p FROM ProyectoWeb p WHERE TRIM(LOWER(p.titulo)) =:titulo AND p.id <> :id"),
+            query = "SELECT p FROM ProyectoWeb p WHERE TRIM(LOWER(p.titulo)) =:titulo AND p.id <> :id")
+    ,
 
     @NamedQuery(name = "ProyectoWeb.findProyectoWebByCodigo",
-            query = "SELECT p FROM ProyectoWeb p WHERE TRIM(LOWER(p.codigo)) =:codigo"),
+            query = "SELECT p FROM ProyectoWeb p WHERE TRIM(LOWER(p.codigo)) =:codigo")
+    ,
 
     @NamedQuery(name = "ProyectoWeb.findProyectoWebByDirector",
             query = "SELECT p FROM ProyectoWeb p,IN (p.participacionesWeb) pe WHERE "
             + " p.convocatoria.activada = true AND "
-            + " pe.investigador.id = :idInvestigador AND pe.rol.descripcion = :rol "),
+            + " pe.investigador.id = :idInvestigador AND pe.rol.descripcion = :rol ")
+    ,
 
     @NamedQuery(name = "ProyectoWeb.findProyectoWebByDirectorYConvocatoria",
             query = "SELECT p FROM ProyectoWeb p,IN (p.participacionesWeb) pe WHERE "
@@ -99,16 +104,16 @@ public class ProyectoWeb implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date fechaFinalizacion;
-    
+
     //3
     private String codigoCarga;
-    
+
     private String codigoSecyt;
-    
+
     //4
     @Enumerated
     private TipoFinanciamiento tipoFinanciamiento;
-    
+
     //5
     private Boolean participaEnPrograma;
 
@@ -133,22 +138,23 @@ public class ProyectoWeb implements Serializable {
     //seria localizacion del proyecto
     @OneToMany
     private List<UnidadInvestigacion> localizaciones;
-    
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ubicacion> lstUbicaciones;
 
     private String localizacionOtra;
-    
+
     private double latitud;
-    
+
     private double longitud;
     //6. LINEA PRIORITARIA
     @OneToOne
     private LineaInvestigacion lineaInvestigacion;
-    
-    
+    @OneToOne
+    private LineaPrioritaria lineaPrioritaria;
+
     private SectorPrioritario sectorPrioritario;
-    
+
     private String sectorPrioritarioOtro;
 
     //7.CARACTERISTICAS
@@ -211,23 +217,21 @@ public class ProyectoWeb implements Serializable {
     //VII: Archivos
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ArchivoWeb> lstArchivoWeb;
-    
+
     @Temporal(TemporalType.DATE)
     private Date fechaArchivo;
-    
+
     //VIII: Bibliografia
     @Lob
     private String bibliografia;
 
-
     //IX Aspectos Eticos
     @OneToOne(cascade = CascadeType.ALL)
     private ProyectoWebAspEti proyectoWebAspEti;
-    
+
     //X Declaración Relativa a Seguridad, Salud Ocupacional y Bioseguridad
     @OneToOne(cascade = CascadeType.ALL)
     private ProyectoWebSegSaludBioseg proyectoWebSegSaludBioseg;
-    
 
     //CONTROL
     private Boolean finalizado;
@@ -236,6 +240,10 @@ public class ProyectoWeb implements Serializable {
 
     @Lob
     private String observaciones;
+
+    //INFRAESTRUCTURA
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<ProyectoWebInfraestructura> listaProyectoWebInfraestructura;
 
     public Long getId() {
         return id;
@@ -252,7 +260,7 @@ public class ProyectoWeb implements Serializable {
     public void setLstUbicaciones(List<Ubicacion> lstUbicaciones) {
         this.lstUbicaciones = lstUbicaciones;
     }
-    
+
     public String getBibliografia() {
         return bibliografia;
     }
@@ -276,7 +284,6 @@ public class ProyectoWeb implements Serializable {
     public void setProyectoWebSegSaludBioseg(ProyectoWebSegSaludBioseg proyectoWebSegSaludBioseg) {
         this.proyectoWebSegSaludBioseg = proyectoWebSegSaludBioseg;
     }
-    
 
     public String getSectorPrioritarioOtro() {
         return sectorPrioritarioOtro;
@@ -285,7 +292,7 @@ public class ProyectoWeb implements Serializable {
     public void setSectorPrioritarioOtro(String sectorPrioritarioOtro) {
         this.sectorPrioritarioOtro = sectorPrioritarioOtro;
     }
-    
+
     public SectorPrioritario getSectorPrioritario() {
         return sectorPrioritario;
     }
@@ -294,7 +301,6 @@ public class ProyectoWeb implements Serializable {
         this.sectorPrioritario = sectorPrioritario;
     }
 
-    
     public String getCodigoCarga() {
         return codigoCarga;
     }
@@ -319,8 +325,6 @@ public class ProyectoWeb implements Serializable {
         this.tipoFinanciamiento = tipoFinanciamiento;
     }
 
-    
-
     public Boolean getParticipaEnPrograma() {
         return participaEnPrograma;
     }
@@ -344,7 +348,6 @@ public class ProyectoWeb implements Serializable {
     public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
-    
 
     public ProyectoWebFGP getProyectoWebFGP() {
         return proyectoWebFGP;
@@ -353,7 +356,7 @@ public class ProyectoWeb implements Serializable {
     public void setProyectoWebFGP(ProyectoWebFGP proyectoWebFGP) {
         this.proyectoWebFGP = proyectoWebFGP;
     }
-    
+
     public Date getFechaArchivo() {
         return fechaArchivo;
     }
@@ -416,8 +419,7 @@ public class ProyectoWeb implements Serializable {
 
     public void setPresupuestoWeb(PresupuestoWeb presupuestoWeb) {
         this.presupuestoWeb = presupuestoWeb;
-    } 
-    
+    }
 
     public Date getFechaInicio() {
         return fechaInicio;
@@ -634,8 +636,23 @@ public class ProyectoWeb implements Serializable {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
-    
 
+    public List<ProyectoWebInfraestructura> getListaProyectoWebInfraestructura() {
+        return listaProyectoWebInfraestructura;
+    }
+
+    public void setListaProyectoWebInfraestructura(List<ProyectoWebInfraestructura> listaProyectoWebInfraestructura) {
+        this.listaProyectoWebInfraestructura = listaProyectoWebInfraestructura;
+    }
+
+    public LineaPrioritaria getLineaPrioritaria() {
+        return lineaPrioritaria;
+    }
+
+    public void setLineaPrioritaria(LineaPrioritaria lineaPrioritaria) {
+        this.lineaPrioritaria = lineaPrioritaria;
+    }
+ 
     @Override
     public int hashCode() {
         int hash = 0;
