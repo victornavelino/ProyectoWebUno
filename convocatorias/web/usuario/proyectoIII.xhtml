@@ -13,6 +13,8 @@
         <ui:include src="/recursos/mensajesDlg.xhtml"/>
 
         <ui:include src="palabraClaveFindDlg.xhtml" />
+        
+        <ui:include src="proyectoWebInfraestructuraDlg.xhtml" />
 
 
         <div style="margin-left: auto;
@@ -133,6 +135,67 @@
                                          autoResize="false"
                                          
                                          counterTemplate="{0} caracteres restantes (8000 máx)"/><br /><h:outputText id="counter7" /> 
+                    </div>
+                    
+                    <li class="listaTitulo">
+                        <div>
+                            <h:outputText value="Infraestructura prevista por la UNCA para la ejecución del Proyecto: "/>
+                        </div>
+                    </li>
+                    <div>
+                        <div>
+                        <p:commandButton id="cbAgregarIfraestructura" 
+                             icon="ui-icon-search"
+                             
+                             oncomplete="dlgEditInfraestructura.show();"
+                             process="@this"
+                             
+                             style="margin-right: 5px;"/>
+                        
+                    </div>
+                    <div>
+                        <p:dataTable id="dtInfraestructura"
+                                     value="#{proyectoWebBean.proyectoWeb.listaProyectoWebInfraestructura}"
+                                     var="p"
+                                     style="width: 900px;">
+                            <p:column style="word-wrap:break-word;">
+                                <f:facet name="header">
+                                    <h:outputText value="Año"/>
+                                </f:facet>
+
+                                <h:outputText value="#{p.anoEjecucion}"/>
+                            </p:column>
+                            
+                            <p:column style="word-wrap:break-word;">
+                                <f:facet name="header">
+                                    <h:outputText value="Edilicia"/>
+                                </f:facet>
+
+                                <h:outputText value="#{p.infraEdilicia}"/>
+                            </p:column>
+                            
+                            <p:column style="word-wrap:break-word;">
+                                <f:facet name="header">
+                                    <h:outputText value="Equipamiento"/>
+                                </f:facet>
+
+                                <h:outputText value="#{p.equipamiento}"/>
+                            </p:column>
+                            
+
+                            <p:column style="word-wrap:break-word;">
+                                <f:facet name="header">
+                                    <h:outputText value="Quitar"/>
+                                </f:facet>
+
+                                <p:commandButton icon="ui-icon-circle-close"
+                                                 actionListener="#{proyectoWebInfraestructuraBean.quitarInfraestructura(p)}"
+                                                 update="dtInfraestructura"
+                                                 />
+                                <!--actionListener="{proyectoIVPagBean.quitarParticipacionWeb(p)}"-->
+                            </p:column>
+                        </p:dataTable>
+                    </div>
                     </div>
 
 

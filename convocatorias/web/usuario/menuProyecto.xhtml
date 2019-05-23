@@ -41,6 +41,13 @@
                         <h:outputText value="Formularios a completar"/>
                     </f:facet>
                     
+                    <!--<h:commandLink value="VII. Programa de capacitación y formación de recursos humanos."
+                                       action="{navegarBean.entrarPagProyecto(6)}"
+                                       rendered="{proyectoWebBean.mostrarBotonASG()}"/>
+                        <h:outputText value="{menuProyectoPagBean.obtenerEstadoPagVI()}"
+                                      styleClass="{menuProyectoPagBean.obtenerEstadoPagVI() eq 'Con Datos'  ? 'resaltarLinkConDatos' : 'resaltarLinkSinDatos'}"
+                                      rendered="{proyectoWebBean.mostrarBotonASG()}"/>-->
+                    
                     <h:panelGrid columns="2"
                                  cellspacing="10px;">
                         <h:commandLink value="I. Identificación del proyecto"
@@ -70,19 +77,23 @@
                                       styleClass="#{menuProyectoPagBean.obtenerEstadoPagIV() eq 'Con Datos'  ? 'resaltarLinkConDatos' : 'resaltarLinkSinDatos'}"
                                       rendered="#{proyectoWebBean.mostrarBotonASG()}"/>
                         
-                        <h:commandLink value="V. Plan de Ejecución Financiera."
+                        <h:commandLink value="V. Programa de capacitación y formación de 
+                              recursos Humanos: actividad docente, 
+                              de investigación y de gestión."
+                                       action="#{navegarBean.entrarPagProyecto(41)}"
+                                       rendered="#{proyectoWebBean.mostrarBotonASG()}"/>
+                        <h:outputText value="#{menuProyectoPagBean.obtenerEstadoPagIV()}"
+                                      styleClass="#{menuProyectoPagBean.obtenerEstadoPagIV() eq 'Con Datos'  ? 'resaltarLinkConDatos' : 'resaltarLinkSinDatos'}"
+                                      rendered="#{proyectoWebBean.mostrarBotonASG()}"/>
+                        
+                        <h:commandLink value="VI. Plan de Ejecución Financiera."
                                        action="#{navegarBean.entrarPagProyecto(5)}"
                                        rendered="#{proyectoWebBean.mostrarBotonASG()}"/>
                         <h:outputText value="#{menuProyectoPagBean.obtenerEstadoPagV()}"
                                       styleClass="#{menuProyectoPagBean.obtenerEstadoPagV() eq 'Con Datos'  ? 'resaltarLinkConDatos' : 'resaltarLinkSinDatos'}"
                                       rendered="#{proyectoWebBean.mostrarBotonASG()}"/>
                         
-                        <h:commandLink value="VI. Programa de capacitación y formación de recursos humanos."
-                                       action="#{navegarBean.entrarPagProyecto(6)}"
-                                       rendered="#{proyectoWebBean.mostrarBotonASG()}"/>
-                        <h:outputText value="#{menuProyectoPagBean.obtenerEstadoPagVI()}"
-                                      styleClass="#{menuProyectoPagBean.obtenerEstadoPagVI() eq 'Con Datos'  ? 'resaltarLinkConDatos' : 'resaltarLinkSinDatos'}"
-                                      rendered="#{proyectoWebBean.mostrarBotonASG()}"/>
+                        
                         
                         <h:commandLink value="VII. Archivos adjuntos."
                                        action="#{navegarBean.entrarPagProyecto(7)}"/>

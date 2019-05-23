@@ -50,8 +50,8 @@ public class NavegarBean {
     private ConvocatoriaPagBean convocatoriaPagBean;
     @ManagedProperty(value = "#{proyectoWebBean}")
     private ProyectoWebBean proyectoWebBean;
-    @ManagedProperty(value = "#{lineaInvestigacionLstBean}")
-    private LineaInvestigacionLstBean lineaInvestigacionLstBean;
+    @ManagedProperty(value = "#{lineaPrioritariaLstBean}")
+    private LineaPrioritariaLstBean lineaPrioritariaLstBean;
     @ManagedProperty(value = "#{unidadEjecutoraLstBean}")
     private UnidadEjecutoraLstBean unidadEjecutoraLstBean;
     @ManagedProperty(value = "#{unidadAcademicaLstBean}")
@@ -215,13 +215,21 @@ public class NavegarBean {
     public void setMensajeBean(MensajeBean mensajeBean) {
         this.mensajeBean = mensajeBean;
     }
-    
-    public LineaInvestigacionLstBean getLineaInvestigacionLstBean() {
-        return lineaInvestigacionLstBean;
+
+    public LineaPrioritariaLstBean getLineaPrioritariaLstBean() {
+        return lineaPrioritariaLstBean;
     }
-    
-    public void setLineaInvestigacionLstBean(LineaInvestigacionLstBean lineaInvestigacionLstBean) {
-        this.lineaInvestigacionLstBean = lineaInvestigacionLstBean;
+
+    public void setLineaPrioritariaLstBean(LineaPrioritariaLstBean lineaPrioritariaLstBean) {
+        this.lineaPrioritariaLstBean = lineaPrioritariaLstBean;
+    }
+
+    public ProyectoWebRNLocal getProyectoWebRNLocal() {
+        return proyectoWebRNLocal;
+    }
+
+    public void setProyectoWebRNLocal(ProyectoWebRNLocal proyectoWebRNLocal) {
+        this.proyectoWebRNLocal = proyectoWebRNLocal;
     }
     
     public ProyectoWebBean getProyectoWebBean() {
@@ -387,9 +395,9 @@ public class NavegarBean {
             //lArea Temática - Disciplina Científica - Subdisciplinas Científicas       
             this.getProyectoWebBean().getProyectoWeb().setSubDisciplinasCientificas(new ArrayList<SubDisciplinaCientifica>());
 
-            //cargar las lineas de investigacion
-            this.getLineaInvestigacionLstBean().findLineasDeInvestigacion();
-            this.getLineaInvestigacionLstBean().cargarSILineaInvestigacion();
+            //cargar las lineas prioritarias
+            this.getLineaPrioritariaLstBean().findLineasDePrioritaria();
+            this.getLineaPrioritariaLstBean().cargarSILineaPrioritaria();
 
             //cargar area tematica
             this.getAreaTematicaLstBean().findAreasTematicas();
@@ -470,9 +478,10 @@ public class NavegarBean {
             this.getUnidadEjecutoraLstBean().findUnidadesEjecutoras();
             this.getUnidadEjecutoraLstBean().cargarSIUnidadesEjecutoras();
 
-            //cargar las lineas de investigacion
-            this.getLineaInvestigacionLstBean().findLineasDeInvestigacion();
-            this.getLineaInvestigacionLstBean().cargarSILineaInvestigacion();
+            //cargar las lineas prioritarias
+            this.getLineaPrioritariaLstBean().findLineasDePrioritaria();
+            this.getLineaPrioritariaLstBean().cargarSILineaPrioritaria();
+            
 
             //cargar area tematica
             this.getAreaTematicaLstBean().findAreasTematicas();
@@ -591,6 +600,10 @@ public class NavegarBean {
             
             case 4:
                 pagina = "proyectoIV.xhtml?faces-redirect=true";
+                break;
+                
+            case 41:
+                pagina = "proyectoIV_1.xhtml?faces-redirect=true";
                 break;
             
             case 5:

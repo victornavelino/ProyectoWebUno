@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <p:dialog id="dEditInfraestructura" 
+              widgetVar="dlgEditInfraestructura"
+              modal="true"
+              width="600"
+              height="400"
+              position="top"
+              style="margin-top: 30px;"
+              resizable="false">
+        <f:facet name="header">
+            <h:outputText value="Nueva infraestructura" styleClass="subTitulo"/>
+        </f:facet>
+        
+        <p:panel id="pDialogInfraestructuraEdit">
+
+            <p:focus context="pDialogInfraestructuraEdit"/> 
+            
+            <div class="separador">
+                <h:outputText value="Año*: "/>
+                <p:inputMask id="itNombreInv"
+                             value="#{proyectoWebInfraestructuraBean.proyectoWebInfraestructura.anoEjecucion}"
+                             mask="9999"/>
+            </div>
+            
+            <div style="clear: both;"/>
+            
+            <div class="separador">
+                <h:outputText value="Edilicia*: "/>
+                <p:inputText id="itEdilicia"
+                             value="#{proyectoWebInfraestructuraBean.proyectoWebInfraestructura.infraEdilicia}"/>
+            </div>
+            
+            <div style="clear: both;"/>
+            
+            
+            <div class="separador">
+                <h:outputText value="Equipamiento*: "/>
+                <p:inputText id="itEquipamiento"
+                             value="#{proyectoWebInfraestructuraBean.proyectoWebInfraestructura.equipamiento}"/>
+            </div>
+            
+          
+                    
+     
+
+                    <div style="text-align: center;">
+                        <p:commandButton id="cbAgregarPWI"
+                                         value="Guardar"
+                                         icon="ui-icon-disk"
+                                         actionListener="#{proyectoWebInfraestructuraBean.agregarInfraestructura()}"
+                                         style="margin-right: 10px;"
+                                         update="dMensaje"/>
+                        
+                        
+                        <p:commandButton id="cbSalirIED"
+                                         value="Salir"
+                                         icon="ui-icon-cancel"
+                                         oncomplete="dlgEditInfraestructura.hide()"
+                                         process="@this"/>
+                    </div>
+            
+            
+
+        </p:panel>
+
+    </p:dialog>
+</html>

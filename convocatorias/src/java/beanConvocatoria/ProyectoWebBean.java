@@ -8,12 +8,14 @@ import entidades.economico.BienConsumo;
 import entidades.economico.BienNoPersonal;
 import entidades.economico.BienUso;
 import entidades.economico.GastoViaje;
+import entidades.persona.investigador.Docencia;
 import entidades.proyecto.UnidadInvestigacion;
 import entidades.proyectoWeb.BienConsumoWeb;
 import entidades.proyectoWeb.ParticipacionWeb;
 import entidades.proyectoWeb.PresupuestoWeb;
 import entidades.proyectoWeb.ProyectoWeb;
 import entidades.proyectoWeb.ProyectoWebFGP;
+import entidades.proyectoWeb.ProyectoWebInfraestructura;
 import entidades.proyectoWeb.RN.ProyectoWebRNLocal;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
@@ -58,6 +60,8 @@ public class ProyectoWebBean implements Serializable {
     
     @ManagedProperty("#{ubicacionLstBean}")
     private UbicacionLstBean ubicacionLstBean;
+    
+    
     @EJB
     private ProyectoWebRNLocal proyectoWebRnLocal;
 
@@ -66,7 +70,7 @@ public class ProyectoWebBean implements Serializable {
         proyectoWeb.setProyectoWebFGP(new ProyectoWebFGP());
 
     }
-
+    
     public UbicacionLstBean getUbicacionLstBean() {
         return ubicacionLstBean;
     }
@@ -617,6 +621,74 @@ public class ProyectoWebBean implements Serializable {
 
         return true;
     }//FIN mostrarBotonASG
+    
+    public String obtenerUltimaDocencia(List<Docencia> lstDocencias){
+        Docencia docenciaMayor = null;
+        String salida = "";
+        
+        if(lstDocencias != null){
+            int cantDocencias = lstDocencias.size();
+            if(cantDocencias == 0){
+                return salida;
+            }//fin if
+            
+            docenciaMayor = lstDocencias.get(0);
+            
+            for(int i=1; i<cantDocencias; i++){
+                
+                if(docenciaMayor.getFechaObtencionCargo() !=null && lstDocencias.get(i).getFechaObtencionCargo() != null){
+                
+                    if(docenciaMayor.getFechaObtencionCargo().compareTo(
+                        lstDocencias.get(i).getFechaObtencionCargo()) < 0){
+                        docenciaMayor=lstDocencias.get(i);
+                    }//fin if
+                }//fin if
+                
+            }//fin for
+            
+            salida = (docenciaMayor.getUniversidad() == null ? "":docenciaMayor.getUniversidad().getDescripcion() + " - " ) + 
+                    (docenciaMayor.getUnidadAcademica() == null ? "" : docenciaMayor.getUnidadAcademica().getDescripcion() + " - " ) +
+                    (docenciaMayor.getDepartamentoDocente() == null ? "" :docenciaMayor.getDepartamentoDocente().getDescripcion() + " - ") + 
+                    (docenciaMayor.getCategoriaDocente() == null ? "" : docenciaMayor.getCategoriaDocente().getDescripcion() + " - " )+
+                    (docenciaMayor.getDedicacionDocente() == null ? "" : docenciaMayor.getDedicacionDocente().getDescripcion());
+        }//fin if
+        
+        return salida;
+        
+    }//fin obtenerUltimaDOcencia
+    
+    public String obtenerUltimaDocenciaModo(List<Docencia> lstDocencias){
+        Docencia docenciaMayor = null;
+        String salida = "";
+        
+        if(lstDocencias != null){
+            int cantDocencias = lstDocencias.size();
+            if(cantDocencias == 0){
+                return salida;
+            }//fin if
+            
+            docenciaMayor = lstDocencias.get(0);
+            
+            for(int i=1; i<cantDocencias; i++){
+                
+                if(docenciaMayor.getFechaObtencionCargo() !=null && lstDocencias.get(i).getFechaObtencionCargo() != null){
+                    if(docenciaMayor.getFechaObtencionCargo().compareTo(
+                            lstDocencias.get(i).getFechaObtencionCargo()) < 0){
+                        docenciaMayor=lstDocencias.get(i);
+                    }//fin if
+                }//finif
+                
+            }//fin for
+            
+            if(docenciaMayor.getModoObtencionCargo() != null){
+                salida = docenciaMayor.getModoObtencionCargo().getDescripcion();
+            }
+            
+        }//fin if
+        
+        return salida;
+        
+    }//fin obtenerUltimaDOcencia
 
     public void probar() {
         System.out.println("Entro al evento");
