@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -19,6 +21,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "lineaprioritaria")
+@NamedQueries({
+    @NamedQuery(name = "LineaPrioritaria.findLineasPrioritaria", 
+        query = "SELECT li FROM LineaPrioritaria li ORDER BY li.descripcion")})
 public class LineaPrioritaria implements Serializable {
 
     private static final long serialVersionUID = 1L;
