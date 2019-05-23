@@ -123,16 +123,16 @@
                         </p:selectOneRadio>
                     </div>
 
-                    <li class="listaTitulo">
+                    <!--<li class="listaTitulo">
                         <h:outputText value="Participa en Programa: "/>
                     </li>
 
                     <div>
-                        <p:selectOneRadio id="sorParticipaPrograma" value="#{proyectoWebBean.proyectoWeb.participaEnPrograma}">
+                        <p:selectOneRadio id="sorParticipaPrograma" value="{proyectoWebBean.proyectoWeb.participaEnPrograma}">
                             <f:selectItem itemValue="True" itemLabel="Si" />
                             <f:selectItem itemValue="False" itemLabel="No"/>
                         </p:selectOneRadio>
-                    </div>
+                    </div>-->
 
 
                     <li class="listaTitulo">
@@ -230,13 +230,13 @@
 
 
 
-                    <li class="listaTitulo">
+                    <!--<li class="listaTitulo">
                         <h:outputText value="Facultad a la que pertenece el proyecto: "/>
-                    </li>
+                    </li>-->
 
-                    <div>
+                    <li class="listaTitulo">
                         <h:outputText value="Unidad Académica: "/>
-                    </div>
+                    </li>
                     <div class="separador">
                         <p:selectOneMenu id="somUnidadAcademica"
                                          value="#{proyectoWebBean.proyectoWeb.unidadAcademica}"
@@ -246,9 +246,9 @@
                         </p:selectOneMenu>
                     </div>
 
-                    <div>
+                    <li class="listaTitulo">
                         <h:outputText value="Unidad Ejecutora: "/>
-                    </div>
+                    </li>
                     <div class="separador">
                         <p:selectOneMenu id="somUnidadEjecutora"
                                          value="#{proyectoWebBean.proyectoWeb.unidadEjecutora}"
@@ -259,12 +259,12 @@
                         </p:selectOneMenu> <h:outputText value="Otra: "/><p:inputText size="40" value="#{proyectoWebBean.proyectoWeb.unidadEjecutoraOtra}"  /><!-- Agregar ala entidad cuando no seleccione nada -->
                     </div> 
 
-                    <div>
+                    <li class="listaTitulo">
                         <h:outputText value="Localización Fisica del Proyecto: "/><br/>
                         <h:outputText value="(Una vez localizada la ubicación debe colocar 
                                       la misma en mapa y de alli colocar las coordenadas)" 
                                       styleClass="aclaraciones"/>
-                    </div>
+                    </li>
                     <div style="margin-bottom: 5px;">
                         <p:commandButton id="cbBuscarUnidadInvestigacion" 
                                          icon="ui-icon-search"
@@ -427,13 +427,15 @@
                     </div>
 
 
-                    <li class="listaTitulo">
+                    <!--<li class="listaTitulo">
                         <h:outputText value="Caracteristicas: "/>
-                    </li>
+                    </li>-->
 
+                    <li class="listaTitulo">
                     <div>
                         <h:outputText value="Area Temática - Disciplina Científica - Subdisciplinas Científicas: "/>
                     </div>
+                        </li>
                     <div class="separador">
                         <p:commandButton id="cbBuscarSubDisciplinaCientifica" 
                                          icon="ui-icon-search"
@@ -489,9 +491,11 @@
                     </div>
 
 
+                    <li class="listaTitulo">
                     <div>
                         <h:outputText value="Campo de Aplicación: "/>
                     </div>
+                    </li>
                     <div class="separador">
                         <p:commandButton id="cbBuscarCampoAplicacion" 
                                          icon="ui-icon-search"
@@ -525,9 +529,11 @@
                         </p:dataTable>
                     </div>
 
+                    <li class="listaTitulo">
                     <div>
                         <h:outputText value="Objetivo Socioeconómico: "/>
                     </div>
+                    </li>
                     <div class="separador">
                         <p:selectOneMenu id="somObjetivoSocioEconomico"
                                          value="#{proyectoWebBean.proyectoWeb.objetivoSocioeconomico}"
@@ -539,7 +545,7 @@
 
 
 
-                    <li class="listaTitulo">
+                    <!--<li class="listaTitulo">
                         <h:outputText value="Categoría: "/>
                     </li>
                     <div>
@@ -547,15 +553,15 @@
                     </div>
                     <div>
                         <p:selectBooleanCheckbox 
-                            value="#{proyectoWebBean.proyectoWeb.proyectoOrientado}"/>
+                            value="{proyectoWebBean.proyectoWeb.proyectoOrientado}"/>
                     </div>
                     <div>
                         <h:outputText value="Proyecto de Iniciación: "/>
                     </div>
                     <div>
                         <p:selectBooleanCheckbox 
-                            value="#{proyectoWebBean.proyectoWeb.proyectoIniciacion}"/>
-                    </div>
+                            value="{proyectoWebBean.proyectoWeb.proyectoIniciacion}"/>
+                    </div>-->
 
                     <li class="listaTitulo">
                         <div>
