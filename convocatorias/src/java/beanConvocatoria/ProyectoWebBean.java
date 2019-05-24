@@ -589,6 +589,22 @@ public class ProyectoWebBean implements Serializable {
             
             Collections.sort(proyecto.getParticipacionesWeb());
             
+            //dejar la lista mas grande de cargos docencias del investigador
+            
+            if (proyecto.getParticipacionesWeb() != null) {
+                for (ParticipacionWeb pw : proyecto.getParticipacionesWeb()) {
+                    Docencia doc = this.ultimaDocencia(pw.getInvestigador().getDocencias());
+                    
+                    if(pw.getInvestigador().getDocencias() != null){
+                        for(Docencia d : pw.getInvestigador().getDocencias()){
+                            if(!doc.equals(d)){
+                                pw.getInvestigador().getDocencias().remove(d);
+                            }//fin if
+                        }//fin for
+                    }//fin if
+                }//fin for
+            }//fin if
+            
 
             hm.put("proyecto", proyecto);
             //hm.put("fecha", new Date());*/
@@ -621,6 +637,36 @@ public class ProyectoWebBean implements Serializable {
 
         return true;
     }//FIN mostrarBotonASG
+    
+    public Docencia ultimaDocencia(List<Docencia> lstDocencias){
+        Docencia docenciaMayor = null;
+        String salida = "";
+        
+        if(lstDocencias != null){
+            int cantDocencias = lstDocencias.size();
+            if(cantDocencias == 0){
+                return null;
+            }//fin if
+            
+            docenciaMayor = lstDocencias.get(0);
+            
+            for(int i=1; i<cantDocencias; i++){
+                
+                if(docenciaMayor.getFechaObtencionCargo() !=null && lstDocencias.get(i).getFechaObtencionCargo() != null){
+                
+                    if(docenciaMayor.getFechaObtencionCargo().compareTo(
+                        lstDocencias.get(i).getFechaObtencionCargo()) < 0){
+                        docenciaMayor=lstDocencias.get(i);
+                    }//fin if
+                }//fin if
+                
+            }//fin for
+            
+        }//fin if
+        
+        return docenciaMayor;
+        
+    }//fin ultimaDOcencia
     
     public String obtenerUltimaDocencia(List<Docencia> lstDocencias){
         Docencia docenciaMayor = null;

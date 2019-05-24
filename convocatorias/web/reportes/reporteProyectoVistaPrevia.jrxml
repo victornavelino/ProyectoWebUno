@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteProyectoVistaPrevia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="887a5882-3858-410f-865e-6a29b177be35">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="3824"/>
+	<property name="ireport.y" value="6060"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -258,6 +258,28 @@
 			<fieldDescription><![CDATA[longitud]]></fieldDescription>
 		</field>
 	</subDataset>
+	<subDataset name="New Dataset_infra" uuid="f49c0fb1-341d-4a46-8d85-d40b3c37caec">
+		<field name="anoEjecucion" class="java.lang.Integer">
+			<fieldDescription><![CDATA[anoEjecucion]]></fieldDescription>
+		</field>
+		<field name="infraEdilicia" class="java.lang.String">
+			<fieldDescription><![CDATA[infraEdilicia]]></fieldDescription>
+		</field>
+		<field name="equipamiento" class="java.lang.String">
+			<fieldDescription><![CDATA[equipamiento]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="New Dataset docencia" uuid="e26c81d4-0729-4cb8-aec0-ddd535868420">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="id" class="java.lang.Long">
+			<fieldDescription><![CDATA[id]]></fieldDescription>
+		</field>
+		<field name="investigador" class="entidades.persona.investigador.Investigador">
+			<fieldDescription><![CDATA[investigador]]></fieldDescription>
+		</field>
+	</subDataset>
 	<parameter name="proyecto" class="entidades.proyectoWeb.ProyectoWeb"/>
 	<parameter name="IMAGEN" class="java.lang.String"/>
 	<queryString language="ejbql">
@@ -284,6 +306,12 @@
 	<field name="keywords" class="java.util.List"/>
 	<field name="lineaInvestigacion" class="java.lang.String">
 		<fieldDescription><![CDATA[lineaInvestigacion.descripcion]]></fieldDescription>
+	</field>
+	<field name="lineaPrioritaria" class="entidades.proyecto.LineaPrioritaria">
+		<fieldDescription><![CDATA[lineaPrioritaria]]></fieldDescription>
+	</field>
+	<field name="listaProyectoWebInfraestructura" class="java.util.List">
+		<fieldDescription><![CDATA[listaProyectoWebInfraestructura]]></fieldDescription>
 	</field>
 	<field name="localizacionOtra" class="java.lang.String"/>
 	<field name="localizaciones" class="java.util.List"/>
@@ -426,35 +454,35 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="735" splitType="Stretch">
+		<band height="709" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="e77dc592-5b9b-446b-bc0d-0bc11e56a24c" positionType="Float" x="0" y="98" width="186" height="20"/>
+				<reportElement uuid="e77dc592-5b9b-446b-bc0d-0bc11e56a24c" positionType="Float" x="0" y="120" width="186" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[I. Identificación del proyecto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="118" width="130" height="20"/>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="140" width="130" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[1. Nombre del Proyecto:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="131" y="118" width="424" height="20"/>
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="131" y="140" width="424" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="18336abd-f433-438c-bb19-b35960c26436" x="1" y="65" width="537" height="20"/>
+				<reportElement uuid="18336abd-f433-438c-bb19-b35960c26436" x="1" y="74" width="537" height="20"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[PROGRAMA DE DESARROLLO CIENTÍFICO Y TECNOLÓGICO 2018]]></text>
+				<text><![CDATA[PROGRAMA DE DESARROLLO CIENTÍFICO Y TECNOLÓGICO 2019]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="17b1cd7c-94fd-4091-88b0-dd753558bc84" x="0" y="78" width="555" height="20"/>
+				<reportElement uuid="17b1cd7c-94fd-4091-88b0-dd753558bc84" x="0" y="87" width="555" height="20"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[Formulario para la presentación de Proyectos de Investigación y Desarrollo]]></text>
 			</staticText>
@@ -478,45 +506,33 @@
 				<text><![CDATA[CONSEJO DE INVESTIGACIÓN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="957459e3-674f-49c0-9488-0295c162dce7" positionType="Float" x="0" y="140" width="130" height="20"/>
+				<reportElement uuid="957459e3-674f-49c0-9488-0295c162dce7" positionType="Float" x="0" y="162" width="130" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[2. Duración del Proyecto:]]></text>
 			</staticText>
-			<staticText>
-				<reportElement uuid="5de3728d-5c43-4b26-a6d8-cd36a124b92d" positionType="Float" x="296" y="140" width="111" height="14"/>
-				<textElement>
-					<font isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[3. Código de Carga:]]></text>
-			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement uuid="7bbdb28d-08d1-4c62-9853-08b06b2ffff4" positionType="Float" x="131" y="140" width="70" height="20"/>
+				<reportElement uuid="7bbdb28d-08d1-4c62-9853-08b06b2ffff4" positionType="Float" x="131" y="162" width="70" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{fechaInicio}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="ac1b78ed-efac-4e4f-a994-f2c01569d733" positionType="Float" x="202" y="140" width="18" height="20"/>
+				<reportElement uuid="ac1b78ed-efac-4e4f-a994-f2c01569d733" positionType="Float" x="201" y="162" width="18" height="20"/>
 				<textElement/>
 				<text><![CDATA[al]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement uuid="bacee885-f6fc-449d-9c07-f3f0b7df1876" positionType="Float" x="220" y="140" width="70" height="20"/>
+				<reportElement uuid="bacee885-f6fc-449d-9c07-f3f0b7df1876" positionType="Float" x="218" y="162" width="70" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{fechaFinalizacion}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement uuid="90dc6be1-bea7-4aa4-a337-4e535e15c0f7" positionType="Float" x="410" y="140" width="139" height="14"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="ad3e9bfe-e05d-465a-909f-002d06003f31" positionType="Float" x="0" y="222" width="76" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[6. Director:]]></text>
+				<text><![CDATA[4. Director:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement uuid="747d7db4-11f5-45eb-8148-84c9c579e6c6" positionType="Float" x="76" y="222" width="476" height="20"/>
@@ -524,55 +540,48 @@
 				<textFieldExpression><![CDATA[""+$P{proyecto}.getParticipacionesWeb().get(0).toString()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="478294fa-2fe9-4f1a-ae80-414ee5c3b16a" positionType="Float" x="2" y="268" width="72" height="20"/>
+				<reportElement uuid="2fe78327-2c42-4fc2-976f-6b4979dfccf5" positionType="Float" x="2" y="273" width="117" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[8. Unidad:]]></text>
+				<text><![CDATA[6. Unidad Académica:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="2fe78327-2c42-4fc2-976f-6b4979dfccf5" positionType="Float" x="2" y="290" width="100" height="20"/>
+				<reportElement uuid="762544b4-8789-4218-8d41-61ca342e651e" positionType="Float" x="2" y="305" width="117" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[Unidad Académica:]]></text>
+				<text><![CDATA[7. Unidad  Ejecutora:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="762544b4-8789-4218-8d41-61ca342e651e" positionType="Float" x="2" y="310" width="100" height="20"/>
+				<reportElement uuid="9a3196a2-23f4-4c03-ab11-015dfc467b51" positionType="Float" x="4" y="354" width="154" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[Unidad  Ejecutora:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="9a3196a2-23f4-4c03-ab11-015dfc467b51" positionType="Float" x="4" y="354" width="137" height="20"/>
-				<textElement>
-					<font isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[Localización del Proyecto:]]></text>
+				<text><![CDATA[8. Localización del Proyecto:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="a0ef67f0-be3d-4c9f-a74c-74b020ad7e8a" positionType="Float" x="110" y="310" width="443" height="20" isRemoveLineWhenBlank="true"/>
+				<reportElement uuid="a0ef67f0-be3d-4c9f-a74c-74b020ad7e8a" positionType="Float" x="130" y="305" width="423" height="20" isRemoveLineWhenBlank="true"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[""+$F{unidadEjecutora}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="4296fe0f-c236-4f36-83ad-49e922f8947b" positionType="Float" x="110" y="330" width="443" height="20" isRemoveLineWhenBlank="true"/>
+				<reportElement uuid="4296fe0f-c236-4f36-83ad-49e922f8947b" positionType="Float" x="130" y="325" width="423" height="20" isRemoveLineWhenBlank="true"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{unidadEjecutoraOtra}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="beb856fb-599e-425e-9581-41836cb7dd94" positionType="Float" x="141" y="354" width="414" height="20"/>
+				<reportElement uuid="beb856fb-599e-425e-9581-41836cb7dd94" positionType="Float" x="158" y="354" width="397" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{localizaciones}.size()>0? $F{localizaciones}.get(0).toString() : ""]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="73ce050a-8fc3-4a46-87d6-1b5ba534c07d" positionType="Float" x="141" y="374" width="414" height="20" isRemoveLineWhenBlank="true"/>
+				<reportElement uuid="73ce050a-8fc3-4a46-87d6-1b5ba534c07d" positionType="Float" x="158" y="374" width="397" height="20" isRemoveLineWhenBlank="true"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{localizacionOtra}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="8b96b78b-0cbb-4b8b-8820-0da3c6004b9a" positionType="Float" x="111" y="290" width="442" height="20"/>
+				<reportElement uuid="8b96b78b-0cbb-4b8b-8820-0da3c6004b9a" positionType="Float" x="130" y="273" width="423" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{unidadAcademica}]]></textFieldExpression>
 			</textField>
@@ -584,30 +593,23 @@
 				<text><![CDATA[9. Linea Prioritaria:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="312d4ae6-3e57-4783-8cdd-89dde65ec0e4" positionType="Float" x="105" y="491" width="451" height="20"/>
+				<reportElement uuid="312d4ae6-3e57-4783-8cdd-89dde65ec0e4" positionType="Float" x="105" y="491" width="451" height="20" isRemoveLineWhenBlank="true"/>
 				<textElement/>
-				<textFieldExpression><![CDATA[$F{lineaInvestigacion}.toString()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{lineaPrioritaria}.toString()]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement uuid="90c0ed0b-0a4c-4b8c-9b98-1c4759024951" positionType="Float" x="1" y="565" width="100" height="20"/>
-				<textElement>
-					<font isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[10. Características:]]></text>
-			</staticText>
 			<staticText>
 				<reportElement uuid="54420f00-54dc-4df5-9f5c-8f5a3f99629e" positionType="Float" x="5" y="581" width="100" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[Área temática: ]]></text>
+				<text><![CDATA[10. Área temática: ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="f8a045b7-6489-460d-b5af-b5cf9f94ba5d" positionType="Float" x="5" y="615" width="131" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[Campo de Aplicación: ]]></text>
+				<text><![CDATA[11. Campo de Aplicación: ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="04d49786-2c5d-4a4f-87c5-cbbd342bde7c" positionType="Float" x="5" y="598" width="131" height="20"/>
@@ -617,11 +619,11 @@
 				<text><![CDATA[Disciplina Científica:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="7f6af922-ccff-4466-81d7-019d71edffd1" positionType="Float" x="5" y="651" width="131" height="20"/>
+				<reportElement uuid="7f6af922-ccff-4466-81d7-019d71edffd1" positionType="Float" x="5" y="651" width="165" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[Objetivo Socioeconómico: ]]></text>
+				<text><![CDATA[12. Objetivo Socioeconómico: ]]></text>
 			</staticText>
 			<textField>
 				<reportElement uuid="aa70706b-f3e3-454f-8396-bb9814f32c07" positionType="Float" x="119" y="615" width="437" height="20"/>
@@ -644,56 +646,32 @@
 				<textFieldExpression><![CDATA[$F{subDisciplinasCientificas}.size()>0? $F{subDisciplinasCientificas}.get(0).getDisciplinaCientifica().getAreaTematica().toString() : ""]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="9b6b8084-845b-4328-b786-254bd20d9ee5" positionType="Float" x="158" y="651" width="398" height="20"/>
+				<reportElement uuid="9b6b8084-845b-4328-b786-254bd20d9ee5" positionType="Float" x="170" y="651" width="386" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[""+$F{objetivoSocioeconomico}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="8554e0e3-4904-4da1-ab73-44e6020ae856" positionType="Float" x="1" y="671" width="100" height="20"/>
+				<reportElement uuid="f3f8822b-739c-4837-8ed5-adeaf28bd7d6" positionType="Float" x="6" y="680" width="141" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[11. Categoría:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="f3f8822b-739c-4837-8ed5-adeaf28bd7d6" positionType="Float" x="1" y="714" width="141" height="20"/>
-				<textElement>
-					<font isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[12. Tipo de Actividades:]]></text>
+				<text><![CDATA[13. Tipo de Actividades:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="c93e7d0a-7fd8-4c49-994d-fd03cd906cfd" positionType="Float" x="142" y="715" width="352" height="20"/>
+				<reportElement uuid="c93e7d0a-7fd8-4c49-994d-fd03cd906cfd" positionType="Float" x="147" y="681" width="352" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{tipoProyecto}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement uuid="af5ce9cb-9ad8-4bdf-bbbf-4a812fd8bf4d" positionType="Float" x="102" y="671" width="253" height="20"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{proyectoOrientado}?"Proyecto Orientado":""]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement uuid="50e60938-3304-4a1b-9741-d20a22e4db01" positionType="Float" x="102" y="691" width="281" height="20"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{proyectoIniciacion}?"Proyecto de Iniciación":""]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement uuid="d6b6131e-378f-4cc2-8502-d6d41b8696b3" x="0" y="0" width="72" height="67"/>
 				<imageExpression><![CDATA[$P{IMAGEN}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement uuid="d5be26fe-ea4c-4a20-a53d-d1fec07cc6c4" positionType="Float" x="296" y="154" width="111" height="14"/>
-				<textElement>
-					<font isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[Código SECYT:]]></text>
-			</staticText>
-			<staticText>
 				<reportElement uuid="63a0ec10-cac6-4322-879b-f98c7b3ee026" positionType="Float" x="1" y="246" width="88" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[7. Sub Director:]]></text>
+				<text><![CDATA[5. Sub Director:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement uuid="f0958586-24c0-4358-8c2e-ef41d06abc53" positionType="Float" x="89" y="246" width="464" height="20"/>
@@ -725,29 +703,17 @@
 				<textFieldExpression><![CDATA[$F{longitud}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="741e7d23-b6fc-44c0-b5b7-5f54f07bb975" positionType="Float" x="1" y="172" width="100" height="20"/>
+				<reportElement uuid="741e7d23-b6fc-44c0-b5b7-5f54f07bb975" positionType="Float" x="1" y="194" width="100" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[4. Financiamiento:]]></text>
+				<text><![CDATA[3. Financiamiento:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="1a1ea2df-5864-496b-a25e-813e1e0f2994" positionType="Float" x="103" y="172" width="450" height="20"/>
+				<reportElement uuid="1a1ea2df-5864-496b-a25e-813e1e0f2994" positionType="Float" x="103" y="194" width="450" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[""+$F{tipoFinanciamiento}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="60a330d1-1d99-471b-83f9-2a8ab6b4c472" positionType="Float" x="135" y="195" width="418" height="20"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[( $F{participaEnPrograma} ? "Si" : "No" )]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement uuid="13b21db1-c47f-4c7c-ab0d-c1a48988886e" positionType="Float" x="1" y="195" width="134" height="20"/>
-				<textElement>
-					<font isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[5. Participa en Programa:]]></text>
-			</staticText>
 			<staticText>
 				<reportElement uuid="7a30c340-7ffc-4bde-8cb8-5bd9e964ed62" positionType="Float" x="3" y="519" width="100" height="20"/>
 				<textElement>
@@ -949,7 +915,7 @@
 				<textFieldExpression><![CDATA[$F{objetivoGral}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="181">
+		<band height="275">
 			<staticText>
 				<reportElement uuid="0b2ad93f-e139-4c5f-a27d-dbdfbfd49ac5" positionType="Float" x="0" y="0" width="343" height="20"/>
 				<textElement>
@@ -977,7 +943,7 @@
 				<textFieldExpression><![CDATA[$F{objetivoEspecificoHipotesis}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="098484b3-1906-4e19-9901-67fc48a00b7d" positionType="Float" x="0" y="66" width="553" height="24" isRemoveLineWhenBlank="true"/>
+				<reportElement uuid="098484b3-1906-4e19-9901-67fc48a00b7d" positionType="Float" x="0" y="66" width="553" height="24"/>
 				<textElement textAlignment="Justified"/>
 				<textFieldExpression><![CDATA[$F{relevanciaProblema}]]></textFieldExpression>
 			</textField>
@@ -998,6 +964,111 @@
 				</textElement>
 				<text><![CDATA[RESULTADOS PRELIMINARES Y APORTES DEL GRUPO AL ESTUDIO DEL PROBLEMA]]></text>
 			</staticText>
+			<staticText>
+				<reportElement uuid="49306588-ada0-4de8-aaae-5cf1b96e9a46" positionType="Float" x="1" y="188" width="426" height="20"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[INFRAESTRUCTURA PREVISTA POR LA UNCA PARA LA EJECUCION DE PROYECTO]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="8c1f128d-e6ea-4b5c-a18c-3af2151b72f6" positionType="Float" x="5" y="218" width="543" height="47"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset_infra" uuid="3370c981-bd5c-4515-8f6b-5b5d54dd8143">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaProyectoWebInfraestructura})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column uuid="e5d76272-765b-4117-88e7-e08dfe0c7a82" width="105">
+						<jr:tableHeader height="30" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement uuid="6602a1c2-f6a8-4578-a3d5-79bf644d6021" mode="Opaque" x="0" y="0" width="105" height="32" backcolor="#C0C0C0"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Año de ejecucion]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="28" rowSpan="1"/>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement uuid="a82bec9b-dd3e-4946-9100-f97faefaa491" stretchType="RelativeToBandHeight" x="0" y="0" width="105" height="20"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineStyle="Solid"/>
+									<topPen lineWidth="0.5" lineStyle="Solid"/>
+									<leftPen lineWidth="0.5" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+									<rightPen lineWidth="0.5" lineStyle="Solid"/>
+								</box>
+								<textElement>
+									<font size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{anoEjecucion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="870729f4-acb3-4cee-ad17-0b9d2d1ce023" width="189">
+						<jr:tableHeader height="30" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement uuid="82cb5926-e6fa-42e1-9f83-3a01c92dee89" mode="Opaque" x="0" y="0" width="189" height="32" backcolor="#C0C0C0"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Edilicia]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="28" rowSpan="1"/>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" stretchType="RelativeToBandHeight" x="0" y="0" width="189" height="20"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineStyle="Solid"/>
+									<topPen lineWidth="0.5" lineStyle="Solid"/>
+									<leftPen lineWidth="0.5" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+									<rightPen lineWidth="0.5" lineStyle="Solid"/>
+								</box>
+								<textElement>
+									<font size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{infraEdilicia}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="164a5d33-37c8-4470-9e48-38a2b5b2713c" width="193">
+						<jr:tableHeader height="30" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement uuid="d7e8da73-bfdc-4f13-b451-e98e26a0535e" mode="Opaque" x="0" y="0" width="193" height="32" backcolor="#C0C0C0"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Equipamiento]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="28" rowSpan="1"/>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement uuid="e2735b15-58bc-4f3b-b2be-02508d3c6291" stretchType="RelativeToBandHeight" x="0" y="0" width="193" height="20"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineStyle="Solid"/>
+									<topPen lineWidth="0.5" lineStyle="Solid"/>
+									<leftPen lineWidth="0.5" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+									<rightPen lineWidth="0.5" lineStyle="Solid"/>
+								</box>
+								<textElement>
+									<font size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{equipamiento}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
 		</band>
 		<band height="94">
 			<staticText>
@@ -1025,7 +1096,7 @@
 				<text><![CDATA[JUSTIFICACIÓN DEL IMPACTO DEL PROYECTO]]></text>
 			</staticText>
 		</band>
-		<band height="104">
+		<band height="250">
 			<staticText>
 				<reportElement uuid="6a650a0f-6e4b-47ee-a3a1-f03a1468cc5d" positionType="Float" x="0" y="0" width="334" height="20"/>
 				<textElement>
@@ -1216,6 +1287,157 @@
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<staticText>
+				<reportElement uuid="6a650a0f-6e4b-47ee-a3a1-f03a1468cc5d" positionType="Float" x="2" y="112" width="542" height="32"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[V. Programa de capacitación y formación de recursos Humanos: actividad docente, de investigación y de gestión.]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="8c1f128d-e6ea-4b5c-a18c-3af2151b72f6" positionType="Float" x="1" y="152" width="543" height="83"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset docencia" uuid="3370c981-bd5c-4515-8f6b-5b5d54dd8143">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{participacionesWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column uuid="e5d76272-765b-4117-88e7-e08dfe0c7a82" width="126">
+						<jr:tableHeader height="30" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement uuid="6602a1c2-f6a8-4578-a3d5-79bf644d6021" mode="Opaque" x="0" y="0" width="126" height="32" backcolor="#C0C0C0"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Apellido y Nombre]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="28" rowSpan="1"/>
+						<jr:detailCell height="91" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement uuid="a82bec9b-dd3e-4946-9100-f97faefaa491" stretchType="RelativeToBandHeight" x="0" y="0" width="126" height="91"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineStyle="Solid"/>
+									<topPen lineWidth="0.5" lineStyle="Solid"/>
+									<leftPen lineWidth="0.5" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+									<rightPen lineWidth="0.5" lineStyle="Solid"/>
+								</box>
+								<textElement>
+									<font size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{investigador}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="870729f4-acb3-4cee-ad17-0b9d2d1ce023" width="246">
+						<jr:tableHeader height="30" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement uuid="82cb5926-e6fa-42e1-9f83-3a01c92dee89" mode="Opaque" x="0" y="0" width="246" height="32" backcolor="#C0C0C0"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cargo Docente]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="28" rowSpan="1"/>
+						<jr:detailCell height="91" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="246" height="18"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineWidth="0.0" lineStyle="Solid"/>
+									<topPen lineWidth="0.25" lineStyle="Solid"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid"/>
+								</box>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{investigador}.getDocencias().get(0).getUniversidad()]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="18" width="246" height="18"/>
+								<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+									<pen lineWidth="0.0" lineStyle="Solid"/>
+									<topPen lineWidth="0.0" lineStyle="Solid"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid"/>
+								</box>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{investigador}.getDocencias().get(0).getUnidadAcademica()]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="36" width="246" height="18"/>
+								<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+									<pen lineWidth="0.0" lineStyle="Solid"/>
+									<topPen lineWidth="0.0" lineStyle="Solid"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid"/>
+								</box>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{investigador}.getDocencias().get(0).getDepartamentoDocente()]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="54" width="246" height="18"/>
+								<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+									<pen lineWidth="0.0" lineStyle="Solid"/>
+									<topPen lineWidth="0.0" lineStyle="Solid"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid"/>
+								</box>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{investigador}.getDocencias().get(0).getCategoriaDocente()]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="72" width="246" height="19"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineWidth="0.0" lineStyle="Solid"/>
+									<topPen lineWidth="0.0" lineStyle="Solid"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid"/>
+								</box>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{investigador}.getDocencias().get(0).getDedicacionDocente()]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="164a5d33-37c8-4470-9e48-38a2b5b2713c" width="247">
+						<jr:tableHeader height="30" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement uuid="d7e8da73-bfdc-4f13-b451-e98e26a0535e" mode="Opaque" x="0" y="0" width="247" height="32" backcolor="#C0C0C0"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Modo de Obtención (consurso, interino)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="28" rowSpan="1"/>
+						<jr:detailCell height="91" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="e2735b15-58bc-4f3b-b2be-02508d3c6291" stretchType="RelativeToBandHeight" x="0" y="0" width="247" height="91"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineStyle="Solid"/>
+									<topPen lineWidth="0.5" lineStyle="Solid"/>
+									<leftPen lineWidth="0.5" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+									<rightPen lineWidth="0.5" lineStyle="Solid"/>
+								</box>
+								<textElement>
+									<font size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[($F{investigador}.getDocencias()==null?"" : $F{investigador}.getDocencias().get(0).getModoObtencionCargo())]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
 		</band>
 		<band height="434">
 			<staticText>
@@ -1223,7 +1445,7 @@
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[V. Plan de Ejecución Financiera.]]></text>
+				<text><![CDATA[VI. Plan de Ejecución Financiera.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="df57e83a-133e-47b8-bda7-1792a6c4c537" x="4" y="20" width="303" height="20"/>
@@ -2607,7 +2829,7 @@ $F{presupuestoWebAnioDos.bienNoPersonalWeb}.valor.sum(0) +
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[VI. Programa de capacitación y formación de recursos humanos.]]></text>
+				<text><![CDATA[VII. Programa de capacitación y formación de recursos humanos.]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement uuid="73dae474-93ac-4cb2-baba-442188824de5" positionType="Float" x="0" y="273" width="553" height="20" isRemoveLineWhenBlank="true"/>
@@ -2689,7 +2911,7 @@ $F{presupuestoWebAnioDos.bienNoPersonalWeb}.valor.sum(0) +
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[VII. Bibliografía.]]></text>
+				<text><![CDATA[VIII. Bibliografía.]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement uuid="9c371fd9-ecc5-492e-8c5c-87e19386d58a" positionType="Float" x="0" y="320" width="553" height="24" isRemoveLineWhenBlank="true"/>
@@ -2703,7 +2925,7 @@ $F{presupuestoWebAnioDos.bienNoPersonalWeb}.valor.sum(0) +
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[VIII. Aspectos Éticos]]></text>
+				<text><![CDATA[IX. Aspectos Éticos]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="22191a60-a489-4916-9bf0-78d40e7537ba" positionType="Float" x="1" y="37" width="550" height="30" isRemoveLineWhenBlank="true"/>
@@ -2816,7 +3038,7 @@ $F{presupuestoWebAnioDos.bienNoPersonalWeb}.valor.sum(0) +
 				<text><![CDATA[11. Dispone de informes del comité de ética acerca del plan de investigación: ]]></text>
 			</staticText>
 		</band>
-		<band height="500">
+		<band height="498">
 			<break>
 				<reportElement uuid="37ee34e9-f41e-468e-9e87-965f9be0baa9" x="0" y="8" width="100" height="1"/>
 			</break>
@@ -2863,7 +3085,7 @@ $F{presupuestoWebAnioDos.bienNoPersonalWeb}.valor.sum(0) +
 					<textElement>
 						<font isBold="true"/>
 					</textElement>
-					<text><![CDATA[IX. Declaración Jurada - Convocatoria SECyT – UNCa 2018.]]></text>
+					<text><![CDATA[X. Declaración Jurada - Convocatoria SECyT – UNCa 2018.]]></text>
 				</staticText>
 			</frame>
 			<frame>
@@ -2929,11 +3151,12 @@ $F{presupuestoWebAnioDos.bienNoPersonalWeb}.valor.sum(0) +
 				</textField>
 			</frame>
 		</band>
+		<band height="50"/>
 	</detail>
 	<pageFooter>
 		<band height="42" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="3731e6ec-022a-4ed4-b649-95bcf3691492" x="4" y="11" width="547" height="20"/>
+				<reportElement uuid="3731e6ec-022a-4ed4-b649-95bcf3691492" x="5" y="9" width="547" height="20"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
