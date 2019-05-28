@@ -336,6 +336,8 @@ public class NavegarBean {
             this.getProyectoWebBean().setProyectoWeb(new ProyectoWeb());
             this.getProyectoWebBean().getProyectoWeb().setFinalizado(Boolean.FALSE);
             this.getProyectoWebBean().getProyectoWeb().setConvocatoria(convocatoria);
+            this.getProyectoWebBean().getProyectoWeb().setFechaInicio(convocatoria.getFechaInicioProyecto());
+            this.getProyectoWebBean().getProyectoWeb().setFechaFinalizacion(convocatoria.getFechaFinalizacionProyecto());
 
             //asigno el director
             this.getProyectoWebBean().getProyectoWeb().setParticipacionesWeb(

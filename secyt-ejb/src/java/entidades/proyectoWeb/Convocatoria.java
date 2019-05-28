@@ -19,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -55,6 +56,13 @@ public class Convocatoria implements Serializable {
     private List<ValorCategoria> categorias;
 
     private boolean activada;
+    
+        //2
+    @Temporal(TemporalType.DATE)
+    private Date fechaInicioProyecto;
+
+    @Temporal(TemporalType.DATE)
+    private Date fechaFinalizacionProyecto;
 
     public boolean isActivada() {
         return activada;
@@ -120,6 +128,22 @@ public class Convocatoria implements Serializable {
         this.categorias = categorias;
     }
 
+    public Date getFechaInicioProyecto() {
+        return fechaInicioProyecto;
+    }
+
+    public void setFechaInicioProyecto(Date fechaInicioProyecto) {
+        this.fechaInicioProyecto = fechaInicioProyecto;
+    }
+
+    public Date getFechaFinalizacionProyecto() {
+        return fechaFinalizacionProyecto;
+    }
+
+    public void setFechaFinalizacionProyecto(Date fechaFinalizacionProyecto) {
+        this.fechaFinalizacionProyecto = fechaFinalizacionProyecto;
+    }
+  
     @Override
     public int hashCode() {
         int hash = 0;
