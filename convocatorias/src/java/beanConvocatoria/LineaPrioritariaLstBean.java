@@ -4,6 +4,7 @@
  */
 package beanConvocatoria;
 
+import entidades.proyecto.AreaTematica;
 import entidades.proyecto.LineaPrioritaria;
 import entidades.proyecto.RN.LineaPrioritariaRNLocal;
 import java.io.Serializable;
@@ -23,12 +24,12 @@ import javax.faces.model.SelectItem;
 public class LineaPrioritariaLstBean implements Serializable {
 
     private List<LineaPrioritaria> lstLineaPrioritaria;
-    
-    private List<SelectItem> lstSILineaPrioritaria; 
-    
+
+    private List<SelectItem> lstSILineaPrioritaria;
+
     @EJB
     private LineaPrioritariaRNLocal lineaPrioritariaRNLocal;
-    
+
     public LineaPrioritariaLstBean() {
     }
 
@@ -39,7 +40,7 @@ public class LineaPrioritariaLstBean implements Serializable {
     public void setLineaPrioritariaRNLocal(LineaPrioritariaRNLocal lineaPrioritariaRNLocal) {
         this.lineaPrioritariaRNLocal = lineaPrioritariaRNLocal;
     }
-    
+
     public List<LineaPrioritaria> getLstLineaPrioritaria() {
         return lstLineaPrioritaria;
     }
@@ -55,15 +56,15 @@ public class LineaPrioritariaLstBean implements Serializable {
     public void setLstSILineaPrioritaria(List<SelectItem> lstSILineaPrioritaria) {
         this.lstSILineaPrioritaria = lstSILineaPrioritaria;
     }
-    
-    public void findLineasDePrioritaria() throws Exception{
+
+    public void findLineasDePrioritaria() throws Exception {
         this.setLstLineaPrioritaria(this.lineaPrioritariaRNLocal.findLineasPrioritaria());
     }//fin findLineasDePrioritaria
-    
-    public void cargarSILineaPrioritaria() throws Exception{
+
+    public void cargarSILineaPrioritaria() throws Exception {
         this.setLstSILineaPrioritaria(new ArrayList<SelectItem>());
         int i = 0;
-        for(LineaPrioritaria li : this.getLstLineaPrioritaria()){
+        for (LineaPrioritaria li : this.getLstLineaPrioritaria()) {
             if (i <= 7) {
                 if (!li.getDescripcion().trim().isEmpty()) {
                     SelectItem si = new SelectItem(li, li.getDescripcion());
@@ -73,7 +74,25 @@ public class LineaPrioritariaLstBean implements Serializable {
                 break;
             }
             i++;
-            
+
+        }//fin for
+    }//fin cargarSILineaPrioritaria
+
+    public void cargarSILineaPrioritariaAreaTematica(AreaTematica areaTematica) throws Exception {
+        this.setLstLineaPrioritaria(this.lineaPrioritariaRNLocal.findLineasPrioritariaAreaTematica(areaTematica));
+        this.setLstSILineaPrioritaria(new ArrayList<SelectItem>());
+        int i = 0;
+        for (LineaPrioritaria li : this.getLstLineaPrioritaria()) {
+            if (i <= 7) {
+                if (!li.getDescripcion().trim().isEmpty()) {
+                    SelectItem si = new SelectItem(li, li.getDescripcion());
+                    this.getLstSILineaPrioritaria().add(si);
+                }//fin if
+            } else {
+                break;
+            }
+            i++;
+
         }//fin for
     }//fin cargarSILineaPrioritaria
 }

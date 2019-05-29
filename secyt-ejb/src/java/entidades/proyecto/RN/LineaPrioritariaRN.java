@@ -5,6 +5,7 @@
 package entidades.proyecto.RN;
 
 import DAO.LineaPrioritariaFacadeLocal;
+import entidades.proyecto.AreaTematica;
 import entidades.proyecto.LineaPrioritaria;
 import java.util.List;
 import javax.ejb.EJB;
@@ -27,5 +28,11 @@ public class LineaPrioritariaRN implements LineaPrioritariaRNLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+    @Override
+    public List<LineaPrioritaria> findLineasPrioritariaAreaTematica(AreaTematica areaTematica) throws Exception {
+        return lineaPrioritariaFacadeLocal.findLineasPrioritariaAreaTematica(areaTematica);
+    }
+
 
 }

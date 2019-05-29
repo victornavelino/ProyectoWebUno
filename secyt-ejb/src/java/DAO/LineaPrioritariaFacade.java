@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import entidades.proyecto.AreaTematica;
 import entidades.proyecto.LineaPrioritaria;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -17,6 +18,7 @@ import javax.persistence.Query;
  */
 @Stateless
 public class LineaPrioritariaFacade extends AbstractFacade<LineaPrioritaria> implements LineaPrioritariaFacadeLocal {
+
     @PersistenceContext(unitName = "secyt-ejbPU")
     private EntityManager em;
 
@@ -34,5 +36,12 @@ public class LineaPrioritariaFacade extends AbstractFacade<LineaPrioritaria> imp
         Query q = em.createNamedQuery("LineaPrioritaria.findLineasPrioritaria");
         return q.getResultList();
     }
-    
+
+    @Override
+    public List<LineaPrioritaria> findLineasPrioritariaAreaTematica(AreaTematica areaTematica) throws Exception {
+        Query q = em.createNamedQuery("LineaPrioritaria.findLineasPrioritariaAreaTematica");
+        q.setParameter("areaTematica",areaTematica);
+        return q.getResultList();
+    }
+
 }

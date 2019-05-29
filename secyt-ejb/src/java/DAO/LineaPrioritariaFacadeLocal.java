@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import entidades.proyecto.AreaTematica;
 import entidades.proyecto.LineaPrioritaria;
 import java.util.List;
 import javax.ejb.Local;
@@ -30,5 +31,6 @@ public interface LineaPrioritariaFacadeLocal {
     int count();
     
     List<LineaPrioritaria> findLineasPrioritaria() throws Exception;
+    List<LineaPrioritaria> findLineasPrioritariaAreaTematica(AreaTematica areaTematica) throws Exception;
     
 }
