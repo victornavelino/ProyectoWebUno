@@ -25,7 +25,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "LineaPrioritaria.findLineasPrioritaria",
             query = "SELECT li FROM LineaPrioritaria li ORDER BY li.descripcion"),
         @NamedQuery(name = "LineaPrioritaria.findLineasPrioritariaAreaTematica",
-            query = "SELECT li FROM LineaPrioritaria li where li.areaTematica=:areatematica BY li.descripcion")})
+            query = "SELECT li FROM LineaPrioritaria li where li.areaTematica=:areatematica ORDER BY li.descripcion")})
 public class LineaPrioritaria implements Serializable {
 
     private static final long serialVersionUID = 1L;

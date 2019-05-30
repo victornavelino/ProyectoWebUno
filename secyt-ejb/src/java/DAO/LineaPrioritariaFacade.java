@@ -40,7 +40,7 @@ public class LineaPrioritariaFacade extends AbstractFacade<LineaPrioritaria> imp
     @Override
     public List<LineaPrioritaria> findLineasPrioritariaAreaTematica(AreaTematica areaTematica) throws Exception {
         Query q = em.createNamedQuery("LineaPrioritaria.findLineasPrioritariaAreaTematica");
-        q.setParameter("areaTematica",areaTematica);
+        q.setParameter("areatematica",areaTematica);
         return q.getResultList();
     }
 

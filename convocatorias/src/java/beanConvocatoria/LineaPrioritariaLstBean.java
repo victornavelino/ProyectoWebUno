@@ -61,6 +61,10 @@ public class LineaPrioritariaLstBean implements Serializable {
         this.setLstLineaPrioritaria(this.lineaPrioritariaRNLocal.findLineasPrioritaria());
     }//fin findLineasDePrioritaria
 
+    public void findLineasDePrioritaria(AreaTematica areaTematica) throws Exception {
+        this.setLstLineaPrioritaria(this.lineaPrioritariaRNLocal.findLineasPrioritariaAreaTematica(areaTematica));
+    }//fin findLineasDePrioritaria
+
     public void cargarSILineaPrioritaria() throws Exception {
         this.setLstSILineaPrioritaria(new ArrayList<SelectItem>());
         int i = 0;

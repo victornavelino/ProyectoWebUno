@@ -30,7 +30,6 @@ public class AreaTematicaBean {
     public void setLineaPrioritariaLstBean(LineaPrioritariaLstBean lineaPrioritariaLstBean) {
         this.lineaPrioritariaLstBean = lineaPrioritariaLstBean;
     }
-    
 
     public AreaTematicaBean() {
     }
@@ -49,11 +48,22 @@ public class AreaTematicaBean {
         if (event.getNewValue() != null) {
             if (!event.getNewValue().equals("Seleccionar")) {
                 // if(event.getNewValue() != null){
-                this.getLineaPrioritariaLstBean().setLstLineaPrioritaria(((AreaTematica) event.getNewValue()).getLineaPrioritarias());
-                this.getDisciplinaCientificaLstBean().setLstDisciplinaCientifica(
-                        ((AreaTematica) event.getNewValue()).getDisciplinasCientificas());
+                try {
+                    this.getLineaPrioritariaLstBean().findLineasDePrioritaria((AreaTematica) event.getNewValue());
+                } catch (Exception e) {
+                    System.out.println("errorrrrr");
+                }
 
-                this.getDisciplinaCientificaLstBean().cargarSIDisplinasCientificas();
+                this.getLineaPrioritariaLstBean().setLstLineaPrioritaria(this.getLineaPrioritariaLstBean().getLstLineaPrioritaria());
+                try {
+                    this.getLineaPrioritariaLstBean().cargarSILineaPrioritariaAreaTematica((AreaTematica) event.getNewValue());
+                } catch (Exception e) {
+                }
+
+//                System.out.println("area selec"+ ((AreaTematica) event.getNewValue()));
+//                System.out.println("lineas´prioritarias de area selec"+ ((AreaTematica) event.getNewValue()).getLineaPrioritarias());
+                //this.getDisciplinaCientificaLstBean().setLstDisciplinaCientifica(((AreaTematica) event.getNewValue()).getDisciplinasCientificas());
+                //this.getDisciplinaCientificaLstBean().cargarSIDisplinasCientificas();
             }//fin if
         }
     }//fin handleChange

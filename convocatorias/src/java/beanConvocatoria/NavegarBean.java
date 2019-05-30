@@ -398,8 +398,8 @@ public class NavegarBean {
             this.getProyectoWebBean().getProyectoWeb().setSubDisciplinasCientificas(new ArrayList<SubDisciplinaCientifica>());
 
             //cargar las lineas prioritarias
-            this.getLineaPrioritariaLstBean().findLineasDePrioritaria();
-            this.getLineaPrioritariaLstBean().cargarSILineaPrioritaria();
+            //this.getLineaPrioritariaLstBean().findLineasDePrioritaria();
+            //this.getLineaPrioritariaLstBean().cargarSILineaPrioritaria();
 
             //cargar area tematica
             this.getAreaTematicaLstBean().findAreasTematicas();

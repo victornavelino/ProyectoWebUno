@@ -107,8 +107,8 @@
                                     locale="es"
                                     pattern="dd/MM/yyyy"
                                     timeZone="GMT-03:00"/> <br />
-                        <h:outputText value="La duración debe ser de un año
-                                      (Ej.: 01/01/2018 al 31/12/2018) "/>
+                        <h:outputText value="La duración debe ser de 2 años
+                                      (Ej.: 01/01/2019 al 31/12/2020) "/>
 
                     </div>
 
@@ -393,60 +393,18 @@
 
                     <li class="listaTitulo">
                         <div>
-                            <h:outputText value="Area Temática - Disciplina Científica - Subdisciplinas Científicas: "/>
+                            <h:outputText value="Area Temática: "/>
                         </div>
                     </li>
-                    <div class="separador">
-                        <p:commandButton id="cbBuscarSubDisciplinaCientifica" 
-                                         icon="ui-icon-search"
-                                         action="#{subDisciplinaCientificaFindDlgBean.setTipo(0)}"
-                                         actionListener="#{subDisciplinaCientificaFindDlgBean.abrirDialog()}"
-                                         process="@this"
-                                         update="@this, :frmUser:ihTipoSDCSD"
-                                         title="Agregar"/>
-
-                        <h:outputText value="Otra: "/><p:inputText value="#{proyectoWebBean.proyectoWeb.subDisciplinaCientificaOtra}" rendered="#{subDisciplinaCientificaFindDlgBean.subDisciplinaCientificaSelect.descripcion!='Otras(especificar)'}" id="otraSubdisciplina"/><!-- <h:inputText  /><!- esta hay que agregar a la entidad, y sale cuando se selecciona alguna de las subdisciplinas que dicen 'Otras(especificar)'
-                        -->
-                        <!-- hay q seleccionar uno nomas -->
-
-                        <p:dataTable id="dtSubDisciplinaCientifica"
-                                     value="#{proyectoWebBean.proyectoWeb.subDisciplinasCientificas}"
-                                     var="sdc"
-                                     style="width: 900px; overflow: auto;">
-                            <p:column style="word-wrap:break-word;">
-                                <f:facet name="header">
-                                    <h:outputText value="Area Temática"/>
-                                </f:facet>
-
-                                <h:outputText value="#{sdc.disciplinaCientifica.areaTematica.descripcion}"/>
-                            </p:column>
-
-                            <p:column style="word-wrap:break-word;">
-                                <f:facet name="header">
-                                    <h:outputText value="Disciplina Científica"/>
-                                </f:facet>
-
-                                <h:outputText value="#{sdc.disciplinaCientifica.descripcion}"/>
-                            </p:column>
-
-                            <p:column style="word-wrap:break-word;">
-                                <f:facet name="header">
-                                    <h:outputText value="Subdisciplina Científica"/>
-                                </f:facet>
-
-                                <h:outputText value="#{sdc.descripcion}"/>
-                            </p:column>
-
-                            <p:column style="word-wrap:break-word;">
-                                <f:facet name="header">
-                                    <h:outputText value="Quitar"/>
-                                </f:facet>
-
-                                <p:commandButton icon="ui-icon-circle-close"
-                                                 actionListener="#{proyectoIPagBean.quitarSubDisciplinaCientifica(sdc)}"
-                                                 update="dtSubDisciplinaCientifica"/>
-                            </p:column>
-                        </p:dataTable>
+                    <div>
+                <p:selectOneMenu id="somAreaTematica2"
+                                 valueChangeListener="#{areaTematicaBean.handleChange}"
+                                 panelStyle="width:150px"
+                                 converter="ConversorGenerico">
+                    <f:selectItem itemValue="Seleccionar" itemLabel="Seleccionar" noSelectionOption="true"/>
+                    <f:selectItems value="#{areaTematicaLstBean.lstSIAreaTematica}"/>
+                    <p:ajax update="somLineaInvestigacion" />  
+                </p:selectOneMenu>
 
                     </div>
                     <li class="listaTitulo">
