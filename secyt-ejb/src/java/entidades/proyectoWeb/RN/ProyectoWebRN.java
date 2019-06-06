@@ -430,11 +430,11 @@ public class ProyectoWebRN implements ProyectoWebRNLocal {
                 }
                 /* validaciones diego */
                 
-                if (difDia1 != 1) {
+                /*if (difDia1 != 1) {
                     throw new Exception("EL proyecto debe tener una duración de 1 año. Verifique las fechas");
                 }//fin if
 
-                /*if (difDia1 != 2 && difDia1 != 4) {
+                if (difDia1 != 2 && difDia1 != 4) {
                     throw new Exception("EL proyecto debe tener una duración de 2 o 4 años. Verifique las fechas");
                 }//fin if
 
