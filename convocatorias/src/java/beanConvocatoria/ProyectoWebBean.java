@@ -610,7 +610,13 @@ public class ProyectoWebBean implements Serializable {
                     Docencia doc = this.ultimaDocencia(pw.getInvestigador().getDocencias());
                     
                     if(pw.getInvestigador().getDocencias() != null){
-                        for(Docencia d : pw.getInvestigador().getDocencias()){
+                        List<Docencia> lstDocencias = new ArrayList<Docencia>();
+                        for(Docencia da : pw.getInvestigador().getDocencias()){
+                            lstDocencias.add(da);
+                        }//fin for
+                        
+      
+                        for(Docencia d : lstDocencias){
                             if(!doc.equals(d)){
                                 pw.getInvestigador().getDocencias().remove(d);
                             }//fin if
