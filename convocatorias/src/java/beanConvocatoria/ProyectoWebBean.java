@@ -9,6 +9,7 @@ import entidades.economico.BienNoPersonal;
 import entidades.economico.BienUso;
 import entidades.economico.GastoViaje;
 import entidades.persona.investigador.Docencia;
+import entidades.proyecto.AreaTematica;
 import entidades.proyecto.UnidadInvestigacion;
 import entidades.proyectoWeb.BienConsumoWeb;
 import entidades.proyectoWeb.ParticipacionWeb;
@@ -49,6 +50,7 @@ public class ProyectoWebBean implements Serializable {
 
     private ProyectoWeb proyectoWeb;
     private List<String> lstAniosPresupuesto;
+    private AreaTematica areaTematicaSelect;
     @ManagedProperty("#{proyectoIIPagBean}")
     private ProyectoIIPagBean proyectoIIPagBean;
     @ManagedProperty("#{mensajeBean}")
@@ -70,6 +72,15 @@ public class ProyectoWebBean implements Serializable {
         proyectoWeb.setProyectoWebFGP(new ProyectoWebFGP());
 
     }
+
+    public AreaTematica getAreaTematicaSelect() {
+        return areaTematicaSelect;
+    }
+
+    public void setAreaTematicaSelect(AreaTematica areaTematicaSelect) {
+        this.areaTematicaSelect = areaTematicaSelect;
+    }
+    
     
     public UbicacionLstBean getUbicacionLstBean() {
         return ubicacionLstBean;

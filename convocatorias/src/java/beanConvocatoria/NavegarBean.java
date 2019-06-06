@@ -10,6 +10,7 @@ import entidades.economico.BienConsumo;
 import entidades.economico.BienNoPersonal;
 import entidades.economico.BienUso;
 import entidades.economico.GastoViaje;
+import entidades.proyecto.AreaTematica;
 import entidades.proyecto.Rol;
 import entidades.proyecto.SubDisciplinaCientifica;
 import entidades.proyecto.UnidadInvestigacion;
@@ -28,6 +29,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 
 import javax.faces.bean.ManagedBean;
@@ -479,15 +482,25 @@ public class NavegarBean {
             //cargar las unidades ejecutoras
             this.getUnidadEjecutoraLstBean().findUnidadesEjecutoras();
             this.getUnidadEjecutoraLstBean().cargarSIUnidadesEjecutoras();
-
-            //cargar las lineas prioritarias
-            this.getLineaPrioritariaLstBean().findLineasDePrioritaria();
-            this.getLineaPrioritariaLstBean().cargarSILineaPrioritaria();
             
-
             //cargar area tematica
             this.getAreaTematicaLstBean().findAreasTematicas();
             this.getAreaTematicaLstBean().cargarSIAreasTematicas();
+                            
+
+            //cargar las lineas prioritarias
+            this.getLineaPrioritariaLstBean().findLineasDePrioritaria();
+            //this.getLineaPrioritariaLstBean().cargarSILineaPrioritaria();  
+            
+            if(pw.getLineaPrioritaria() != null){
+                        
+                this.getProyectoWebBean().setAreaTematicaSelect(pw.getLineaPrioritaria().getAreaTematica());
+                this.getLineaPrioritariaLstBean().cargarSILineaPrioritariaAreaTematica(this.getProyectoWebBean().getAreaTematicaSelect());
+            } //fin if
+            
+            
+            
+            
 
             //cargar objetivosSocioEconomico
             this.getObjetivoSocioEconomicoLstBean().findObjetivosSocioEconomicos();
@@ -586,6 +599,7 @@ public class NavegarBean {
                 pagina = "menuProyecto.xhtml?faces-redirect=true";
                 break;
             case 1:
+                
                 pagina = "proyectoI.xhtml?faces-redirect=true";
                 break;
             
