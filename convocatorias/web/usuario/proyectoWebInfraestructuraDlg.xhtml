@@ -36,8 +36,12 @@ and open the template in the editor.
             
             <div class="separador">
                 <h:outputText value="Edilicia*: "/>
-                <p:inputText id="itEdilicia"
-                             value="#{proyectoWebInfraestructuraBean.proyectoWebInfraestructura.infraEdilicia}"/>
+                <p:inputTextarea rows="10" cols="80"
+                                         autoResize="false"
+                                         value="#{proyectoWebInfraestructuraBean.proyectoWebInfraestructura.infraEdilicia}"
+                                         maxlength="6000"  counter="itacounter2"    
+                                         counterTemplate="{0} caracteres restantes (6000 máx)"/><br /><h:outputText id="itacounter2" /> 
+
             </div>
             
             <div style="clear: both;"/>
@@ -45,8 +49,12 @@ and open the template in the editor.
             
             <div class="separador">
                 <h:outputText value="Equipamiento*: "/>
-                <p:inputText id="itEquipamiento"
-                             value="#{proyectoWebInfraestructuraBean.proyectoWebInfraestructura.equipamiento}"/>
+                <p:inputTextarea rows="10" cols="80"
+                                         autoResize="false"
+                                         value="#{proyectoWebInfraestructuraBean.proyectoWebInfraestructura.equipamiento}"
+                                         maxlength="6000"  counter="itacounter3"    
+                                         counterTemplate="{0} caracteres restantes (6000 máx)"/><br /><h:outputText id="itacounter3" /> 
+    
             </div>
             
           
