@@ -144,7 +144,9 @@ public class ProyectoWebBean implements Serializable {
     }
 
     public int activarBotonAnio() {
+        
         if (proyectoWeb.getFechaInicio() != null && proyectoWeb.getFechaFinalizacion() != null) {
+            
 
             Calendar calIni = Calendar.getInstance();
             Calendar calFin = Calendar.getInstance();
@@ -156,20 +158,21 @@ public class ProyectoWebBean implements Serializable {
             long difDia = (calFin.get(Calendar.DATE) - calIni.get(Calendar.DATE))
                     + (calFin.get(Calendar.MONTH) - calIni.get(Calendar.MONTH))
                     + (calFin.get(Calendar.YEAR) - calIni.get(Calendar.YEAR));
-            
-            
+              
             if (difDia == 1) {
                 return 1;
             }//fin if
 
-            /*if (difDia == 2) {
+            if (difDia == 2) {
                 return 2;
             }//fin if
 
-            if (difDia == 4) {
+           /* if (difDia == 4) {
                 return 4;
             }//fin if*/
         }//fin if
+        
+        System.out.println("Activar boton año salir");
 
         return 0;
     }//fin 
