@@ -48,20 +48,22 @@
             </div>
 
             <div align="center">
-                <div >
+                <div>
+                    <h:outputText value="UNIVERSIDAD NACIONAL DE CATAMARCA" styleClass="titulo"/><br/>
+                    <h:outputText value="SECRETARIA DE CIENCIA Y TECNOLOGIA" styleClass="titulo"/><br/>
+                    <h:outputText value="PROGRAMA DE DESARROLLO CIENTIFICO Y TECNOLOGICO" styleClass="titulo"/><br/>
+                    <h:outputText value="Formulario para la presentacion de Proyectos de Investigacion 2019" styleClass="titulo"/><br/>
                     <h:outputText value="Postulación: #{proyectoWebBean.proyectoWeb.convocatoria.nombre} " 
                                   styleClass="titulo"/>
                     <h:outputText value="#{proyectoWebBean.proyectoWeb.convocatoria.fechaIni}" 
                                   styleClass="titulo">
                         <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>
                     </h:outputText>
-                    <h:outputText value=" a " 
-                                  styleClass="titulo"/>
+                    <h:outputText value=" a " styleClass="titulo"/>
                     <h:outputText value="#{proyectoWebBean.proyectoWeb.convocatoria.fechaFin}"
                                   styleClass="titulo">
                         <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>
                     </h:outputText>
-
                 </div>
 
                 <div>
@@ -397,15 +399,15 @@
                         </div>
                     </li>
                     <div>
-                <p:selectOneMenu id="somAreaTematica2"
-                                 valueChangeListener="#{areaTematicaBean.handleChange}"
-                                 value="#{proyectoWebBean.areaTematicaSelect}"
-                                 panelStyle="width:150px"
-                                 converter="ConversorGenerico">
-                    <f:selectItem itemValue="Seleccionar" itemLabel="Seleccionar" noSelectionOption="true"/>
-                    <f:selectItems value="#{areaTematicaLstBean.lstSIAreaTematica}"/>
-                    <p:ajax update="somLineaInvestigacion" />  
-                </p:selectOneMenu>
+                        <p:selectOneMenu id="somAreaTematica2"
+                                         valueChangeListener="#{areaTematicaBean.handleChange}"
+                                         value="#{proyectoWebBean.areaTematicaSelect}"
+                                         panelStyle="width:150px"
+                                         converter="ConversorGenerico">
+                            <f:selectItem itemValue="Seleccionar" itemLabel="Seleccionar" noSelectionOption="true"/>
+                            <f:selectItems value="#{areaTematicaLstBean.lstSIAreaTematica}"/>
+                            <p:ajax update="somLineaInvestigacion" />  
+                        </p:selectOneMenu>
 
                     </div>
                     <li class="listaTitulo">
