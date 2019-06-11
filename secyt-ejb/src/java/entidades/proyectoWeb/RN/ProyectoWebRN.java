@@ -484,6 +484,10 @@ public class ProyectoWebRN implements ProyectoWebRNLocal {
                 if (proyectoWeb.getTitulo().isEmpty()) {
                     throw new Exception("Debe ingresar el nombre del proyecto");
                 }//fin if
+                
+                if (proyectoWeb.getTitulo().length() > 300) {
+                    throw new Exception("El nombre del proyecto no puede tener mas de 300 caracteres");
+                }//fin if
 
                 //que no exista un proyecto con el mismo nombre
                 if (this.proyectoWebFacadeLocal.findProyectoWebByTitulo(proyectoWeb.getTitulo(), proyectoWeb.getId())) {
@@ -538,8 +542,9 @@ public class ProyectoWebRN implements ProyectoWebRNLocal {
                     int hora = cal.get(Calendar.HOUR_OF_DAY);
                     int minuto = cal.get(Calendar.MINUTE);
                     int segundo = cal.get(Calendar.SECOND);
+                    int miliSegundo = cal.get(Calendar.MILLISECOND);
 
-                    int suma = hora + minuto + segundo;
+                    int suma = hora + minuto + segundo + miliSegundo;
 
                     //EL CODIGO ES CON LA UNIVERSIDAD Y EL DNI DEL INVESTIGADOR
                     /*System.out.println("Universidad: " + proyectoWeb.getParticipacionesWeb().get(0).getInvestigador().getUniversidad().getDescripcion());
