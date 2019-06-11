@@ -9,6 +9,7 @@ import entidades.economico.BienNoPersonal;
 import entidades.economico.BienUso;
 import entidades.economico.GastoViaje;
 import entidades.persona.investigador.Docencia;
+import entidades.persona.investigador.Investigador;
 import entidades.proyecto.AreaTematica;
 import entidades.proyecto.UnidadInvestigacion;
 import entidades.proyectoWeb.BienConsumoWeb;
@@ -526,12 +527,12 @@ public class ProyectoWebBean implements Serializable {
             }
             
             
-            if(ex.getMessage().equals("Transaction aborted")){
+            /*if(ex.getMessage().equals("Transaction aborted")){
                 this.getMensajeBean().setMensaje("Error: Al cargar el plan de ejecucion financiera "
                         + "la descripcion de alguno de los gastos es demasiado extensa." );
-            }else{
+            }else{*/
                 this.getMensajeBean().setMensaje("Error: " + ex.getMessage());
-            }
+           //}
             
 
             
@@ -605,6 +606,7 @@ public class ProyectoWebBean implements Serializable {
             
             //dejar la lista mas grande de cargos docencias del investigador
             
+            
             if (proyecto.getParticipacionesWeb() != null) {
                 for (ParticipacionWeb pw : proyecto.getParticipacionesWeb()) {
                     Docencia doc = this.ultimaDocencia(pw.getInvestigador().getDocencias());
@@ -621,7 +623,7 @@ public class ProyectoWebBean implements Serializable {
                                 pw.getInvestigador().getDocencias().remove(d);
                             }//fin if
                         }//fin for
-                    }//fin if
+                    }
                 }//fin for
             }//fin if
             

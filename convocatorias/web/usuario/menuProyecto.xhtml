@@ -19,13 +19,15 @@
                 
                 
                 <div align="center"
-                     style="margin-bottom: 15px;">
+                     style="margin-bottom: 15px; width: 100%;">
                     <h:outputText value="PROGRAMA DE DESARROLLO CIENTIFICO Y TECNOLOGICO"
                                   styleClass="titulo"/><br/>
                     <h:outputText value="FORMULARIO DE PROYECTO DE INVESTIGACION Y DESARROLLO - PID 2016"
                                   styleClass="titulo"/><br/>
-                    <h:outputText value="Proyecto #{proyectoWebBean.proyectoWeb.titulo}" 
-                                  styleClass="titulo"/><br/>
+                    <h:outputText  value="Proyecto #{proyectoWebBean.proyectoWeb.titulo}" 
+                                  styleClass="titulo"
+                                  style="word-wrap: break-word;"/><br/>
+                    
                     <h:outputText value=" Fecha limite de presentación " 
                                   styleClass="titulo"/>
                     <h:outputText value="#{proyectoWebBean.proyectoWeb.convocatoria.fechaFin}"

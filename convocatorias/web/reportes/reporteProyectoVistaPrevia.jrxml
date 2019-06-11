@@ -1313,9 +1313,11 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:columnFooter height="28" rowSpan="1"/>
-						<jr:detailCell height="91" rowSpan="1">
+						<jr:detailCell height="90" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement uuid="a82bec9b-dd3e-4946-9100-f97faefaa491" stretchType="RelativeToBandHeight" x="0" y="0" width="126" height="91"/>
+								<reportElement uuid="a82bec9b-dd3e-4946-9100-f97faefaa491" stretchType="RelativeToBandHeight" x="0" y="0" width="126" height="90">
+									<printWhenExpression><![CDATA[($F{investigador}.getDocencias()==null?false :true )]]></printWhenExpression>
+								</reportElement>
 								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 									<pen lineStyle="Solid"/>
 									<topPen lineWidth="0.5" lineStyle="Solid"/>
@@ -1326,7 +1328,7 @@
 								<textElement>
 									<font size="9"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{investigador}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[($F{investigador}.getDocencias()==null?"" :$F{investigador}  )]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1343,9 +1345,11 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:columnFooter height="28" rowSpan="1"/>
-						<jr:detailCell height="91" rowSpan="1">
-							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="246" height="18"/>
+						<jr:detailCell height="90" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="71" y="0" width="175" height="15">
+									<printWhenExpression><![CDATA[($F{investigador}.getDocencias()==null?false :true )]]></printWhenExpression>
+								</reportElement>
 								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 									<pen lineWidth="0.0" lineStyle="Solid"/>
 									<topPen lineWidth="0.25" lineStyle="Solid"/>
@@ -1354,22 +1358,12 @@
 									<rightPen lineWidth="0.0" lineStyle="Solid"/>
 								</box>
 								<textElement/>
-								<textFieldExpression><![CDATA[($F{investigador}.getDocencias()==null?"" : $F{investigador}.getDocencias().get(0).getUniversidad())]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{investigador}.getDocencias().get(0).getFechaObtencionCargo()]]></textFieldExpression>
 							</textField>
 							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="18" width="246" height="18"/>
-								<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
-									<pen lineWidth="0.0" lineStyle="Solid"/>
-									<topPen lineWidth="0.0" lineStyle="Solid"/>
-									<leftPen lineWidth="0.0" lineStyle="Solid"/>
-									<bottomPen lineWidth="0.0" lineStyle="Solid"/>
-									<rightPen lineWidth="0.0" lineStyle="Solid"/>
-								</box>
-								<textElement/>
-								<textFieldExpression><![CDATA[($F{investigador}.getDocencias()==null?"" : $F{investigador}.getDocencias().get(0).getUniversidad())]]></textFieldExpression>
-							</textField>
-							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="36" width="246" height="18"/>
+								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="15" width="246" height="15">
+									<printWhenExpression><![CDATA[($F{investigador}.getDocencias()==null?false :true )]]></printWhenExpression>
+								</reportElement>
 								<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 									<pen lineWidth="0.0" lineStyle="Solid"/>
 									<topPen lineWidth="0.0" lineStyle="Solid"/>
@@ -1381,7 +1375,37 @@
 								<textFieldExpression><![CDATA[($F{investigador}.getDocencias()==null?"" : $F{investigador}.getDocencias().get(0).getDepartamentoDocente())]]></textFieldExpression>
 							</textField>
 							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="54" width="246" height="18"/>
+								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="30" width="246" height="15">
+									<printWhenExpression><![CDATA[($F{investigador}.getDocencias()==null?false :true )]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineWidth="0.0" lineStyle="Solid"/>
+									<topPen lineWidth="0.0" lineStyle="Solid"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid"/>
+								</box>
+								<textElement/>
+								<textFieldExpression><![CDATA[($F{investigador}.getDocencias()==null?"" : $F{investigador}.getDocencias().get(0).getUniversidad())]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="45" width="246" height="15">
+									<printWhenExpression><![CDATA[($F{investigador}.getDocencias()==null?false :true )]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineWidth="0.0" lineStyle="Solid"/>
+									<topPen lineWidth="0.0" lineStyle="Solid"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid"/>
+								</box>
+								<textElement/>
+								<textFieldExpression><![CDATA[($F{investigador}.getDocencias()==null?"" : $F{investigador}.getDocencias().get(0).getDepartamentoDocente())]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="60" width="246" height="15">
+									<printWhenExpression><![CDATA[($F{investigador}.getDocencias()==null?false :true )]]></printWhenExpression>
+								</reportElement>
 								<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 									<pen lineWidth="0.0" lineStyle="Solid"/>
 									<topPen lineWidth="0.0" lineStyle="Solid"/>
@@ -1393,8 +1417,10 @@
 								<textFieldExpression><![CDATA[($F{investigador}.getDocencias()==null?"" : $F{investigador}.getDocencias().get(0).getCategoriaDocente())]]></textFieldExpression>
 							</textField>
 							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="72" width="246" height="19"/>
-								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="75" width="246" height="15">
+									<printWhenExpression><![CDATA[($F{investigador}.getDocencias()==null?false :true )]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 									<pen lineWidth="0.0" lineStyle="Solid"/>
 									<topPen lineWidth="0.0" lineStyle="Solid"/>
 									<leftPen lineWidth="0.0" lineStyle="Solid"/>
@@ -1404,14 +1430,28 @@
 								<textElement/>
 								<textFieldExpression><![CDATA[($F{investigador}.getDocencias()==null?"" : $F{investigador}.getDocencias().get(0).getDedicacionDocente())]]></textFieldExpression>
 							</textField>
+							<textField isStretchWithOverflow="true" pattern="###0" isBlankWhenNull="true">
+								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="71" height="15">
+									<printWhenExpression><![CDATA[($F{investigador}.getDocencias()==null?false :true )]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineWidth="0.0" lineStyle="Solid"/>
+									<topPen lineWidth="0.25" lineStyle="Solid"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid"/>
+								</box>
+								<textElement/>
+								<textFieldExpression><![CDATA[$F{investigador}.getDocencias().get(0).getAño()]]></textFieldExpression>
+							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column uuid="164a5d33-37c8-4470-9e48-38a2b5b2713c" width="247">
+					<jr:column uuid="164a5d33-37c8-4470-9e48-38a2b5b2713c" width="187">
 						<jr:tableHeader height="30" rowSpan="1"/>
 						<jr:tableFooter height="30" rowSpan="1"/>
 						<jr:columnHeader height="32" rowSpan="1">
 							<staticText>
-								<reportElement uuid="d7e8da73-bfdc-4f13-b451-e98e26a0535e" mode="Opaque" x="0" y="0" width="247" height="32" backcolor="#C0C0C0"/>
+								<reportElement uuid="d7e8da73-bfdc-4f13-b451-e98e26a0535e" mode="Opaque" x="0" y="0" width="187" height="32" backcolor="#C0C0C0"/>
 								<textElement textAlignment="Center">
 									<font isBold="true"/>
 								</textElement>
@@ -1419,9 +1459,11 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:columnFooter height="28" rowSpan="1"/>
-						<jr:detailCell height="91" rowSpan="1">
+						<jr:detailCell height="90" rowSpan="1">
 							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-								<reportElement uuid="e2735b15-58bc-4f3b-b2be-02508d3c6291" stretchType="RelativeToBandHeight" x="0" y="0" width="247" height="91"/>
+								<reportElement uuid="e2735b15-58bc-4f3b-b2be-02508d3c6291" stretchType="RelativeToBandHeight" x="0" y="0" width="187" height="90">
+									<printWhenExpression><![CDATA[($F{investigador}.getDocencias()==null?false :true )]]></printWhenExpression>
+								</reportElement>
 								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 									<pen lineStyle="Solid"/>
 									<topPen lineWidth="0.5" lineStyle="Solid"/>

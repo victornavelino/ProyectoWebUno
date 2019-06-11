@@ -454,13 +454,7 @@ public class NavegarBean {
     public String cargarProyectoSeleccionado(ProyectoWeb pw) {
         try {
 
-            if(pw.getSubDisciplinasCientificas() == null){
-                System.out.println("Caracteristicas 0: " + null);
-            }else{
-                
-                System.out.println("Caracteristicas: " + pw.getSubDisciplinasCientificas().size());
-            }
-            
+                        
             //cargarUbicaciones
             this.getUbicacionLstBean().setLstUbicacion(pw.getLstUbicaciones());
 
@@ -470,7 +464,6 @@ public class NavegarBean {
             //sector prioritario
             this.getSectorPrioritarioLstBean().cargarSISectorPrioritario();
 
-            
             //lArea Temática - Disciplina Científica - Subdisciplinas Científicas       
             this.getProyectoWebBean().getProyectoWeb().setSubDisciplinasCientificas(new ArrayList<SubDisciplinaCientifica>());
             
@@ -500,7 +493,6 @@ public class NavegarBean {
             
             
             
-            
 
             //cargar objetivosSocioEconomico
             this.getObjetivoSocioEconomicoLstBean().findObjetivosSocioEconomicos();
@@ -525,9 +517,9 @@ public class NavegarBean {
                     this.getProyectoIIPagBean().setPalabraClaveCuatro(pw.getPalabrasClaves().get(3));
                     this.getProyectoIIPagBean().setPalabraClaveCinco(pw.getPalabrasClaves().get(4));
                 } catch (Exception e) {
-                }
+                }               
             }//fin if
-
+            
             if (pw.getKeywords() != null) {
                 try {
                     this.getProyectoIIPagBean().setKeywordUno(pw.getKeywords().get(0));
@@ -556,7 +548,6 @@ public class NavegarBean {
             } catch (Exception e) {
             }
             
-            System.out.println("proyecto: " + pw.getProyectoWebFGP());
             if(pw.getProyectoWebFGP()==null){
                 pw.setProyectoWebFGP(new ProyectoWebFGP());
             }
@@ -567,7 +558,6 @@ public class NavegarBean {
             //order participaciones web por rol
             pw.getParticipacionesWeb().get(0);
             
-
 
             Collections.sort(pw.getParticipacionesWeb());
     
