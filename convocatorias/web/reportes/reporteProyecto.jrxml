@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteProyecto" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="887a5882-3858-410f-865e-6a29b177be35">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="2304"/>
+	<property name="ireport.y" value="718"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -586,23 +586,23 @@
 				<textFieldExpression><![CDATA[$F{unidadAcademica}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="7a30c340-7ffc-4bde-8cb8-5bd9e964ed62" positionType="Float" x="1" y="491" width="100" height="20"/>
+				<reportElement uuid="7a30c340-7ffc-4bde-8cb8-5bd9e964ed62" positionType="Float" x="4" y="521" width="100" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[9. Linea Prioritaria:]]></text>
+				<text><![CDATA[10. Linea Prioritaria:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="312d4ae6-3e57-4783-8cdd-89dde65ec0e4" positionType="Float" x="105" y="491" width="451" height="20" isRemoveLineWhenBlank="true"/>
+				<reportElement uuid="312d4ae6-3e57-4783-8cdd-89dde65ec0e4" positionType="Float" x="108" y="521" width="444" height="20" isRemoveLineWhenBlank="true"/>
 				<textElement/>
-				<textFieldExpression><![CDATA[$F{lineaPrioritaria}.toString()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{lineaPrioritaria}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="54420f00-54dc-4df5-9f5c-8f5a3f99629e" positionType="Float" x="5" y="581" width="100" height="20"/>
+				<reportElement uuid="54420f00-54dc-4df5-9f5c-8f5a3f99629e" positionType="Float" x="3" y="492" width="100" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[10. Área temática: ]]></text>
+				<text><![CDATA[9. Área temática: ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="f8a045b7-6489-460d-b5af-b5cf9f94ba5d" positionType="Float" x="5" y="615" width="131" height="20"/>
@@ -640,10 +640,10 @@
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{subDisciplinasCientificas}.size()>0? $F{subDisciplinasCientificas}.get(0).getDisciplinaCientifica().toString() : ""]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement uuid="252add36-75bf-481a-8a93-c88b5c7d9f2a" positionType="Float" x="119" y="581" width="437" height="20"/>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="252add36-75bf-481a-8a93-c88b5c7d9f2a" positionType="Float" x="117" y="492" width="437" height="20"/>
 				<textElement/>
-				<textFieldExpression><![CDATA[$F{subDisciplinasCientificas}.size()>0? $F{subDisciplinasCientificas}.get(0).getDisciplinaCientifica().getAreaTematica().toString() : ""]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{lineaPrioritaria}.getAreaTematica()]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement uuid="9b6b8084-845b-4328-b786-254bd20d9ee5" positionType="Float" x="170" y="651" width="386" height="20"/>
@@ -715,19 +715,19 @@
 				<textFieldExpression><![CDATA[""+$F{tipoFinanciamiento}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="7a30c340-7ffc-4bde-8cb8-5bd9e964ed62" positionType="Float" x="3" y="519" width="100" height="20"/>
+				<reportElement uuid="7a30c340-7ffc-4bde-8cb8-5bd9e964ed62" positionType="Float" x="5" y="549" width="100" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Sector Prioritario:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="312d4ae6-3e57-4783-8cdd-89dde65ec0e4" positionType="Float" x="107" y="519" width="451" height="20"/>
+				<reportElement uuid="312d4ae6-3e57-4783-8cdd-89dde65ec0e4" positionType="Float" x="109" y="549" width="445" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{sectorPrioritario}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="73ce050a-8fc3-4a46-87d6-1b5ba534c07d" positionType="Float" x="107" y="542" width="414" height="20" isRemoveLineWhenBlank="true"/>
+				<reportElement uuid="73ce050a-8fc3-4a46-87d6-1b5ba534c07d" positionType="Float" x="109" y="572" width="414" height="20" isRemoveLineWhenBlank="true"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{sectorPrioritarioOtro}]]></textFieldExpression>
 			</textField>
