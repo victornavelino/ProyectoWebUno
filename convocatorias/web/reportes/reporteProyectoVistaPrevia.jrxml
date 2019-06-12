@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteProyectoVistaPrevia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="887a5882-3858-410f-865e-6a29b177be35">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="2264"/>
+	<property name="ireport.y" value="2431"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -1358,7 +1358,7 @@
 									<rightPen lineWidth="0.0" lineStyle="Solid"/>
 								</box>
 								<textElement/>
-								<textFieldExpression><![CDATA[$F{investigador}.getDocencias().get(0).getFechaObtencionCargo()]]></textFieldExpression>
+								<textFieldExpression><![CDATA[($F{investigador}.getDocencias().size()<1?"" : $F{investigador}.getDocencias().get(0).getFechaObtencionCargo())]]></textFieldExpression>
 							</textField>
 							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="15" width="246" height="15">
@@ -1372,7 +1372,7 @@
 									<rightPen lineWidth="0.0" lineStyle="Solid"/>
 								</box>
 								<textElement/>
-								<textFieldExpression><![CDATA[($F{investigador}.getDocencias()==null?"" : $F{investigador}.getDocencias().get(0).getDepartamentoDocente())]]></textFieldExpression>
+								<textFieldExpression><![CDATA[($F{investigador}.getDocencias().size()<1?"" : $F{investigador}.getDocencias().get(0).getUniversidad())]]></textFieldExpression>
 							</textField>
 							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="30" width="246" height="15">
@@ -1386,7 +1386,7 @@
 									<rightPen lineWidth="0.0" lineStyle="Solid"/>
 								</box>
 								<textElement/>
-								<textFieldExpression><![CDATA[($F{investigador}.getDocencias()==null?"" : $F{investigador}.getDocencias().get(0).getUniversidad())]]></textFieldExpression>
+								<textFieldExpression><![CDATA[($F{investigador}.getDocencias().size()<1?"" : $F{investigador}.getDocencias().get(0).getUnidadAcademica())]]></textFieldExpression>
 							</textField>
 							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="45" width="246" height="15">
@@ -1400,7 +1400,7 @@
 									<rightPen lineWidth="0.0" lineStyle="Solid"/>
 								</box>
 								<textElement/>
-								<textFieldExpression><![CDATA[($F{investigador}.getDocencias()==null?"" : $F{investigador}.getDocencias().get(0).getDepartamentoDocente())]]></textFieldExpression>
+								<textFieldExpression><![CDATA[($F{investigador}.getDocencias().size()<1?"" : $F{investigador}.getDocencias().get(0).getDepartamentoDocente())]]></textFieldExpression>
 							</textField>
 							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="60" width="246" height="15">
@@ -1414,7 +1414,7 @@
 									<rightPen lineWidth="0.0" lineStyle="Solid"/>
 								</box>
 								<textElement/>
-								<textFieldExpression><![CDATA[($F{investigador}.getDocencias()==null?"" : $F{investigador}.getDocencias().get(0).getCategoriaDocente())]]></textFieldExpression>
+								<textFieldExpression><![CDATA[($F{investigador}.getDocencias().size()<1?"" : $F{investigador}.getDocencias().get(0).getCategoriaDocente())]]></textFieldExpression>
 							</textField>
 							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="75" width="246" height="15">
@@ -1428,7 +1428,7 @@
 									<rightPen lineWidth="0.0" lineStyle="Solid"/>
 								</box>
 								<textElement/>
-								<textFieldExpression><![CDATA[($F{investigador}.getDocencias()==null?"" : $F{investigador}.getDocencias().get(0).getDedicacionDocente())]]></textFieldExpression>
+								<textFieldExpression><![CDATA[($F{investigador}.getDocencias().size()<1?"" : $F{investigador}.getDocencias().get(0).getDedicacionDocente())]]></textFieldExpression>
 							</textField>
 							<textField isStretchWithOverflow="true" pattern="###0" isBlankWhenNull="true">
 								<reportElement uuid="895ad50d-2926-4162-81bf-ccdebfd51484" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="71" height="15">
@@ -1442,7 +1442,7 @@
 									<rightPen lineWidth="0.0" lineStyle="Solid"/>
 								</box>
 								<textElement/>
-								<textFieldExpression><![CDATA[$F{investigador}.getDocencias().get(0).getAño()]]></textFieldExpression>
+								<textFieldExpression><![CDATA[($F{investigador}.getDocencias().size()<1?"" : $F{investigador}.getDocencias().get(0).getAño())]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1474,7 +1474,7 @@
 								<textElement>
 									<font size="9"/>
 								</textElement>
-								<textFieldExpression><![CDATA[($F{investigador}.getDocencias()==null?"" : $F{investigador}.getDocencias().get(0).getModoObtencionCargo())]]></textFieldExpression>
+								<textFieldExpression><![CDATA[($F{investigador}.getDocencias().size()<1?"" : $F{investigador}.getDocencias().get(0).getModoObtencionCargo())]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
