@@ -8,59 +8,59 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="content">
-        
-         <ui:include src="/recursos/mensajesDlg.xhtml"/>
-         
-         <ui:include src="investigadorFindDlg.xhtml" />
-         
-         <ui:include src="investigadorEditDlg.xhtml" />
-         
-      <!--   <ui:include src="telefonoFindDlg.xhtml" /> -->
-         
-         <ui:include src="correoElectronicoFindDlg.xhtml" />
-         
-         <ui:include src="participacionWebFindDlg.xhtml"/>
-         
-         <div style="margin-left: auto;
-                margin-right: auto;
-                 width: 1004px;
-                 padding: 10px 10px 10px 10px;">
-             
-             <div align="left">
-                 <h:commandLink id="clMenuPrincipal"
-                                value="Menu Proyecto"
-                                action="#{navegarBean.entrarPagProyecto(0)}"
-                                style="margin-left: 20px;"
-                                rendered="#{proyectoWebBean.proyectoWeb.id != null}"
-                                immediate="true"/>
-             </div>
-             
-        <div align="center">
-            <div>
-                <h:outputText value="Postulación: #{proyectoWebBean.proyectoWeb.convocatoria.nombre} " 
-                              styleClass="titulo"/>
-                <h:outputText value="#{proyectoWebBean.proyectoWeb.convocatoria.fechaIni}"
-                              styleClass="titulo">
-                    <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>
-                </h:outputText>
-                <h:outputText value=" a " 
-                              styleClass="titulo"/>
-                <h:outputText value="#{proyectoWebBean.proyectoWeb.convocatoria.fechaFin}"
-                              styleClass="titulo">
-                    <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>
-                </h:outputText>
+
+        <ui:include src="/recursos/mensajesDlg.xhtml"/>
+
+        <ui:include src="investigadorFindDlg.xhtml" />
+
+        <ui:include src="investigadorEditDlg.xhtml" />
+
+        <!--   <ui:include src="telefonoFindDlg.xhtml" /> -->
+
+        <ui:include src="correoElectronicoFindDlg.xhtml" />
+
+        <ui:include src="participacionWebFindDlg.xhtml"/>
+
+        <div style="margin-left: auto;
+             margin-right: auto;
+             width: 1004px;
+             padding: 10px 10px 10px 10px;">
+
+            <div align="left">
+                <h:commandLink id="clMenuPrincipal"
+                               value="Menu Proyecto"
+                               action="#{navegarBean.entrarPagProyecto(0)}"
+                               style="margin-left: 20px;"
+                               rendered="#{proyectoWebBean.proyectoWeb.id != null}"
+                               immediate="true"/>
             </div>
-            
-            <div>
-                <h:outputText value="V. Programa de capacitación y formación de 
-                              recursos Humanos: actividad docente, 
-                              de investigación y de gestión." 
-                              styleClass="titulo"/>
+
+            <div align="center">
+                <div>
+                    <h:outputText value="Postulación: #{proyectoWebBean.proyectoWeb.convocatoria.nombre} " 
+                                  styleClass="titulo"/>
+                    <h:outputText value="#{proyectoWebBean.proyectoWeb.convocatoria.fechaIni}"
+                                  styleClass="titulo">
+                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>
+                    </h:outputText>
+                    <h:outputText value=" a " 
+                                  styleClass="titulo"/>
+                    <h:outputText value="#{proyectoWebBean.proyectoWeb.convocatoria.fechaFin}"
+                                  styleClass="titulo">
+                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00"/>
+                    </h:outputText>
+                </div>
+
+                <div>
+                    <h:outputText value="V. Programa de capacitación y formación de 
+                                  recursos Humanos: actividad docente, 
+                                  de investigación y de gestión." 
+                                  styleClass="titulo"/>
+                </div>
             </div>
-        </div>
-        
-        <div style="padding: 10px 10px 10px 10px;">
-            <ol>
+
+            <div style="padding: 10px 10px 10px 10px;">
+                <ol>
 
                     <div>
                         <p:dataTable id="dtPersonal"
@@ -74,7 +74,7 @@
 
                                 <h:outputText value="#{p.investigador.persona.apellido} #{p.investigador.persona.nombre}"/>
                             </p:column>
-                            
+
                             <p:column style="word-wrap:break-word;">
                                 <f:facet name="header">
                                     <h:outputText value="Cargo Docente"/>
@@ -82,7 +82,7 @@
 
                                 <h:outputText value="#{proyectoWebBean.obtenerUltimaDocencia(p.investigador.docencias)}"/>
                             </p:column>
-                            
+
                             <p:column style="word-wrap:break-word;">
                                 <f:facet name="header">
                                     <h:outputText value="Modo de Obtención (consurso, interino)"/>
@@ -90,45 +90,45 @@
 
                                 <h:outputText value="#{proyectoWebBean.obtenerUltimaDocenciaModo(p.investigador.docencias)}"/>
                             </p:column>
-                            
-                            
+
+
                         </p:dataTable>
                     </div>
- 
-            </ol>
-            
-            
-            
-            <!--<p:commandButton value="Guardar"
-                             actionListener="{proyectoWebBean.create()}"/>-->
-            
+
+                </ol>
+
+
+
+                <!--<p:commandButton value="Guardar"
+                                 actionListener="{proyectoWebBean.create()}"/>-->
+
+            </div>
+
+              <div align="center">
+                <p:commandButton value="Anterior"
+                                 icon="ui-icon-arrowthick-1-w"
+                                 style="margin: 20px 100px 20px 100px "
+                                 action="#{navegarBean.entrarPagProyecto(4)}"
+                                 ajax="false"
+                                 rendered="#{proyectoWebBean.mostrarBotonASG()}"/>
+
+                <p:commandButton value="Siguiente"
+                                 icon="ui-icon-arrowthick-1-e"
+                                 action="#{navegarBean.entrarPagProyecto(5)}"
+                                 ajax="false"
+                                 rendered="#{proyectoWebBean.mostrarBotonASG()}"/>
+
+                <!--<p:commandButton value="Guardar"
+                                 icon="ui-icon-disk"
+                                 style="margin: 20px 100px 20px 100px "
+                                 action="{proyectoWebBean.guardar(4)}"
+                                 update="dMensaje,clMenuPrincipal"
+                                 rendered="{proyectoWebBean.mostrarBotonASG()}"/>-->
+
+            </div>
         </div>
-         
-         <div align="center">
-             <p:commandButton value="Anterior"
-                              icon="ui-icon-arrowthick-1-w"
-                              style="margin: 20px 100px 20px 100px "
-                              action="#{navegarBean.entrarPagProyecto(4)}"
-                              ajax="false"
-                              rendered="#{proyectoWebBean.mostrarBotonASG()}"/>
-             
-             <p:commandButton value="Siguiente"
-                              icon="ui-icon-arrowthick-1-e"
-                              action="#{navegarBean.entrarPagProyecto(5)}"
-                              ajax="false"
-                              rendered="#{proyectoWebBean.mostrarBotonASG()}"/>
-             
-             <!--<p:commandButton value="Guardar"
-                              icon="ui-icon-disk"
-                              style="margin: 20px 100px 20px 100px "
-                              action="{proyectoWebBean.guardar(4)}"
-                              update="dMensaje,clMenuPrincipal"
-                              rendered="{proyectoWebBean.mostrarBotonASG()}"/>-->
-             
-         </div>
-         </div>
-        
-         
+
+
     </ui:define>
 
 </ui:composition>

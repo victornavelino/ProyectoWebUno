@@ -1200,7 +1200,7 @@
                                          actionListener="#{recursoSubsidioFindDlgBean.init(0)}"
                                          oncomplete="dlgFindRecursoSubsidio.show();"
                                          process="@this"
-                                         update=":frmUser:ihTipoRSFD, :frmUser:somEntidadRS"
+                                         update=":frmUser:ihTipoRSFD"
                                          title="Agregar"/>
 
                         <p:dataTable id="dtRecursoSubsidio"
@@ -1217,18 +1217,18 @@
 
                             <p:column style="word-wrap:break-word;">
                                 <f:facet name="header">
-                                    <h:outputText value="Nombre y Apellido"/>
+                                    <h:outputText value="Recurso"/>
                                 </f:facet>
 
-                                <h:outputText value="#{rs.nombreApellido}"/>
+                                <h:outputText value="#{rs.recurso}"/>
                             </p:column>
 
                             <p:column style="word-wrap:break-word;">
                                 <f:facet name="header">
-                                    <h:outputText value="Entidad"/>
+                                    <h:outputText value="Antigüedad del Equipo"/>
                                 </f:facet>
 
-                                <h:outputText value="#{rs.entidadSubsidio.descripcion}"/>
+                                <h:outputText value="#{rs.antiguedad}"/>
                             </p:column>
 
                             <p:column style="word-wrap:break-word;">
