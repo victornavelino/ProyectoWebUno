@@ -27,6 +27,8 @@ public class RecursoSubsidio implements Serializable {
     
     private int anio;
     private String nombreApellido;
+    private String recurso;
+    private String antiguedad;
     
     private BigDecimal monto;
     
@@ -71,6 +73,22 @@ public class RecursoSubsidio implements Serializable {
 
     public void setEntidadSubsidio(EntidadSubsidio entidadSubsidio) {
         this.entidadSubsidio = entidadSubsidio;
+    }
+
+    public String getRecurso() {
+        return recurso;
+    }
+
+    public void setRecurso(String recurso) {
+        this.recurso = recurso;
+    }
+
+    public String getAntiguedad() {
+        return antiguedad;
+    }
+
+    public void setAntiguedad(String antiguedad) {
+        this.antiguedad = antiguedad;
     }
     
 

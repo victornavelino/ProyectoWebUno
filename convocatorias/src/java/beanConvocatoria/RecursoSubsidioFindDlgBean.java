@@ -103,12 +103,12 @@ public class RecursoSubsidioFindDlgBean {
                 throw new Exception("Debe ingresar el año.");
             }//fin if
             
-            if (this.getRecursoSubsidio().getNombreApellido().isEmpty()) {
-                throw new Exception("Debe ingresar el Nombre y Apellido.");
+            if (this.getRecursoSubsidio().getRecurso().isEmpty()) {
+                throw new Exception("Debe ingresar el Recurso");
             }//fin if
             
-            if (this.getRecursoSubsidio().getEntidadSubsidio() == null) {
-                throw new Exception("Debe seleccionar la entidad.");
+            if (this.getRecursoSubsidio().getAntiguedad().isEmpty()) {
+                throw new Exception("Debe ingresar la antiguedad del equipo");
             }//fin if
             
             if (this.getRecursoSubsidio().getMonto() == null) {

@@ -35,7 +35,7 @@ and open the template in the editor.
                                
             </div>
             
-            <div class="separador">
+        <!--    <div class="separador">
                 
                 <h:outputText value="Nombre y Apellido del beneficiario: "/>
                 <p:inputText id="itNombreApellidoRS"
@@ -43,9 +43,27 @@ and open the template in the editor.
                              size="60"/>
                 
                 
+            </div>-->
+            <div class="separador">
+                
+                <h:outputText value="Recurso (Bien mueble o inmueble): "/>
+                <p:inputText id="itRecursoRS"
+                             value="#{recursoSubsidioFindDlgBean.recursoSubsidio.recurso}"
+                             size="60"/>
+                
+                
+            </div>
+                        <div class="separador">
+                
+                <h:outputText value="Antiguedad del equipo: "/>
+                <p:inputText id="itAntiguedadRS"
+                             value="#{recursoSubsidioFindDlgBean.recursoSubsidio.antiguedad}"
+                             size="60"/>
+                
+                
             </div>
             
-            <div class="separador">
+           <!-- <div class="separador">
                 
                 <h:outputText value="Entidad: "/>
                 <p:selectOneMenu id="somEntidadRS"
@@ -58,7 +76,7 @@ and open the template in the editor.
                 </p:selectOneMenu>
                 
                 
-            </div>
+            </div>-->
             
             <div class="separador">
                 
