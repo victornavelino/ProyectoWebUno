@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteProyectoVistaPrevia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="887a5882-3858-410f-865e-6a29b177be35">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="757"/>
+	<property name="ireport.x" value="19"/>
+	<property name="ireport.y" value="743"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -280,6 +280,17 @@
 			<fieldDescription><![CDATA[investigador]]></fieldDescription>
 		</field>
 	</subDataset>
+	<subDataset name="New Dataset_campo" uuid="f49c0fb1-341d-4a46-8d85-d40b3c37caec">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="descripcion" class="java.lang.String">
+			<fieldDescription><![CDATA[descripcion]]></fieldDescription>
+		</field>
+		<field name="id" class="java.lang.Long">
+			<fieldDescription><![CDATA[id]]></fieldDescription>
+		</field>
+	</subDataset>
 	<parameter name="proyecto" class="entidades.proyectoWeb.ProyectoWeb"/>
 	<parameter name="IMAGEN" class="java.lang.String"/>
 	<queryString language="ejbql">
@@ -454,7 +465,7 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="709" splitType="Stretch">
+		<band height="735" splitType="Stretch">
 			<staticText>
 				<reportElement uuid="e77dc592-5b9b-446b-bc0d-0bc11e56a24c" positionType="Float" x="0" y="120" width="186" height="20"/>
 				<textElement>
@@ -479,12 +490,12 @@
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[PROGRAMA DE DESARROLLO CIENTÍFICO Y TECNOLÓGICO 2019]]></text>
+				<text><![CDATA[PROYECTO DE INVESTIGACIÓN INTERDISCIPLINARIO 2019]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="17b1cd7c-94fd-4091-88b0-dd753558bc84" x="0" y="87" width="555" height="20"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[Formulario para la presentación de Proyectos de Investigación y Desarrollo]]></text>
+				<text><![CDATA[Formulario para la presentación de Proyectos de Investigación Interdisciplinario]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="8cb09b4f-dd9b-44a1-9624-2c267b6d280a" x="100" y="0" width="373" height="20"/>
@@ -586,79 +597,74 @@
 				<textFieldExpression><![CDATA[$F{unidadAcademica}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="7a30c340-7ffc-4bde-8cb8-5bd9e964ed62" positionType="Float" x="1" y="521" width="100" height="20"/>
+				<reportElement uuid="7a30c340-7ffc-4bde-8cb8-5bd9e964ed62" positionType="Float" x="1" y="512" width="100" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[10. Linea Prioritaria:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="312d4ae6-3e57-4783-8cdd-89dde65ec0e4" positionType="Float" x="105" y="521" width="451" height="20" isRemoveLineWhenBlank="true"/>
+				<reportElement uuid="312d4ae6-3e57-4783-8cdd-89dde65ec0e4" positionType="Float" x="105" y="513" width="451" height="20" isRemoveLineWhenBlank="true"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{lineaPrioritaria}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="54420f00-54dc-4df5-9f5c-8f5a3f99629e" positionType="Float" x="3" y="492" width="100" height="20"/>
+				<reportElement uuid="54420f00-54dc-4df5-9f5c-8f5a3f99629e" positionType="Float" x="3" y="490" width="100" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[9. Área temática: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="f8a045b7-6489-460d-b5af-b5cf9f94ba5d" positionType="Float" x="5" y="615" width="131" height="20"/>
+				<reportElement uuid="f8a045b7-6489-460d-b5af-b5cf9f94ba5d" positionType="Float" x="4" y="644" width="131" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[11. Campo de Aplicación: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="04d49786-2c5d-4a4f-87c5-cbbd342bde7c" positionType="Float" x="5" y="598" width="131" height="20"/>
+				<reportElement uuid="04d49786-2c5d-4a4f-87c5-cbbd342bde7c" positionType="Float" x="5" y="579" width="131" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Disciplina Científica:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="7f6af922-ccff-4466-81d7-019d71edffd1" positionType="Float" x="5" y="651" width="165" height="20"/>
+				<reportElement uuid="7f6af922-ccff-4466-81d7-019d71edffd1" positionType="Float" x="3" y="689" width="165" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[12. Objetivo Socioeconómico: ]]></text>
 			</staticText>
-			<textField>
-				<reportElement uuid="aa70706b-f3e3-454f-8396-bb9814f32c07" positionType="Float" x="119" y="615" width="437" height="20"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{subDisciplinasCientificas}.size()>0? $F{subDisciplinasCientificas}.get(0).toString() : ""]]></textFieldExpression>
-			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="e9b51375-c892-4e43-936d-876d0c3f917b" positionType="Float" x="119" y="631" width="437" height="20"/>
+				<reportElement uuid="e9b51375-c892-4e43-936d-876d0c3f917b" positionType="Float" x="122" y="621" width="431" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{subDisciplinaCientificaOtra}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="4de09cce-10c3-4c96-b5b0-00fe2ed462d6" positionType="Float" x="119" y="598" width="437" height="20"/>
+				<reportElement uuid="4de09cce-10c3-4c96-b5b0-00fe2ed462d6" positionType="Float" x="119" y="580" width="437" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{subDisciplinasCientificas}.size()>0? $F{subDisciplinasCientificas}.get(0).getDisciplinaCientifica().toString() : ""]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="252add36-75bf-481a-8a93-c88b5c7d9f2a" positionType="Float" x="117" y="492" width="437" height="20"/>
+				<reportElement uuid="252add36-75bf-481a-8a93-c88b5c7d9f2a" positionType="Float" x="117" y="490" width="437" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{lineaPrioritaria}.getAreaTematica()]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="9b6b8084-845b-4328-b786-254bd20d9ee5" positionType="Float" x="170" y="651" width="386" height="20"/>
+				<reportElement uuid="9b6b8084-845b-4328-b786-254bd20d9ee5" positionType="Float" x="168" y="689" width="386" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[""+$F{objetivoSocioeconomico}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="f3f8822b-739c-4837-8ed5-adeaf28bd7d6" positionType="Float" x="6" y="680" width="141" height="20"/>
+				<reportElement uuid="f3f8822b-739c-4837-8ed5-adeaf28bd7d6" positionType="Float" x="4" y="713" width="141" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[13. Tipo de Actividades:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="c93e7d0a-7fd8-4c49-994d-fd03cd906cfd" positionType="Float" x="147" y="681" width="352" height="20"/>
+				<reportElement uuid="c93e7d0a-7fd8-4c49-994d-fd03cd906cfd" positionType="Float" x="145" y="714" width="352" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{tipoProyecto}]]></textFieldExpression>
 			</textField>
@@ -715,19 +721,19 @@
 				<textFieldExpression><![CDATA[""+$F{tipoFinanciamiento}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="7a30c340-7ffc-4bde-8cb8-5bd9e964ed62" positionType="Float" x="3" y="549" width="100" height="20"/>
+				<reportElement uuid="7a30c340-7ffc-4bde-8cb8-5bd9e964ed62" positionType="Float" x="3" y="535" width="100" height="20"/>
 				<textElement>
 					<font isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Sector Prioritario:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="312d4ae6-3e57-4783-8cdd-89dde65ec0e4" positionType="Float" x="107" y="549" width="446" height="20"/>
+				<reportElement uuid="312d4ae6-3e57-4783-8cdd-89dde65ec0e4" positionType="Float" x="107" y="536" width="446" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{sectorPrioritario}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="73ce050a-8fc3-4a46-87d6-1b5ba534c07d" positionType="Float" x="107" y="572" width="414" height="20" isRemoveLineWhenBlank="true"/>
+				<reportElement uuid="73ce050a-8fc3-4a46-87d6-1b5ba534c07d" positionType="Float" x="107" y="558" width="414" height="20" isRemoveLineWhenBlank="true"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{sectorPrioritarioOtro}]]></textFieldExpression>
 			</textField>
@@ -800,6 +806,41 @@
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<componentElement>
+				<reportElement uuid="8c1f128d-e6ea-4b5c-a18c-3af2151b72f6" positionType="Float" x="5" y="667" width="545" height="19"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset_campo" uuid="3370c981-bd5c-4515-8f6b-5b5d54dd8143">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{camposAplicacion})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column uuid="e5d76272-765b-4117-88e7-e08dfe0c7a82" width="402">
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="7" rowSpan="1"/>
+						<jr:columnHeader height="7" rowSpan="1"/>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement uuid="a82bec9b-dd3e-4946-9100-f97faefaa491" stretchType="RelativeToBandHeight" x="0" y="0" width="402" height="20"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineStyle="Solid"/>
+									<topPen lineWidth="0.5" lineStyle="Solid"/>
+									<leftPen lineWidth="0.5" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+									<rightPen lineWidth="0.5" lineStyle="Solid"/>
+								</box>
+								<textElement>
+									<font size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField>
+				<reportElement uuid="aa70706b-f3e3-454f-8396-bb9814f32c07" positionType="Float" x="121" y="599" width="433" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{subDisciplinasCientificas}.size()>0? $F{subDisciplinasCientificas}.get(0).toString() : ""]]></textFieldExpression>
+			</textField>
 		</band>
 		<band height="257">
 			<staticText>
@@ -3127,7 +3168,7 @@ $F{presupuestoWebAnioDos.bienNoPersonalWeb}.valor.sum(0) +
 					<textElement>
 						<font isBold="true"/>
 					</textElement>
-					<text><![CDATA[X. Declaración Jurada - Convocatoria SECyT – UNCa 2018.]]></text>
+					<text><![CDATA[X. Declaración Jurada - Convocatoria SECyT – UNCa 2019.]]></text>
 				</staticText>
 			</frame>
 			<frame>
@@ -3184,7 +3225,7 @@ $F{presupuestoWebAnioDos.bienNoPersonalWeb}.valor.sum(0) +
 					<textElement>
 						<font isBold="true"/>
 					</textElement>
-					<text><![CDATA[X. Aval Institucional, Convocatoria - SECyT – UNCa  2018.]]></text>
+					<text><![CDATA[X. Aval Institucional, Convocatoria - SECyT – UNCa  2019.]]></text>
 				</staticText>
 				<textField>
 					<reportElement uuid="8f9bb0e7-a43d-4652-8375-85f9a2efd9b9" x="4" y="73" width="525" height="28"/>
