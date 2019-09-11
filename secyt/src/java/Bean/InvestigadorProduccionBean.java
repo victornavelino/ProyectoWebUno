@@ -23,6 +23,7 @@ import entidades.proyecto.resultado.Industrial;
 import entidades.proyecto.resultado.Intelectual;
 import entidades.proyecto.resultado.Libro;
 import entidades.proyecto.resultado.RN.PublicacionRNLocal;
+import entidades.proyecto.resultado.TipoAmbitoPublicacion;
 import entidades.proyecto.resultado.TipoContrato;
 import entidades.proyecto.resultado.TipoEdicion;
 import entidades.proyecto.resultado.TipoReferato;
@@ -101,6 +102,9 @@ public class InvestigadorProduccionBean {
     private GenerarReportesBean generarReportesBean;
     @ManagedProperty("#{proyectoLstBean}")
     private ProyectoLstBean proyectoLstBean;
+    
+    @ManagedProperty("#{domicilioBean}")
+    private domicilioBean domicilioBean;
 
     private Boolean bCamposEditables;
     private CommandButton cbAction;
@@ -167,6 +171,15 @@ public class InvestigadorProduccionBean {
         lstFormacionRRHH = new ArrayList<>();
 
     }
+
+    public domicilioBean getDomicilioBean() {
+        return domicilioBean;
+    }
+
+    public void setDomicilioBean(domicilioBean domicilioBean) {
+        this.domicilioBean = domicilioBean;
+    }
+    
 
     public ProyectoLstBean getProyectoLstBean() {
         return proyectoLstBean;
@@ -596,6 +609,11 @@ public class InvestigadorProduccionBean {
         return investigadores;
 
     }*/
+    
+     public TipoAmbitoPublicacion[] getTipoAmbitoPublicacion() {
+        return TipoAmbitoPublicacion.values();
+    }
+     
     public TipoReferato[] getTipoReferato() {
         return TipoReferato.values();
     }
@@ -831,6 +849,8 @@ public class InvestigadorProduccionBean {
         switch (btnSelect.getId()) {
             case "cbCreate":
             case "cbCreateLibro":
+                //cargar las provincias
+                this.getDomicilioBean().cargarProvincias();
             case "cbCreatePropiedadIndustrial":
             case "cbCreatePropiedadIntelectual":
             case "cbCreate2":

@@ -98,32 +98,89 @@ and open the template in the editor.
 
                     <h:outputText value="Año: "/>
                     <p:inputText  value="#{investigadorProduccionBean.libro.anioPublicacion}"/>
+                    
+                    <h:outputText value="Con referato: "/>
+                    <h:selectOneMenu id="somConReferato"
+                                     converter="ConversorGenerico"
+                                     style="width:100%;"
+                                     value="#{investigadorProduccionBean.libro.tipoReferato}"
+                                     >
+                        <f:selectItems value="#{investigadorProduccionBean.tipoReferato}"/>
+
+                    </h:selectOneMenu>
+                    
+                    <h:outputText value="Ambito de publicación: "/>
+                    <h:selectOneMenu id="somAmbitoPublicacion"
+                                     converter="ConversorGenerico"
+                                     style="width:100%;"
+                                     value="#{investigadorProduccionBean.libro.tipoAmbitoPublicacion}"
+                                     >
+                        <f:selectItems value="#{investigadorProduccionBean.tipoAmbitoPublicacion}"/>
+
+                    </h:selectOneMenu>
+                    
                     <h:outputText value="Lugar de Publicacion: "/>
                     <p:inputText  value="#{investigadorProduccionBean.libro.lugarPublicacion}"/>
+                    
+                    <h:outputText value="Provincia: "/>
+                <h:selectOneMenu id="somProvincia"
+                                 converter="ConversorGenerico"
+                                 value="#{domicilioBean.provincia}"
+                                 >
+                    <f:selectItems value="#{domicilioBean.listaProvincias}"/>
+                    <p:ajax                                    
+                        listener="#{domicilioBean.cargarDepartamentos()}"
+                        update="somDepartamento"
+                        process="@this"/> 
 
-                    <h:outputText value="Enviado: "/>
-                    <p:calendar  value="#{investigadorProduccionBean.libro.fechaEnviado}"
+
+                </h:selectOneMenu>
+                    
+                    
+                    <h:outputText value="Departamento: "/>
+
+                <h:selectOneMenu id="somDepartamento"
+                                 converter="ConversorGenerico"
+                                 value="#{domicilioBean.departamento}"
+                                 >
+                    <f:selectItems value="#{domicilioBean.listaDepartamentos}"/>
+
+                    <p:ajax  
+                        update="somLocalidad"
+                        listener="#{domicilioBean.cargarLocalidades()}"
+                        process="@this"/>
+                </h:selectOneMenu>
+                    
+                    <h:outputText value="Localidad: "/>
+                <h:selectOneMenu id="somLocalidad"
+                                 converter="ConversorGenerico"
+                                 value="#{investigadorProduccionBean.libro.localidad}">
+                    <f:selectItems value="#{domicilioBean.listaLocalidades}"/>
+                </h:selectOneMenu>
+
+                    <!--<h:outputText value="Enviado: "/>
+                    <p:calendar  value="{investigadorProduccionBean.libro.fechaEnviado}"
                                  navigator="true"
                                  locale="es"
                                  readonlyInput="true"
-                                 mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
-                                 maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>
+                                 mindate="{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
+                                 maxdate="{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>
 
                     <h:outputText value="Aceptado: "/>
-                    <p:calendar  value="#{investigadorProduccionBean.libro.fechaAceptado}"
+                    <p:calendar  value="{investigadorProduccionBean.libro.fechaAceptado}"
                                  navigator="true"
                                  locale="es"
                                  readonlyInput="true"
-                                 mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
-                                 maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>
+                                 mindate="{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
+                                 maxdate="{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>
 
                     <h:outputText value="Publicado: "/>
-                    <p:calendar  value="#{investigadorProduccionBean.libro.fechaPublicado}"
+                    <p:calendar  value="{investigadorProduccionBean.libro.fechaPublicado}"
                                  navigator="true"
                                  locale="es"
                                  readonlyInput="true"
-                                 mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
-                                 maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>
+                                 mindate="{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
+                                 maxdate="{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>-->
 
 
 

@@ -178,6 +178,7 @@ public class ProyectoLstBean implements Serializable {
                     throw new Exception("Todavia no esta habilitado la convocatoria winsip.");
                 }
                 
+                System.out.println("cierre: " + fechaC);
                 if(fechaAct.after(fechaC)){
                     throw new Exception("La convocatoria winsip ya esta cerrada");
                 }
@@ -186,9 +187,9 @@ public class ProyectoLstBean implements Serializable {
                 
                 List<Proyecto> lstProyAux = cwAux.getProyectos();
                 
-                
+                System.out.println("Proyestos: " + lstProyAux);
                 for(Proyecto p : lstProyAux){
-
+                    System.out.println("Listado de proyectos: " + p.getId());
                     lstId.add(p.getId());
                 }
                 //System.out.println("lista :"+lstId);
@@ -198,6 +199,8 @@ public class ProyectoLstBean implements Serializable {
                 this.setLstProyecto(proyectoRNLocal.findByInvestigadorRolYProyecto(
                     this.getInvestigadorLoginBean().getInvestigador().getId(), "Director", 
                         lstId));
+                
+                
             }//fin if
             
             
