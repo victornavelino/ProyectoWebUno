@@ -124,7 +124,19 @@ public class PublicacionRN implements PublicacionRNLocal {
                     }
                 }
             }
-            if (libro.getFechaEnviado() == null) {
+            if (libro.getTipoReferato() == null) {
+                throw new Exception("Debe seleccionar el referato");
+            }
+            
+            if (libro.getTipoReferato() == null) {
+                throw new Exception("Debe seleccionar el ambito de publicacion");
+            }
+            
+            if (libro.getLocalidad()== null) {
+                throw new Exception("Debe seleccionar la localidad");
+            }
+            
+            /*if (libro.getFechaEnviado() == null) {
                 throw new Exception("La fecha debe ser cargada");
             }
             if (libro.getFechaAceptado() == null) {
@@ -132,7 +144,7 @@ public class PublicacionRN implements PublicacionRNLocal {
             }
             if (libro.getFechaPublicado() == null) {
                 throw new Exception("La fecha debe ser cargada");
-            }
+            }*/
 //            if (!libro.getAnioPublicacion().equals(anioInicio)) {
 //                throw new Exception("El año debe ser: "+anioInicio);
 //            }

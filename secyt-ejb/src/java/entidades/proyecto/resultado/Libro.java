@@ -4,6 +4,7 @@
  */
 package entidades.proyecto.resultado;
 
+import entidades.localidad.Localidad;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +38,39 @@ public class Libro extends Publicacion implements Serializable {
     private String lugarPublicacion;
     private String anioPublicacion;
     private String ISBN;
+    
+    @Enumerated(EnumType.STRING)
+    private TipoReferato tipoReferato;
+    @Enumerated(EnumType.STRING)
+    private TipoAmbitoPublicacion tipoAmbitoPublicacion;
+    @OneToOne
+    private Localidad localidad;
+
+    public Localidad getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(Localidad localidad) {
+        this.localidad = localidad;
+    }
+    
+
+    public TipoReferato getTipoReferato() {
+        return tipoReferato;
+    }
+
+    public void setTipoReferato(TipoReferato tipoReferato) {
+        this.tipoReferato = tipoReferato;
+    }
+
+    public TipoAmbitoPublicacion getTipoAmbitoPublicacion() {
+        return tipoAmbitoPublicacion;
+    }
+
+    public void setTipoAmbitoPublicacion(TipoAmbitoPublicacion tipoAmbitoPublicacion) {
+        this.tipoAmbitoPublicacion = tipoAmbitoPublicacion;
+    }
+    
 
     public List<CapituloLibro> getCapitulos() {
         return capitulos;
