@@ -90,26 +90,27 @@
 
 
         <p:panel id="pInfoCapitulo">
-
-            <h:panelGrid columns="4" cellpadding="2" >
-                <h:outputText value="Enviado"/>
+                            <!--<h:outputText value="Enviado"/>
                 <p:calendar id="Enviado"
-                            value="#{investigadorProduccionBean.capituloLibro.fechaEnviado}"
+                            value="{investigadorProduccionBean.capituloLibro.fechaEnviado}"
                             navigator="true"
                             locale="es"
                             readonlyInput="true"
-                            mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
-                            maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"
+                            mindate="{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
+                            maxdate="{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"
                             /> 
                 <h:outputText value="Aceptado"/>
                 <p:calendar id="Aceptado"
-                            value="#{investigadorProduccionBean.capituloLibro.fechaAceptado}"
+                            value="{investigadorProduccionBean.capituloLibro.fechaAceptado}"
                             navigator="true"
                             locale="es"
                             readonlyInput="true"
-                            mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
-                            maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"
-                            /> 
+                            mindate="{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
+                            maxdate="{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"
+                            /> -->
+
+            <h:panelGrid columns="4" cellpadding="2" >
+
                 <h:outputText value="Publicado"/>
                 <p:calendar id="Publicado"
                             value="#{investigadorProduccionBean.capituloLibro.fechaPublicado}"
@@ -119,6 +120,16 @@
                             mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
                             maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"
                             /> 
+                
+                <h:outputText value="Con referato: "/>
+                    <h:selectOneMenu id="somConReferato"
+                                     converter="ConversorGenerico"
+                                     style="width:100%;"
+                                     value="#{investigadorProduccionBean.capituloLibro.tipoReferato}"
+                                     >
+                        <f:selectItems value="#{investigadorProduccionBean.tipoReferato}"/>
+
+                    </h:selectOneMenu>
 
                 <h:outputText value="Edicion: "/>
                 <h:selectOneMenu id="somEdicion"
@@ -133,6 +144,16 @@
                 <h:outputText value="Código ISBN/ISSN (Ej: 8559871432295): "/>
                 <p:inputText  value="#{investigadorProduccionBean.capituloLibro.ISBN}"                
                               />
+                
+                <h:outputText value="Ambito de publicación: "/>
+                    <h:selectOneMenu id="somAmbitoPublicacion"
+                                     converter="ConversorGenerico"
+                                     style="width:100%;"
+                                     value="#{investigadorProduccionBean.capituloLibro.tipoAmbitoPublicacion}"
+                                     >
+                        <f:selectItems value="#{investigadorProduccionBean.tipoAmbitoPublicacion}"/>
+
+                    </h:selectOneMenu>
 
 
                 <p:outputLabel for="anioPublicacion" value="año: "/>
@@ -144,6 +165,42 @@
                 <p:inputTextarea  value="#{investigadorProduccionBean.capituloLibro.lugarPublicacion}" 
                                   autoResize="true" cols="25" rows="2"
                                   />
+                
+                <h:outputText value="Provincia: "/>
+                <h:selectOneMenu id="somProvincia"
+                                 converter="ConversorGenerico"
+                                 value="#{domicilioBean.provincia}"
+                                 >
+                    <f:selectItems value="#{domicilioBean.listaProvincias}"/>
+                    <p:ajax                                    
+                        listener="#{domicilioBean.cargarDepartamentos()}"
+                        update="somDepartamento"
+                        process="@this"/> 
+
+
+                </h:selectOneMenu>
+                    
+                    
+                    <h:outputText value="Departamento: "/>
+
+                <h:selectOneMenu id="somDepartamento"
+                                 converter="ConversorGenerico"
+                                 value="#{domicilioBean.departamento}"
+                                 >
+                    <f:selectItems value="#{domicilioBean.listaDepartamentos}"/>
+
+                    <p:ajax  
+                        update="somLocalidad"
+                        listener="#{domicilioBean.cargarLocalidades()}"
+                        process="@this"/>
+                </h:selectOneMenu>
+                    
+                    <h:outputText value="Localidad: "/>
+                <h:selectOneMenu id="somLocalidad"
+                                 converter="ConversorGenerico"
+                                 value="#{investigadorProduccionBean.capituloLibro.localidad}">
+                    <f:selectItems value="#{domicilioBean.listaLocalidades}"/>
+                </h:selectOneMenu>
 
             </h:panelGrid>
 

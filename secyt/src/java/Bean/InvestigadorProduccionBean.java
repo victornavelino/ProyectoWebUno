@@ -845,23 +845,93 @@ public class InvestigadorProduccionBean {
         //2 delete
         //activo el boton
         this.getCbAction().setDisabled(false);
+        //cargar las provincias
+        this.getDomicilioBean().cargarProvincias();
+        Calendar cal= Calendar.getInstance();
 
         switch (btnSelect.getId()) {
             case "cbCreate":
+                this.getCbAction().setValue("Crear");
+                //System.out.println("botoooonnnn CbAction: " + getCbAction().getValue());
+                this.pickListView.submit(proyecto);
+                this.getPublicacionLstBean().setiActionBtnSelect(0);
+                this.limpiarObjetos();
+ 
+                break;
             case "cbCreateLibro":
-                //cargar las provincias
-                this.getDomicilioBean().cargarProvincias();
+                this.getCbAction().setValue("Crear");
+                //System.out.println("botoooonnnn CbAction: " + getCbAction().getValue());
+                this.pickListView.submit(proyecto);
+                this.getPublicacionLstBean().setiActionBtnSelect(0);
+                this.limpiarObjetos();
+                //poner el año actual
+                
+               
+                this.getLibro().setAnioPublicacion(String.valueOf(cal.get(Calendar.YEAR)));
+                
+
+                break;
+                
             case "cbCreatePropiedadIndustrial":
+                this.getCbAction().setValue("Crear");
+                //System.out.println("botoooonnnn CbAction: " + getCbAction().getValue());
+                this.pickListView.submit(proyecto);
+                this.getPublicacionLstBean().setiActionBtnSelect(0);
+                this.limpiarObjetos();
+      
+                
+
+                break;
             case "cbCreatePropiedadIntelectual":
+                this.getCbAction().setValue("Crear");
+                //System.out.println("botoooonnnn CbAction: " + getCbAction().getValue());
+                this.pickListView.submit(proyecto);
+                this.getPublicacionLstBean().setiActionBtnSelect(0);
+                this.limpiarObjetos();
+ 
+                
+
+                break;
             case "cbCreate2":
-            case "cbCreate3":
+                this.getCbAction().setValue("Crear");
+                //System.out.println("botoooonnnn CbAction: " + getCbAction().getValue());
+                this.pickListView.submit(proyecto);
+                this.getPublicacionLstBean().setiActionBtnSelect(0);
+                this.limpiarObjetos();
+    
+                
+
+                break;
+            case "cbCreate3": //CAPITULOS DE LIBRO
+                this.getCbAction().setValue("Crear");
+                //System.out.println("botoooonnnn CbAction: " + getCbAction().getValue());
+                this.pickListView.submit(proyecto);
+                this.getPublicacionLstBean().setiActionBtnSelect(0);
+                this.limpiarObjetos();
+                //poner el año actual
+               
+                this.getCapituloLibro().setAnioPublicacion(String.valueOf(cal.get(Calendar.YEAR)));
+                
+
+                break;
             case "cbCreate4":
+                this.getCbAction().setValue("Crear");
+                //System.out.println("botoooonnnn CbAction: " + getCbAction().getValue());
+                this.pickListView.submit(proyecto);
+                this.getPublicacionLstBean().setiActionBtnSelect(0);
+                this.limpiarObjetos();
+                //poner el año actual
+                
+
+                break;
             case "cbCreate5":
                 this.getCbAction().setValue("Crear");
                 //System.out.println("botoooonnnn CbAction: " + getCbAction().getValue());
                 this.pickListView.submit(proyecto);
                 this.getPublicacionLstBean().setiActionBtnSelect(0);
                 this.limpiarObjetos();
+      
+                
 
                 break;
 
@@ -872,15 +942,43 @@ public class InvestigadorProduccionBean {
 
                 break;
             case "cbEdit":
-            case "cbEditLibro":
-                //System.out.println("Boton edittt-----------------------: ");
+                
                 this.getCbAction().setValue("Modificar");
                 this.getPublicacionLstBean().setiActionBtnSelect(1);
+
+                break;
+                
+                
+            case "cbEditCapLibro":
+                
+                
+                this.getCbAction().setValue("Modificar");
+                this.getPublicacionLstBean().setiActionBtnSelect(1);
+                
+
+                break;
+                
+            case "cbEditLibro":
+                
+                
+                this.getCbAction().setValue("Modificar");
+                this.getPublicacionLstBean().setiActionBtnSelect(1);
+                
 
                 break;
         }
 
     }//FIN setBtnSelect 
+    
+    public void setCargarPDL(Libro libro){
+        //cargar el departamento del libro
+                this.getDomicilioBean().setProvincia(libro.getLocalidad().getDepartamento().getProvincia());
+                this.getDomicilioBean().cargarDepartamentos();
+                
+                this.getDomicilioBean().setDepartamento(libro.getLocalidad().getDepartamento());
+                this.getDomicilioBean().cargarLocalidades();
+        
+    }
 /*
      public void setBtnSelect(ActionEvent e) {
      CommandButton btnSelect = (CommandButton) e.getSource();

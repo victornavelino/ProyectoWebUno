@@ -179,7 +179,7 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
 
                                          oncomplete="PF('dlgArticuloRevistaCreateDlg').show();"
 
-                                         >
+                                         process="@this">
                             <f:setPropertyActionListener value="#{ar}" target="#{investigadorProduccionBean.articuloRevista}"/> 
                             <f:setPropertyActionListener value="#{ar.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
                         </p:commandButton> 
@@ -192,7 +192,7 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
                                          oncomplete="PF('dlgArticuloRevistaCreateDlg').show();"
                                          actionListener="#{investigadorProduccionBean.setBtnSelect}"
                                          update=":frmUser:revistas:dArticuloRevistaCreateDlg"
-                                         >
+                                         process="@this">
 
                             <f:setPropertyActionListener value="#{ar}" target="#{investigadorProduccionBean.articuloRevista}"/> 
                             <f:setPropertyActionListener value="#{ar.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
@@ -270,7 +270,7 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
                     <p:column  headerText="Operaciones" > 
 
 
-                        <p:commandButton id="cbEdit"
+                        <p:commandButton id="cbEditCapLibro"
 
                                          title="Editar"
                                          icon="ui-icon-pencil"  
@@ -280,9 +280,11 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
 
                                          oncomplete="PF('dlgCapituloCreateDlg').show();"
 
-                                         >
+                                         process="@this">
                             <f:setPropertyActionListener value="#{cl}" target="#{investigadorProduccionBean.capituloLibro}"/> 
+                            <f:setPropertyActionListener value="#{cl}" target="#{investigadorProduccionBean.cargarPDL}"/> 
                             <f:setPropertyActionListener value="#{cl.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
+                    
                         </p:commandButton> 
                         <p:commandButton id="cbDelete"
                                          title="Eliminar"
@@ -291,7 +293,7 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
                                          oncomplete="PF('dlgCapituloCreateDlg').show();"
                                          actionListener="#{investigadorProduccionBean.setBtnSelect}"
                                          update=":frmUser:capitulos:dCapituloCreateDlg"
-                                         >
+                                         process="@this">
 
                             <f:setPropertyActionListener value="#{cl}" target="#{investigadorProduccionBean.capituloLibro}"/> 
                             <f:setPropertyActionListener value="#{cl.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
@@ -373,7 +375,7 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
 
                                          oncomplete="PF('dlgCongresoCreateDlg').show();"
 
-                                         >
+                                         process="@this">
                             <f:setPropertyActionListener value="#{con}" target="#{investigadorProduccionBean.congreso}"/> 
                             <f:setPropertyActionListener value="#{con.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
                         </p:commandButton> 
@@ -385,7 +387,7 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
                                          oncomplete="PF('dlgCongresoCreateDlg').show();"
                                          actionListener="#{investigadorProduccionBean.setBtnSelect}"
                                          update=":frmUser:congresos:dCongresoCreateDlg"
-                                         >
+                                         process="@this">
 
                             <f:setPropertyActionListener value="#{con}" target="#{investigadorProduccionBean.congreso}"/> 
                             <f:setPropertyActionListener value="#{con.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
@@ -479,7 +481,7 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
 
                                          oncomplete="PF('dlgContratoCreateDlg').show();"
 
-                                         >
+                                         process="@this">
                             <f:setPropertyActionListener value="#{cont}" target="#{investigadorProduccionBean.contrato}"/> 
                             <f:setPropertyActionListener value="#{cont.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
                         </p:commandButton> 
@@ -492,7 +494,7 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
                                          oncomplete="PF('dlgContratoCreateDlg').show();"
                                          actionListener="#{investigadorProduccionBean.setBtnSelect}"
                                          update="dtContratos,:frmUser:contrato:dContratoCreateDlg"
-                                         >
+                                         process="@this">
 
                             <f:setPropertyActionListener value="#{cont}" target="#{investigadorProduccionBean.contrato}"/> 
                             <f:setPropertyActionListener value="#{cont.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
@@ -584,7 +586,7 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
                                          update=":frmUser:formacion:dFormacionCreateDlg"
                                          oncomplete="PF('dlgFormacionCreateDlg').show();"
 
-                                         >
+                                         process="@this">
                             <f:setPropertyActionListener value="#{fr}" target="#{investigadorProduccionBean.formacionRRHH}"/> 
                             <f:setPropertyActionListener value="#{fr.proyecto}" target="#{investigadorProduccionBean.proyecto}"/> 
                         </p:commandButton> 
@@ -597,7 +599,7 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
                                          actionListener="#{investigadorProduccionBean.setBtnSelect}"
                                          update=":frmUser:formacion:dFormacionCreateDlg"
                                          oncomplete="PF('dlgFormacionCreateDlg').show();"
-                                         >
+                                         process="@this">
 
                             <f:setPropertyActionListener value="#{fr}" target="#{investigadorProduccionBean.formacionRRHH}"/> 
                             <f:setPropertyActionListener value="#{fr.proyecto}" target="#{investigadorProduccionBean.proyecto}"/> 
@@ -722,8 +724,9 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
 
                                          oncomplete="PF('dlgLibro').show();"
 
-                                         >
+                                         process="@this">
                             <f:setPropertyActionListener value="#{l}" target="#{investigadorProduccionBean.libro}"/> 
+                            <f:setPropertyActionListener value="#{l}" target="#{investigadorProduccionBean.cargarPDL}"/> 
                             <f:setPropertyActionListener value="#{l.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
                         </p:commandButton> 
 
@@ -735,7 +738,7 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
                                          oncomplete="PF('dlgLibro').show();"
                                          actionListener="#{investigadorProduccionBean.setBtnSelect}"
                                          update=":frmUser:libros:dLibrosDlg"
-                                         >
+                                         process="@this">
 
                             <f:setPropertyActionListener value="#{l}" target="#{investigadorProduccionBean.libro}"/> 
                             <f:setPropertyActionListener value="#{l.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
@@ -821,7 +824,7 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
 
                                          oncomplete="PF('dlgPropiedadIndustrial').show();"
 
-                                         >
+                                         process="@this">
                             <f:setPropertyActionListener value="#{pr}" target="#{investigadorProduccionBean.propiedadIndustrial}"/> 
                             <f:setPropertyActionListener value="#{pr.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
                         </p:commandButton> 
@@ -834,7 +837,7 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
                                          oncomplete="PF('dlgPropiedadIndustrial').show();"
                                          actionListener="#{investigadorProduccionBean.setBtnSelect}"
                                          update=":frmUser:propiedadIndustrial:dPropiedadIndustrialDlg"
-                                         >
+                                         process="@this">
 
                             <f:setPropertyActionListener value="#{pr}" target="#{investigadorProduccionBean.propiedadIndustrial}"/> 
                             <f:setPropertyActionListener value="#{pr.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
@@ -940,7 +943,7 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
 
                                          oncomplete="PF('dlgPropiedadIntelectual').show();"
 
-                                         >
+                                         process="@this">
                             <f:setPropertyActionListener value="#{pri}" target="#{investigadorProduccionBean.propiedadIntelectual}"/> 
                             <f:setPropertyActionListener value="#{pri.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 
                         </p:commandButton> 
@@ -953,7 +956,7 @@ de la documentación respaldatoria de toda la información declarada. El mismo, 
                                          oncomplete="PF('dlgPropiedadIntelectual').show();"
                                          actionListener="#{investigadorProduccionBean.setBtnSelect}"
                                          update=":frmUser:propiedadIntelectual:dPropiedadIntelectualDlg"
-                                         >
+                                         process="@this">
 
                             <f:setPropertyActionListener value="#{pri}" target="#{investigadorProduccionBean.propiedadIntelectual}"/> 
                             <f:setPropertyActionListener value="#{pri.proyectos.get(0)}" target="#{investigadorProduccionBean.proyecto}"/> 

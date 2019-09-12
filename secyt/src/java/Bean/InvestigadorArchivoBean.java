@@ -63,7 +63,6 @@ public class InvestigadorArchivoBean {
     
     public void handleFileUpload(FileUploadEvent event) {        
         
-        System.out.println("paso 1: " + event.getFile());
         Documento doc = new Documento();
         doc.setNombreArchivo(event.getFile().getFileName());
         doc.setContenidoArchivo(event.getFile().getContents());
@@ -72,17 +71,14 @@ public class InvestigadorArchivoBean {
         resol.setFecha(new Date());
         resol.setDocumento(doc);
         resol.setDescripcion(event.getFile().getFileName());
-        System.out.println("paso 2");
         Investigador investigador = this.getInvestigadorLoginBean().getInvestigador();
         
         if (investigador.getResoluciones() == null) {
             investigador.setResoluciones(new ArrayList<Resolucion>());
         }//fin if
         
-        System.out.println("paso 3");
         investigador.getResoluciones().add(resol);
         
-        System.out.println("paso 4");
         //modifica el investigador
         this.getInvestigadorBean().edit(investigador);
         

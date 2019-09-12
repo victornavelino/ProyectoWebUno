@@ -23,7 +23,7 @@
 	<parameter name="anioInicio" class="java.lang.String"/>
 	<parameter name="anioFin" class="java.lang.String"/>
 	<queryString language="ejbql">
-		<![CDATA[SELECT cl FROM CapituloLibro cl, IN (cl.proyectos) pr WHERE pr.id = $P{idProyecto} and (cl.anioPublicacion = $P{anioInicio} or cl.anioPublicacion = $P{anioFin})]]>
+		<![CDATA[SELECT cl FROM CapituloLibro cl, IN (cl.proyectos) pr  WHERE pr.id = $P{idProyecto} and (cl.anioPublicacion = $P{anioInicio} or cl.anioPublicacion = $P{anioFin})]]>
 	</queryString>
 	<field name="ISBN" class="java.lang.String"/>
 	<field name="anioPublicacion" class="java.lang.String"/>
@@ -36,11 +36,14 @@
 	<field name="id" class="java.lang.Long"/>
 	<field name="investigadores" class="java.util.List"/>
 	<field name="libro" class="entidades.proyecto.resultado.Libro"/>
+	<field name="localidad" class="entidades.localidad.Localidad"/>
 	<field name="lugarPublicacion" class="java.lang.String"/>
 	<field name="nombreLibro" class="java.lang.String"/>
 	<field name="proyectos" class="java.util.List"/>
 	<field name="proyectosVinculacion" class="java.util.List"/>
+	<field name="tipoAmbitoPublicacion" class="entidades.proyecto.resultado.TipoAmbitoPublicacion"/>
 	<field name="tipoEdicion" class="entidades.proyecto.resultado.TipoEdicion"/>
+	<field name="tipoReferato" class="entidades.proyecto.resultado.TipoReferato"/>
 	<field name="titulo" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -55,7 +58,7 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="284" splitType="Stretch">
+		<band height="309" splitType="Stretch">
 			<staticText>
 				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="0" width="85" height="20"/>
 				<textElement>
@@ -88,98 +91,74 @@
 				<textFieldExpression><![CDATA[$F{editor}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="128" width="131" height="20"/>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="124" width="131" height="20"/>
 				<textElement>
 					<font isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Etapa de publicación]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="148" width="131" height="20"/>
-				<textElement>
-					<font isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[Enviado a publicación]]></text>
-			</staticText>
-			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement uuid="7bbdb28d-08d1-4c62-9853-08b06b2ffff4" positionType="Float" x="131" y="148" width="70" height="20"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{fechaEnviado}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="254" y="148" width="68" height="20"/>
-				<textElement>
-					<font isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[Aceptado]]></text>
-			</staticText>
-			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement uuid="7bbdb28d-08d1-4c62-9853-08b06b2ffff4" positionType="Float" x="322" y="148" width="70" height="20"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{fechaAceptado}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="407" y="148" width="68" height="20"/>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="7" y="148" width="74" height="20"/>
 				<textElement>
 					<font isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Publicado]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement uuid="7bbdb28d-08d1-4c62-9853-08b06b2ffff4" positionType="Float" x="475" y="148" width="70" height="20"/>
+				<reportElement uuid="7bbdb28d-08d1-4c62-9853-08b06b2ffff4" positionType="Float" x="85" y="148" width="120" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{fechaPublicado}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="180" width="74" height="20"/>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="7" y="180" width="74" height="20"/>
 				<textElement>
 					<font isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Edicion]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="74" y="180" width="120" height="20"/>
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="85" y="180" width="120" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{tipoEdicion}.getName()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="214" y="180" width="74" height="20"/>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="264" y="180" width="81" height="20"/>
 				<textElement>
 					<font isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Codigo ISBN:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="288" y="180" width="104" height="20"/>
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="360" y="180" width="104" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{ISBN}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="407" y="180" width="68" height="20"/>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="264" y="214" width="81" height="20"/>
 				<textElement>
 					<font isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Año:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="475" y="180" width="70" height="20"/>
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="360" y="214" width="70" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{anioPublicacion}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="210" width="194" height="20"/>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="246" width="194" height="20"/>
 				<textElement>
 					<font isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Lugar de publicación:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="194" y="210" width="351" height="20"/>
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="194" y="246" width="351" height="20"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{lugarPublicacion}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement uuid="8558faec-960a-42c3-9a56-7f704e0be8bd" positionType="Float" x="0" y="236" width="572" height="1"/>
+				<reportElement uuid="8558faec-960a-42c3-9a56-7f704e0be8bd" positionType="Float" x="0" y="301" width="572" height="1"/>
 			</line>
 			<staticText>
 				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="58" width="85" height="20"/>
@@ -209,6 +188,44 @@
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="266" y="148" width="79" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Con Referato]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="7bbdb28d-08d1-4c62-9853-08b06b2ffff4" positionType="Float" x="360" y="148" width="70" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tipoReferato}.getName()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="131" y="214" width="104" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tipoAmbitoPublicacion}.getName()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="7" y="214" width="124" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Ambito de publicacion:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="194" y="276" width="351" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{localidad}.getDescripcion() + " - " +
+$F{localidad}.getDepartamento().getDescripcion() + " - " +
+$F{localidad}.getDepartamento().getProvincia().getDescripcion()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="276" width="194" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Localidad - Departamento - Provincia:]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>

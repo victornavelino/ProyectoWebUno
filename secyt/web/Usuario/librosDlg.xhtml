@@ -82,6 +82,15 @@ and open the template in the editor.
 
                 <h:panelGrid columns="4" cellpadding="2" style="text-align: right" >
 
+                    <h:outputText value="Publicado: "/>
+                    <p:calendar  value="#{investigadorProduccionBean.libro.fechaPublicado}"
+                                 navigator="true"
+                                 locale="es"
+                                 readonlyInput="true"
+                                 mindate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
+                                 maxdate="#{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>
+                    <h:inputHidden/>
+                    <h:inputHidden/>
 
                     <h:outputText value="Edición: "/>
                     <h:selectOneMenu id="somEdicion"
@@ -174,13 +183,7 @@ and open the template in the editor.
                                  mindate="{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
                                  maxdate="{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>
 
-                    <h:outputText value="Publicado: "/>
-                    <p:calendar  value="{investigadorProduccionBean.libro.fechaPublicado}"
-                                 navigator="true"
-                                 locale="es"
-                                 readonlyInput="true"
-                                 mindate="{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaInicio}"
-                                 maxdate="{proyectoLstBean.convocatoriaWinsip.fechaEvaluadaFin}"/>-->
+                    -->
 
 
 
