@@ -128,7 +128,7 @@ public class PublicacionRN implements PublicacionRNLocal {
                 throw new Exception("Debe seleccionar el referato");
             }
             
-            if (libro.getTipoReferato() == null) {
+            if (libro.getTipoAmbitoPublicacion() == null) {
                 throw new Exception("Debe seleccionar el ambito de publicacion");
             }
             
@@ -206,20 +206,37 @@ public class PublicacionRN implements PublicacionRNLocal {
             if (!cadenas.es_numero(cap.getAnioPublicacion())) {
                 throw new Exception("El Año del Capitulo debe contener solo caracteres numéricos");
             }
-            if (cap.getFechaAceptado() == null) {
+            /*if (cap.getFechaAceptado() == null) {
                 throw new Exception("Ingrese Fecha Aceptado");
             }
             if (cap.getFechaEnviado() == null) {
                 throw new Exception("Ingrese Fecha Enviado");
-            }
+            }*/
             if (cap.getFechaPublicado() == null) {
                 throw new Exception("Ingrese Fecha Publicado");
             }
+            
+            if (cap.getTipoReferato() == null) {
+                throw new Exception("Debe seleccionar el referato");
+            }
+            
+            
+            
+            
+            
             if (cap.getInvestigadores() == null) {
                 throw new Exception("Debe seleccionar al menos un Participante");
             }
             if (!cadenas.validateIsbn13(cap.getISBN())) {
                 throw new Exception("Verificar Formato de Codigo ISBN");
+            }
+            
+            if (cap.getTipoAmbitoPublicacion() == null) {
+                throw new Exception("Debe seleccionar el ambito de publicacion");
+            }
+            
+            if (cap.getLocalidad()== null) {
+                throw new Exception("Debe seleccionar la localidad");
             }
 //            if (!cap.getAnioPublicacion().equals(anioInicio)) {
 //                throw new Exception("El año debe ser: "+anioInicio);
