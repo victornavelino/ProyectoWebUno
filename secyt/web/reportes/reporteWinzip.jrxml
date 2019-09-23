@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteWinzip" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="37f6179e-3872-41d0-9b3b-7233b73a06fb">
 	<property name="ireport.zoom" value="1.4641000000000026"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="768"/>
+	<property name="ireport.y" value="745"/>
 	<subDataset name="dataset1" uuid="f8332578-8d47-44e7-8130-4b054e39c055">
 		<queryString>
 			<![CDATA[]]>
@@ -306,7 +306,7 @@
 				<textFieldExpression><![CDATA[$F{codigoIncentivos}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="24" width="130" height="20"/>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="24" width="130" height="36"/>
 				<textElement>
 					<font isUnderline="false"/>
 				</textElement>
@@ -330,25 +330,25 @@
 				<text><![CDATA[Codigo del Proyecto:]]></text>
 			</staticText>
 			<line>
-				<reportElement uuid="35df923b-0c4b-4c32-b5f2-d89d87537810" x="3" y="132" width="550" height="1"/>
+				<reportElement uuid="35df923b-0c4b-4c32-b5f2-d89d87537810" x="3" y="146" width="550" height="1"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement uuid="e77dc592-5b9b-446b-bc0d-0bc11e56a24c" positionType="Float" x="3" y="144" width="550" height="20"/>
+				<reportElement uuid="e77dc592-5b9b-446b-bc0d-0bc11e56a24c" positionType="Float" x="3" y="158" width="550" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[AUTORIZACION DE PUBLICACION DE LA INFORMACION]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="9f86d96c-8fe0-453d-aec7-ed924c55e754" positionType="Float" mode="Opaque" x="0" y="175" width="553" height="7" backcolor="#989898"/>
+				<reportElement uuid="9f86d96c-8fe0-453d-aec7-ed924c55e754" positionType="Float" mode="Opaque" x="0" y="185" width="553" height="7" backcolor="#989898"/>
 				<textElement/>
 				<text><![CDATA[Static text]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="1" y="186" width="553" height="40"/>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="1" y="196" width="553" height="40"/>
 				<box leftPadding="10"/>
 				<textElement>
 					<font isUnderline="false"/>
@@ -356,7 +356,7 @@
 				<text><![CDATA[Autorizo que toda la informacion en los puntos 1 y 3 de este formulario sea publicada en la Pagina web de la Secretaria de Ciencia y Tecnología de la Universidad Nacional de Catamarca]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="226" width="553" height="20"/>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="236" width="553" height="20"/>
 				<box leftPadding="10"/>
 				<textElement>
 					<font isUnderline="false"/>
@@ -364,7 +364,7 @@
 				<text><![CDATA[]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="247" width="553" height="20"/>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="257" width="553" height="20"/>
 				<box leftPadding="10"/>
 				<textElement>
 					<font isUnderline="false"/>
@@ -372,7 +372,7 @@
 				<text><![CDATA[]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="3" y="388" width="553" height="20"/>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="3" y="398" width="553" height="20"/>
 				<box leftPadding="10" rightPadding="40"/>
 				<textElement textAlignment="Right">
 					<font isUnderline="false"/>
@@ -380,7 +380,7 @@
 				<text><![CDATA[Firma del Director del Proyecto]]></text>
 			</staticText>
 			<line>
-				<reportElement uuid="70bde906-d2ed-4bfd-b090-21b53f7f2b4c" x="324" y="377" width="229" height="1"/>
+				<reportElement uuid="70bde906-d2ed-4bfd-b090-21b53f7f2b4c" x="324" y="387" width="229" height="1"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
@@ -466,12 +466,23 @@
 				</jr:list>
 			</componentElement>
 			<staticText>
-				<reportElement uuid="e77dc592-5b9b-446b-bc0d-0bc11e56a24c" positionType="Float" x="1" y="91" width="555" height="20"/>
+				<reportElement uuid="e77dc592-5b9b-446b-bc0d-0bc11e56a24c" positionType="Float" x="1" y="88" width="555" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[2. DATOS DEL DIRECTOR E INTEGRANTES]]></text>
 			</staticText>
+			<subreport>
+				<reportElement uuid="5982b401-a8d9-41a7-b607-e509539a5225" positionType="Float" x="1" y="117" width="553" height="20"/>
+				<subreportParameter name="JPA_ENTITY_MANAGER">
+					<subreportParameterExpression><![CDATA[$P{JPA_ENTITY_MANAGER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="idProyecto">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} +"reporteWinzipParticipantes_subReport.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 		<band height="709">
 			<line>

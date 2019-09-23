@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteWinzipParticipantes_subReport" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a757f404-25ef-49b0-81b2-5f017af70624">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="406"/>
+	<subDataset name="dataset1" uuid="09a2fe40-e282-4e59-bb1c-7d6de865d499">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="persona" class="entidades.persona.Persona">
+			<fieldDescription><![CDATA[persona]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="idProyecto" class="java.lang.Long"/>
+	<queryString language="ejbql">
+		<![CDATA[SELECT p FROM Participacion p WHERE p.proyecto.id=: $P{idProyecto} ORDER BY p.rol.id
+]]>
+	</queryString>
+	<field name="class" class="java.lang.Class"/>
+	<field name="dedicacionSemanal" class="java.lang.Integer"/>
+	<field name="fechaDesde" class="java.util.Date"/>
+	<field name="fechaHasta" class="java.util.Date"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="investigador" class="entidades.persona.investigador.Investigador"/>
+	<field name="proyecto" class="entidades.proyecto.Proyecto"/>
+	<field name="rol" class="entidades.proyecto.Rol"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="752" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="4" width="103" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Apellido y Nombre:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="103" y="4" width="469" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{investigador}.getPersona().getApellido() + ", " + $F{investigador}.getPersona().getNombre()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="24" width="103" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Identificador:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="128" width="182" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Titulo de Grado // otorgado por:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="8558faec-960a-42c3-9a56-7f704e0be8bd" positionType="Float" x="1" y="331" width="571" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="103" y="44" width="468" height="40"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{investigador}.getPersona().getCorreosElectronicos()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="1" y="44" width="103" height="40"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[E-mail:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="1" y="84" width="133" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Documento de Identidad:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="134" y="84" width="145" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{investigador}.getPersona().getDocumentoIdentidad()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="412" y="84" width="159" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{investigador}.getPersona().getCuit()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="279" y="84" width="133" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[CUIL:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="134" y="104" width="145" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{investigador}.getPersona().getFechaNacimiento()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="279" y="104" width="133" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Sexo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="1" y="104" width="133" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Fecha de Nacimiento:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="412" y="104" width="159" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{investigador}.getPersona().getSexo()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="0" y="148" width="568" height="40"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{investigador}.getFormacionesAcademicasGrado()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="191" width="182" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Titulo de Postgrado // otorgado por:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="0" y="211" width="568" height="40"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{investigador}.getFormacionesAcademicasPosgrado()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="251" width="279" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Diciplina que desarrolla su actividad Académica:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="3" y="271" width="568" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["NO SE"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="3" y="289" width="156" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Funcion en el Proyecto (Rol):]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="159" y="289" width="145" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{rol}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="136" y="309" width="145" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaDesde}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="3" y="309" width="133" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Alta en el Proyecto:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="414" y="309" width="145" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fechaHasta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="281" y="309" width="133" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Baja en el Proyecto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="339" width="134" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Categoria CONICET/CIC:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="136" y="339" width="145" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["NO SE"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="417" y="339" width="145" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["NO SE"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="281" y="339" width="134" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Fecha de obtención:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="8558faec-960a-42c3-9a56-7f704e0be8bd" positionType="Float" x="1" y="364" width="571" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="3" y="372" width="568" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Organismo que lo categorizo para el Programa de Incentivos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="1" y="414" width="238" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Categoría en el Programa de Incentivos(CEI):  ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="4" y="394" width="568" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["NO SE"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="239" y="416" width="105" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["NO SE"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="455" y="416" width="117" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["NO SE"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="344" y="416" width="111" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Fecha de obtención:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="79" y="445" width="227" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["NO SE"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="306" y="443" width="111" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Categoria de la Beca:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="4" y="445" width="73" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Becario:  ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="417" y="443" width="155" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["NO SE"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="8558faec-960a-42c3-9a56-7f704e0be8bd" positionType="Float" x="1" y="468" width="571" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="117" y="478" width="451" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{investigador}.getCategoriaDocente()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="1" y="476" width="116" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Cargo docente:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="117" y="496" width="451" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{investigador}.getDedicacionDocente()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="496" width="117" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Dedicación docencia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="515" width="219" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Cargo actual como autoridad universitaria:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="219" y="517" width="349" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" NO SE"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="104" y="539" width="464" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" NO SE"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="0" y="537" width="103" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Dedicación:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="8558faec-960a-42c3-9a56-7f704e0be8bd" positionType="Float" x="2" y="562" width="571" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="4" y="571" width="564" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Dedicación en la universidad ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="4" y="591" width="564" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Dedicación semanal dedicadas a la investigación:  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="4" y="611" width="143" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Horas 1°Cuatrimestre:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="147" y="613" width="132" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{investigador}.getHorasDedicadasDocenciaPrimerCuatrimestre()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="424" y="613" width="132" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{investigador}.getSemanasDedicadasDocenciaPrimerCuatrimestre()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="281" y="611" width="143" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Semanas 1°Cuatrimestre:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="424" y="633" width="132" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{investigador}.getSemanasDedicadasDocenciaSegundoCuatrimestre()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="147" y="633" width="132" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{investigador}.getHorasDedicadasDocenciaSegundoCuatrimestre()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="281" y="631" width="143" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Semana 2°Cuatrimestre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="4" y="631" width="143" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Horas 2°Cuatrimestre:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="182" y="653" width="132" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" NO SE"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="4" y="651" width="178" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Antigüedad en la investigación:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b344ecc7-2f31-4a17-b69c-90060d805a36" positionType="Float" x="182" y="673" width="132" height="18"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" NO SE"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="4" y="671" width="178" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Cargo en investigación: ]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="70bde906-d2ed-4bfd-b090-21b53f7f2b4c" x="325" y="719" width="242" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232" positionType="Float" x="4" y="730" width="566" height="20"/>
+				<box leftPadding="10" rightPadding="40"/>
+				<textElement textAlignment="Right">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[  Firma del Investigador]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
